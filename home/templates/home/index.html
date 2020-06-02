@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}iPassport{% endblock %}
+{% block Administration_Menu %}
+    <li class="nav-item">
+        <a href={% url 'home:register' %} class="nav-link">
+            <i class="fas fa-circle nav-icon"></i>
+            <p>New User</p>
+        </a>
+    </li>
+{% endblock %}

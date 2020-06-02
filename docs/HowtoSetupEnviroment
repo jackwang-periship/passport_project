@@ -1,0 +1,10 @@
+(1) Run the following command in under your virtual enviroment:
+
+    pip install -r requirements.txt
+
+This will install all the required components and packages to your virtual enviroment so you can run the project.
+
+(2) Run the following command to update the requirements.txt if you had added additional Python/Django components.
+
+    pip freeze > requirements.txt
+
