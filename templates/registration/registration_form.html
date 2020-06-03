@@ -1,26 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}
     Registration
 {% endblock %}
+
+{% block content_header %}
+    <strong>Add New User</strong>
+{% endblock %}
+
 {% block content %}
-    <h1>Register for iPassport</h1>
     {% if registered %}
         iPassport says: <strong>thank you for registering!</strong>
         <a href="{% url 'home:index' %}">Return to the homepage.</a><br/>
     {% else %}
-        iPassport says: <strong>register here!</strong><br/>
-        <form id="user_form" method="post" action="{% url 'home:register' %}"
-              enctype="multipart/form-data">
+        <div class="container-fluid">
+            <div class="card card-primary col-lg-6 offset-lg-3">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Change Password
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form id="user_form" method="post" action="{% url 'home:register' %}"
+                          enctype="multipart/form-data">
 
-            {% csrf_token %}
+                        {% csrf_token %}
 
-            <!-- Display each form -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+                        <!-- Display each form -->
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
 
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register"/>
-        </form>
+                        <!-- Provide a button to click to submit the form. -->
+                        <input type="submit" name="submit" value="Register"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
+

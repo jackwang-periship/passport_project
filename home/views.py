@@ -1,8 +1,13 @@
+import logging
+import os.path
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, reverse
 from django.http import HttpResponse
 from .forms import UserForm, UserProfileForm
+
+from passport_project.logger import log
+log.name = os.path.basename(__file__)
 
 def user_login(request):
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -28,6 +33,8 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
+                log.name = log.name + '|' + user_login.__name__
+                log.info(f"User: {user} has logged in!")
                 return redirect(reverse('home:index'))
             else:
                 # An inactive account was used - no logging in!
@@ -99,10 +106,11 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-                  'registration/register.html',
+                  'registration/registration_form.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
                    'registered': registered})
+
 
 def index(request):
     # Render the response and send it back!
