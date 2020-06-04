@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+TITLE_CHOICES = [
+    ('MR', 'Mr.'),
+    ('MRS', 'Mrs.'),
+    ('MS', 'Ms.'),
+]
 
 class UserProfile(models.Model):
 # This line is required. Links UserProfile to a User model instance.
@@ -10,4 +15,4 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.username + '|' + self.website
