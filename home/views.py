@@ -5,9 +5,17 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, reverse
 from django.http import HttpResponse
 from .forms import UserForm, UserProfileForm
+from django.views import generic
+from .models import Employee
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
+
 
 from passport_project.logger import log
+
 log.name = os.path.basename(__file__)
+
 
 def user_login(request):
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -115,3 +123,25 @@ def register(request):
 def index(request):
     # Render the response and send it back!
     return render(request, 'home/index.html')
+
+
+class EmployeeListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    model = Employee
+    context_object_name = 'my_employee_list'  # your own name for the list as a template variable
+    queryset = Employee.objects.filter  # Get all the employees
+    template_name = 'home/employee_list.html'  # Specify your own template name/location
+    permission_required = 'Employee.can_list_employees'
+
+    def get_queryset(self):
+        return Employee.objects.all()  # Get all employees
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get the context
+        context = super(EmployeeListView, self).get_context_data(**kwargs)
+        # Create any data and add it to the context
+        context["jack"] = 'This is just some data'
+        return context
+
+
+class EmployeeDetailView(generic.DetailView):
+    model = Employee

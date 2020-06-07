@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Employee List</h1>
+    {% if my_employee_list %}
+        <ul>
+            {% for employee in my_employee_list %}
+                <li>
+                    <a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a> ({{ employee.last_name }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no employees in the system.</p>
+    {% endif %}
+{% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Added from external apps
     'django_filters',
+    # 'django_extensions',
     # Added by this project
     'home.apps.HomeConfig',
     'pclients.apps.PclientsConfig',
