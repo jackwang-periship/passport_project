@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from pclients.models import Paddress
+
 
 USER_TYPE_CHOICES = [
     ('student', 'Student'),
@@ -10,18 +12,24 @@ USER_TYPE_CHOICES = [
 
 AVTECH_DEPARTMENT_CHOICES = [
     ('administration', 'Administration'),
-    ('finance', 'Finannce'),
+    ('admission', 'Admission'),
+    ('marketing', 'Marketing'),
+    ('sales', 'Sales'),
+    ('humanresources', 'Human Resources'),
     ('careerservices', 'Career Services'),
-    ('technology', 'Technology'),
+    ('finance', 'Finannce'),
     ('staff', 'Staff'),
+    ('faculty', 'Faculty'),
 ]
 
 AVTECH_EMPLOYEE_ROLE_CHOICES = [
     ('instructor', 'Instructor'),
-    ('instructor_contractor', 'Finannce'),
+    ('instructor_contractor', 'Adjunct Instructor'),
     ('careerservices', 'Career Services'),
     ('technology', 'Technology'),
     ('staff', 'Staff'),
+    ('humanresources', 'Human Resources'),
+    ('admission', 'Admission'),
 ]
 
 
@@ -53,4 +61,4 @@ class Employee(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
-        return reverse('employee-detail', args=[str(self.id)])
+        return reverse('home:employee-detail', args=[str(self.id)])

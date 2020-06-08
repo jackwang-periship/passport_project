@@ -10,7 +10,7 @@ from .models import Employee
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
-
+from django.contrib.auth.decorators import login_required
 
 from passport_project.logger import log
 
@@ -119,13 +119,13 @@ def register(request):
                    'profile_form': profile_form,
                    'registered': registered})
 
-
+@login_required
 def index(request):
     # Render the response and send it back!
     return render(request, 'home/index.html')
 
 
-class EmployeeListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+class EmployeeListView(PermissionRequiredMixin, generic.ListView):
     model = Employee
     context_object_name = 'my_employee_list'  # your own name for the list as a template variable
     queryset = Employee.objects.filter  # Get all the employees
