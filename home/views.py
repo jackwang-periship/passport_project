@@ -130,7 +130,7 @@ class EmployeeListView(PermissionRequiredMixin, generic.ListView):
     context_object_name = 'my_employee_list'  # your own name for the list as a template variable
     queryset = Employee.objects.filter  # Get all the employees
     template_name = 'home/employee_list.html'  # Specify your own template name/location
-    permission_required = 'Employee.can_list_employees'
+    permission_required = 'home.can_list_employees'
 
     def get_queryset(self):
         return Employee.objects.all()  # Get all employees

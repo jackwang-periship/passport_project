@@ -505,7 +505,7 @@
                         </a>
                     </li>
                     <li class="nav-header">Administration</li>
-                    {% if perms.employee.can_list_employees %}
+                    {% if perms.home.can_list_employees %}
                         {% block Employee %}
                         {% endblock %}
                     {% endif %}
