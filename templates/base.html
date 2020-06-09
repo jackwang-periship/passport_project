@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -505,7 +505,7 @@
                         </a>
                     </li>
                     <li class="nav-header">Administration</li>
-                    {% if perms.home.can_list_employees %}
+                    {% if perms.home.can_list_employees or perms.home.can_list_employees %}
                         {% block Employee %}
                         {% endblock %}
                     {% endif %}

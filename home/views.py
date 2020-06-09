@@ -11,6 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import FormView
+from .forms import EmployeeForm
 
 from passport_project.logger import log
 
@@ -145,3 +147,12 @@ class EmployeeListView(PermissionRequiredMixin, generic.ListView):
 
 class EmployeeDetailView(generic.DetailView):
     model = Employee
+
+class EmployeeView(PermissionRequiredMixin, FormView):
+    model = Employee
+    context_object_name = 'employee_new'  # your own name for the list as a template variable
+    template_name = 'home/employee_new.html'  # Specify your own template name/location
+    form_class = EmployeeForm
+    permission_required = 'home.add_employee'
+
+
