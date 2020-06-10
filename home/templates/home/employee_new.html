@@ -13,25 +13,25 @@
                 <i class="fas fa-angle-left right"></i>
             </p>
         </a>
-        {% if perms.home.can_list_employees %}
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href={% url 'home:employee-new' %} class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add New Employee</p>
-                </a>
-            </li>
-        </ul>
+        {% if perms.home.add_employee %}
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'home:employee-new' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add New Employee</p>
+                    </a>
+                </li>
+            </ul>
         {% endif %}
         {% if perms.home.can_list_employees %}
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href={% url 'home:employees' %} class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>List/Search Employees</p>
-                </a>
-            </li>
-        </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'home:employees' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List/Search Employees</p>
+                    </a>
+                </li>
+            </ul>
         {% endif %}
     </li>
 {% endblock %}
