@@ -509,7 +509,37 @@
                         {% block Employee %}
                         {% endblock %}
                     {% endif %}
-
+                    {% if perms.home.can_list_courses or perms.home.add_course %}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Courses
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            {% if perms.home.add_employee %}
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href={% url 'courses:course-new' %} class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add New Course</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                            {% if perms.home.can_list_employees %}
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href={% url 'courses:courses' %} class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>List/Search Course</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endif %}
                     {% block Administration_Menu %}
                         <li class="nav-item">
                             <a href="#" class="nav-link">

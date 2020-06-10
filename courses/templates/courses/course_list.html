@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block Course %}
+    <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+                Courses
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        {% if perms.courses.add_course %}
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'courses:course-new' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add New Course</p>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+        {% if perms.courses.can_list_courses %}
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'courses:courses' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List/Search Course</p>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1>Course List</h1>
+    {% if course_list %}
+        <ul>
+            {% for course in course_list %}
+                <li>
+                    <a href="{{ course.slug }}">{{ course.name }}</a> ({{ employee.description }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no courses in the system.</p>
+    {% endif %}
+{% endblock %}

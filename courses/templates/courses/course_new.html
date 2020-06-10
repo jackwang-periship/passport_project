@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    New Course
+{% endblock %}
+
+{% block Course %}
+    <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+                Courses
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        {% if perms.courses.add_course %}
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'courses:course-new' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add New Course</p>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+        {% if perms.courses.can_list_courses %}
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href={% url 'courses:courses' %} class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List/Search Course</p>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="card card-primary col-lg-7 offset-lg-3">
+            <div class="card-header">
+                <h3 class="card-title">
+                    New Course
+                </h3>
+            </div>
+            <div class="card-body">
+                <form id="course_form" method="post" action="/course/">
+                    {{ form.as_p }}
+                    <input type="submit" name="submit" class="btn btn-success" value="Add New Course"/>
+                </form>
+            </div>
+        </div>
+
+{% endblock %}
