@@ -32,5 +32,5 @@ class CourseView(PermissionRequiredMixin, FormView):
     context_object_name = 'course_new'  # your own name for the list as a template variable
     template_name = 'courses/course_new.html'  # Specify your own template name/location
     form_class = CourseForm
-    permission_required = 'course.add_course'
+    permission_required = 'courses.add_course'
 

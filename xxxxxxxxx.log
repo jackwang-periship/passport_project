@@ -1,0 +1,2 @@
+2020-06-13 20:09:03,497 [Thread-4    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-13 20:12:20,639 [Thread-6    ] [INFO ] [views.py|user_login ]  User: Eilene has logged in!
