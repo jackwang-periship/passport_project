@@ -22,8 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.user_login, name='user_login'),
     path('home/', include('home.urls')),
-    path('courses/', include('courses.urls')),
     path('pclients/', include('pclients.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('courses/', include('courses.urls')),
     # Add URL maps to redirect the base URL to the given application
 ]

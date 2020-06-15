@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block title %}iPassport{% endblock %}
-
 {% block  sidebar %}
     <aside class="main-sidebar navbar sidebar-dark-lightblue elevation-4">
         <!-- Brand Logo -->
@@ -418,3 +415,24 @@
         <!-- /.sidebar -->
     </aside>
 {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="card card-primary col-lg-7 offset-lg-3">
+        <div class="card-header">
+            <h3 class="card-title">
+                User Profile (User)
+            </h3>
+        </div>
+        <div class="card-body">
+            <h1>User Name: {{ userprofile.user.username }}</h1>
+
+            <p><strong>First Name:</strong> <a href="">{{ userprofile.user.first_name }}</a></p>
+            <!-- author detail link not yet defined -->
+            <p><strong>Last Name:</strong> {{ userprofile.user.last_name }}</p>
+            <p><strong>Role:</strong> {{ userprofile.role }}</p>
+            <p><strong>Department:</strong> {{ userprofile.avtech_department }}</p>
+        </div>
+    </div>
+{% endblock %}
+

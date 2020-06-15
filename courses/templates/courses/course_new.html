@@ -26,7 +26,7 @@
         {% if perms.courses.can_list_courses %}
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href={% url 'courses:courses' %} class="nav-link">
+                    <a href={% url 'courses:list_courses' %} class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>List/Search Course</p>
                     </a>
@@ -45,11 +45,12 @@
                 </h3>
             </div>
             <div class="card-body">
-                <form id="course_form" method="post" action="/course/">
+                <form id="course_form" method="post" action="{% url 'courses:course-new' %}">
+                    {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" name="submit" class="btn btn-success" value="Add New Course"/>
                 </form>
             </div>
         </div>
-
+    </div>
 {% endblock %}

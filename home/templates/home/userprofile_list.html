@@ -1,30 +1,30 @@
 {% extends "base.html" %}
-
-{% block Employee %}
+{% load static %}
+{% block UserProfile %}
     <li class="nav-item has-treeview">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
-                Employees
+                Users
                 <i class="fas fa-angle-left right"></i>
             </p>
         </a>
-        {% if perms.home.add_employee %}
+        {% if perms.home.add_userprofile %}
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href={% url 'home:employee-new' %} class="nav-link">
+                    <a href={% url 'home:register' %} class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Add New Employee</p>
+                        <p>Add New User</p>
                     </a>
                 </li>
             </ul>
         {% endif %}
-        {% if perms.home.can_list_employees %}
+        {% if perms.home.can_list_userprofiles %}
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href={% url 'home:employees' %} class="nav-link">
+                    <a href={% url 'home:list_userprofiles' %} class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>List/Search Employees</p>
+                        <p>List/Search Users</p>
                     </a>
                 </li>
             </ul>
@@ -33,16 +33,19 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Employee List</h1>
-    {% if my_employee_list %}
+    <h1>User List</h1>
+    {% if userprofile_list %}
         <ul>
-            {% for employee in my_employee_list %}
+            {% for userprofile in userprofile_list %}
                 <li>
-                    <a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a> ({{ employee.last_name }})
+                    <a href="{{ userprofile.get_absolute_url }}">
+                        {{ userprofile.user }}
+                    </a>
+                    ({{ userprofile.role }})({{ userprofile.avtech_department }})
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>There are no employees in the system.</p>
+        <p>There are no users in the system.</p>
     {% endif %}
 {% endblock %}

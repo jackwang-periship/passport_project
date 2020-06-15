@@ -7,7 +7,6 @@ app_name = 'home'
 urlpatterns = [
     path('', views.index, name='index'),
     path('register/', views.register, name='register'), # New mapping!
-    path('employees/', views.EmployeeListView.as_view(), name='employees'),
-    path('employee/<int:pk>', views.EmployeeDetailView.as_view(), name='employee-detail'),
-    path('employee/new', views.EmployeeView.as_view(), name='employee-new'),
+    path('userprofiles/', views.UserProfileListView.as_view(), name='list_userprofiles'),
+    path('userprofile/(?P<pk>[0-9]+)/$', views.UserProfileDetailView.as_view(), name='userprofile-detail'),
 ]

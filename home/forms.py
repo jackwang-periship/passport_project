@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile, Employee
-from .models import USER_TYPE_CHOICES, AVTECH_DEPARTMENT_CHOICES, AVTECH_EMPLOYEE_ROLE_CHOICES
+from .models import UserProfile
+from .models import USER_ROLE_CHOICES, AVTECH_DEPARTMENT_CHOICES
 
 
 class UserForm(forms.ModelForm):
@@ -13,22 +13,12 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
-    type = forms.CharField(max_length=32, widget=forms.Select(choices=USER_TYPE_CHOICES))
+    role = forms.CharField(max_length=32, widget=forms.Select(choices=USER_ROLE_CHOICES))
+    avtech_department = forms.CharField(max_length=32, widget=forms.Select(choices=AVTECH_DEPARTMENT_CHOICES))
 
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('website', 'picture', 'role', 'avtech_department')
 
 
-class EmployeeForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=200)
-    last_name = forms.CharField(max_length=200)
-    email = forms.EmailField(label='EMail')
-    department = forms.ChoiceField(choices=AVTECH_DEPARTMENT_CHOICES)
-    role = forms.ChoiceField(choices=AVTECH_EMPLOYEE_ROLE_CHOICES)
 
-    # An inline class to provide additional information on the form.
-    class Meta:
-        # Provide an association between the ModelForm and a model
-        model = Employee
-        fields = ('first_name', 'last_name', 'email', 'department', 'role')

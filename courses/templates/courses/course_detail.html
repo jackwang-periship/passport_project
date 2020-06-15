@@ -22,7 +22,7 @@
         {% if perms.courses.can_list_courses %}
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href={% url 'courses:courses' %} class="nav-link">
+                    <a href={% url 'courses:list_courses' %} class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>List/Search Courses</p>
                     </a>
@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Title: {{ employee.first_name }}</h1>
+    <h1>Title: {{ user.first_name }}</h1>
 
     <p><strong>First Name:</strong> <a href="">{{ employee.first_name }}</a></p>
     <!-- author detail link not yet defined -->

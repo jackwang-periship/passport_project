@@ -1,5 +1,5 @@
-
 from django.views import generic
+from django.views.generic.edit import CreateView
 from .models import Course
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormView
@@ -27,10 +27,11 @@ class CourseListView(PermissionRequiredMixin, generic.ListView):
 class CourseDetailView(generic.DetailView):
     model = Course
 
-class CourseView(PermissionRequiredMixin, FormView):
+
+class NewCourseView(PermissionRequiredMixin, FormView):
     model = Course
     context_object_name = 'course_new'  # your own name for the list as a template variable
     template_name = 'courses/course_new.html'  # Specify your own template name/location
     form_class = CourseForm
-    permission_required = 'course.add_course'
-
+    success_url = '/'
+    permission_required = 'courses.add_course'

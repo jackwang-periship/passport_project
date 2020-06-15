@@ -6,13 +6,12 @@ from django.shortcuts import redirect, reverse
 from django.http import HttpResponse
 from .forms import UserForm, UserProfileForm
 from django.views import generic
-from .models import Employee
+from .models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
-from .forms import EmployeeForm
 
 from passport_project.logger import log
 
@@ -127,32 +126,26 @@ def index(request):
     return render(request, 'home/index.html')
 
 
-class EmployeeListView(PermissionRequiredMixin, generic.ListView):
-    model = Employee
-    context_object_name = 'my_employee_list'  # your own name for the list as a template variable
-    queryset = Employee.objects.filter  # Get all the employees
-    template_name = 'home/employee_list.html'  # Specify your own template name/location
-    permission_required = 'home.can_list_employees'
+class UserProfileListView(PermissionRequiredMixin, generic.ListView):
+    model = UserProfile
+    context_object_name = 'userprofile_list'  # your own name for the list as a template variable
+    queryset = UserProfile.objects.filter  # Get all the users
+    template_name = 'home/userprofile_list.html'  # Specify your own template name/location
+    permission_required = 'home.can_list_userprofiles'
 
     def get_queryset(self):
-        return Employee.objects.all()  # Get all employees
+        return UserProfile.objects.all()  # Get all users
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get the context
-        context = super(EmployeeListView, self).get_context_data(**kwargs)
+        context = super(UserProfileListView, self).get_context_data(**kwargs)
         # Create any data and add it to the context
         context["jack"] = 'This is just some data'
         return context
 
 
-class EmployeeDetailView(generic.DetailView):
-    model = Employee
+class UserProfileDetailView(generic.DetailView):
+    model = UserProfile
 
-class EmployeeView(PermissionRequiredMixin, FormView):
-    model = Employee
-    context_object_name = 'employee_new'  # your own name for the list as a template variable
-    template_name = 'home/employee_new.html'  # Specify your own template name/location
-    form_class = EmployeeForm
-    permission_required = 'home.add_employee'
 
 
