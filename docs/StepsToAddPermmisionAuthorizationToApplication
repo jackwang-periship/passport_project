@@ -1,0 +1,11 @@
+There two types of permissions in the Django framework.
+a. Predefined/Default: CREAT(ADD)/Update/Delete/Read. CRUD
+b. Customized Permision.
+
+The steps to add permission/authorization to the applicatio/data model varies a bit
+based on which type of the permission you are trying to add
+
+
+(1) Add the customized permission to the "models.py". Make sure you run "makemiogrations" and "migrate" commands.
+(2) Specify the permissions in the views.py
+(3) Add the permission check to the templates.

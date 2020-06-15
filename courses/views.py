@@ -4,6 +4,7 @@ from .models import Course
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormView
 from .forms import CourseForm
+from django.shortcuts import reverse
 
 
 class CourseListView(PermissionRequiredMixin, generic.ListView):
@@ -35,4 +36,10 @@ class NewCourseView(PermissionRequiredMixin, FormView):
     form_class = CourseForm
     permission_required = 'add_course'
 
-    success_url = '/'
+    def form_valid(self, form):
+        form.save(self.request.user)
+        return super(NewCourseView, self).form_valid(form)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("courses:list_courses")
+
