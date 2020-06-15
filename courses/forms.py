@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from .models import UserProfile, Course
-from .models import LOCATION_CHOICES
+from .models import LOCATION_CHOICES, SUBJECT_CHOICES
 from home.models import USER_ROLE_CHOICES
 
 class UserForm(forms.ModelForm):
@@ -23,6 +23,7 @@ class SubjectForm(forms.ModelForm):
 class CourseForm(forms.ModelForm):
     name = forms.CharField(max_length=70, label="Course Name", widget=forms.TextInput(attrs={'size':'36', 'placeholder': 'Course name'}))
     slug = forms.EmailField(label='EMail')
+    subject = forms.CharField(max_length=32, widget=forms.Select(choices=SUBJECT_CHOICES, attrs={'style': 'width:256px'}))
     description = forms.TextInput()
     location = forms.CharField(max_length=32, widget=forms.Select(choices=LOCATION_CHOICES, attrs={'style': 'width:256px'}))
 

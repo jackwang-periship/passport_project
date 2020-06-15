@@ -10,8 +10,8 @@ class CourseListView(PermissionRequiredMixin, generic.ListView):
     model = Course
     context_object_name = 'course_list'  # your own name for the list as a template variable
     queryset = Course.objects.filter  # Get all the employees
-    template_name = 'courses/course_list.html'  # Specify your own template name/location
-    permission_required = 'courses.can_list_courses'
+    template_name = 'courses/course_list.html' # Specify your own template name/location
+    permission_required = 'can_list_courses'
 
     def get_queryset(self):
         return Course.objects.all()  # Get all employees
@@ -33,5 +33,6 @@ class NewCourseView(PermissionRequiredMixin, FormView):
     context_object_name = 'course_new'  # your own name for the list as a template variable
     template_name = 'courses/course_new.html'  # Specify your own template name/location
     form_class = CourseForm
+    permission_required = 'add_course'
+
     success_url = '/'
-    permission_required = 'courses.add_course'

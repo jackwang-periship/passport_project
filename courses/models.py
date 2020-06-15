@@ -23,16 +23,14 @@ LOCATION_CHOICES = [
     ('eatontown-e', 'Eatontown E'),
 ]
 
-
-class Subject(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
-
-    class Meta:
-        ordering = ['title']
-
-    def __str__(self):
-        return self.title
+SUBJECT_CHOICES = [
+    ('medical_tech', 'Medical Tech'),
+    ('dental', 'Detal'),
+    ('programming', 'Computer Programming'),
+    ('security', 'Security'),
+    ('database', 'Database'),
+    ('project_management', 'Project Management'),
+]
 
 
 class Student(models.Model):
@@ -44,6 +42,7 @@ class Student(models.Model):
 
 class Counselor(models.Model):
     user = models.ForeignKey(UserProfile, blank=True, on_delete=models.DO_NOTHING)
+
 
 class WIAWDP(models.Model):
     name = models.CharField(max_length=200)
@@ -57,9 +56,7 @@ class WIAWDP(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=70, help_text="Please enter the course name.")
-    subject = models.ForeignKey(Subject,
-                                related_name='courses',
-                                on_delete=models.CASCADE)
+    subject = models.CharField(max_length=32, choices=SUBJECT_CHOICES)
     slug = models.SlugField()
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -68,12 +65,13 @@ class Course(models.Model):
     counselor = models.ManyToManyField('Counselor', null=True, blank=True, related_name=('Counselor'))
     wiawdp = models.OneToOneField('WIAWDP', null=True, blank=True, related_name=('WIAWDP'), on_delete=models.DO_NOTHING)
     location = models.CharField(max_length=32, choices=LOCATION_CHOICES)
+    permissions = (("can_list_courses", "List All The Courses"),)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Course, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
