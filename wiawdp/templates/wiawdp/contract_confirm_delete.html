@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete Contract Confirmation{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm" class="btn btn-danger">
+        <button onclick="window.history.back()" class="btn btn-primary">Cancel</button>
+    </form>
+{% endblock content %}

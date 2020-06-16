@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_filters',
     # 'django_extensions',
     # Added by this project
+    'django_tables2',
     'home.apps.HomeConfig',
     'pclients.apps.PclientsConfig',
     'courses.apps.CoursesConfig',
