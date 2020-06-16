@@ -1,0 +1,52 @@
+<!--Template for pending list and schedule list:
+    -I interpreted pending list to be and admin view for non-published schedules
+    -this template generates tables for both these lists based off the structure seen in the photos provided (schedule_schedule list.png)
+
+    available context variables: listType-> used for the list's title
+                                myList  -> the list that will shown in the table
+                                actions -> the action that the user should be able to preform on the list elements(not fully implemented)
+ -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {{ listType }} list {% endblock %}
+    <div class="content-wrapper">
+        {% block content %}
+        <h1> {{ listType }} List </h1>
+        <table class="table">
+            <tr>
+                <th>Schedule ID</th>
+                <th>Course</th>
+                <th>Location</th>
+                <th>Start-End</th>
+                <th>Time</th>
+                <th>Hours</th>
+                <th>Instructor</th>
+                <th>Manage Schedules</th>
+            </tr>
+            {% for entry in list %}
+            <tr>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.course_name }}</td>
+                <td>{{ entry.location }}</td>
+                <td>{{ entry.start_date }}</td>
+                <td>{{ entry.time }}</td>
+                <td>{{ entry.hours }}</td>
+                <td>{{ entry.instructor }}</td>
+                <td>
+                    {% for action in actions %}
+                        {% if action == 'approve' %}
+                    <!--Dynamic buttons to be implemented in a later build-->
+                            <button type="button" onclick="alert('NOT IMPLEMENTED')">Approve</button>
+                        {% elif action == 'update' %}
+                            <button type="button" onclick="alert('NOT IMPLEMENTED')">Update</button>
+                        {% elif action == 'delete'  %}
+                            <button type="button" onclick="alert('NOT IMPLEMENTED')">Delete</button>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href=/schedule/startone>To create a schedule click here</a>
+    </div>
+{% endblock %}

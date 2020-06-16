@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pclients.apps.PclientsConfig',
     'courses.apps.CoursesConfig',
     'students.apps.StudentsConfig',
+    'schedules.apps.SchedulesConfig',
 ]
 
 MIDDLEWARE = [
