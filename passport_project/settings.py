@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'students.apps.StudentsConfig',
     'schedules.apps.SchedulesConfig',
+    'wiawdp.apps.WiawdpConfig',
 ]
 
 MIDDLEWARE = [

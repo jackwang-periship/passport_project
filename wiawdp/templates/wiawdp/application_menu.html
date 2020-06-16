@@ -1,0 +1,59 @@
+{% if perms.wiawdp %}
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-table"></i>
+        <p>
+            WIA/WDP
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        {% if perms.wiawdp.view_contract %}
+            <li class="nav-item">
+                <a href="{% url 'wiawdp:active_contracts' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Active Contracts</p>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.wiawdp.view_contract %}
+            <li class="nav-item">
+                <a href="{% url 'wiawdp:search_contracts' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Search Contracts</p>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.wiawdp.add_contract %}
+            <li class="nav-item">
+                <a href="{% url 'wiawdp:add_contract' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Contract</p>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.wiawdp.change_contract %}
+            <li class="nav-item">
+                <a href="{% url 'wiawdp:modify_contract_lookup' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Modify Contract</p>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.wiawdp.view_contract %}
+            <li class="nav-item">
+                <a href="{% url 'wiawdp:view_report' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Report</p>
+                </a>
+            </li>
+        {% endif %}
+{#        {% if perms.wiawdp.view_career_pathway %}#}
+{#            <li class="nav-item">#}
+{#                <a href="{% url 'wiawdp:career_pathways' %}" class="nav-link">#}
+{#                    <i class="far fa-circle nav-icon"></i>#}
+{#                    <p>View Career Pathways</p>#}
+{#                </a>#}
+{#            </li>#}
+{#        {% endif %}#}
+    </ul>
+{% endif %}
