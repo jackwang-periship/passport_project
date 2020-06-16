@@ -12,7 +12,7 @@ class CourseListView(PermissionRequiredMixin, generic.ListView):
     context_object_name = 'course_list'  # your own name for the list as a template variable
     queryset = Course.objects.filter  # Get all the employees
     template_name = 'courses/course_list.html' # Specify your own template name/location
-    permission_required = 'can_list_courses'
+    permission_required = 'courses.can_list_courses'
 
     def get_queryset(self):
         return Course.objects.all()  # Get all employees

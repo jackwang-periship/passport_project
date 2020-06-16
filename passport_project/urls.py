@@ -25,5 +25,6 @@ urlpatterns = [
     path('pclients/', include('pclients.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('courses/', include('courses.urls')),
+    path('students/', include('students.urls')),
     # Add URL maps to redirect the base URL to the given application
 ]

@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     # Added by this project
     'home.apps.HomeConfig',
     'pclients.apps.PclientsConfig',
-    'courses.apps.CoursesConfig'
-
+    'courses.apps.CoursesConfig',
+    'students.apps.StudentsConfig',
 ]
 
 MIDDLEWARE = [
