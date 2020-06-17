@@ -28,5 +28,6 @@ urlpatterns = [
     path('students/', include('students.urls')),
     path('schedules/', include('schedules.urls')),
     path('wiawdp/', include('wiawdp.urls')),
+    path('billing/', include('billing.urls')),
     # Add URL maps to redirect the base URL to the given application
 ]

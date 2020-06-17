@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Avtech Billing{% endblock %}
+{% block content_header %}Student Payment{% endblock %}
+{% block content %}
+    <div>
+        <form id="transaction_form" method="post" action="{% url 'billing:notice' %}">
+            {% csrf_token %}
+            {% for field in form.hidden_fields %}
+                {{ hidden }}
+        {% endfor %}
+            {% for field in form.visible_fields %}
+                <p>
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+                </p>
+            {% endfor %}
+            <input type="submit" name="submit" value="Complete Transaction" />
+        </form>
+    </div>
+{% endblock %}

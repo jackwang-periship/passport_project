@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {%block style_block %}{% endblock %}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -154,13 +155,13 @@
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <div class="dropdown-divider"></div>
                     <div class="d-flex flex-row">
-                        <a href="{% url 'password_change' %}" class="mt-2 mb-2 dropdown-item">
+                        <a href="#" class="mt-2 mb-2 dropdown-item">
                             <i class="fas fa-user-edit text-black-80"></i> Change Password
                         </a>
                     </div>
                     <div class="dropdown-divider"></div>
                     <div class="d-flex flex-row justify-content-center">
-                        <a href="{% url 'logout' %}" class="w-50 mt-3 mb-3 btn btn-outline-dark" role="button"
+                        <a href="#" class="w-50 mt-3 mb-3 btn btn-outline-dark" role="button"
                            aria-pressed="true">Logout</a>
                     </div>
                 </div>
@@ -170,7 +171,6 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {% block  sidebar %}
     <aside class="main-sidebar navbar sidebar-dark-lightblue elevation-4">
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link navbar-dark">
@@ -275,16 +275,28 @@
                         {% endblock %}
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{% url 'students:student_list' %}" class="nav-link">
+                                <a href="pages/charts/chartjs.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>List Students</p>
+                                    <p>ChartJS</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/charts/flot.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Flot</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/charts/inline.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Inline</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         {% block Billing_Application_Menu %}
-                            <a href="#" class="nav-link">
+                            <a href="{% url 'billing:index' %}" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
                                     Billing
@@ -293,9 +305,27 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{% url 'billing:index' %}" class="nav-link">
+                                    <a href="{% url 'billing:verify' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List Billing</p>
+                                        <p>Verification</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:payment' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Pay Tuition</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:notice' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payment Notice</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:report' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sales Logs</p>
                                     </a>
                                 </li>
                             </ul>
@@ -312,9 +342,27 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{% url 'schedules:schedulelist' %}" class="nav-link">
+                                    <a href="pages/forms/general.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List Schedule</p>
+                                        <p>General Elements</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/advanced.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Advanced Elements</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/editors.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Editors</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/validation.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Validation</p>
                                     </a>
                                 </li>
                             </ul>
@@ -382,9 +430,35 @@
                             </ul>
                         {% endblock %}
                     </li>
-                    <li class="nav-item has-treeview {% if request.resolver_match.app_name == 'wiawdp' %}menu-open{% endif %}">
+                    <li class="nav-item has-treeview">
                         {% block WIAWDP_Application_Menu %}
-                            {% include 'wiawdp/application_menu.html' %}
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    WIA/WDP
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
                         {% endblock %}
                     </li>
                     <li class="nav-header">Help</li>
@@ -408,11 +482,11 @@
                         </a>
                     </li>
                     <li class="nav-header">Administration</li>
-                    {% if perms.home.can_list_userprofiles or perms.home.add_userprofile %}
-                        {% block UserProfile %}
+                    {% if perms.home.can_list_employees or perms.home.add_employee %}
+                        {% block Employee %}
                         {% endblock %}
                     {% endif %}
-                    {% if perms.courses.can_list_courses or perms.courses.add_course %}
+                    {% if perms.home.can_list_courses or perms.home.add_course %}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
@@ -421,20 +495,20 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            {% if perms.courses.add_course %}
+                            {% if perms.home.add_employee %}
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href={% url 'courses:course-new' %} class="nav-link">
+                                        <a href=# class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add New Course</p>
                                         </a>
                                     </li>
                                 </ul>
                             {% endif %}
-                            {% if perms.courses.can_list_courses %}
+                            {% if perms.home.can_list_employees %}
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href={% url 'courses:list_courses' %} class="nav-link">
+                                        <a href=# class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>List/Search Course</p>
                                         </a>
@@ -457,7 +531,7 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-    {% endblock %}
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

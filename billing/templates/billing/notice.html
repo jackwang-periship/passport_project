@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Avtech Billing{%  endblock %}
+{% block style_block %}
+	<style> 
+	table,th,td{
+	    border: 2px solid black;
+	    border-collapse: collapse;
+	} 
+	th, td{
+	    padding: 5px;
+	    text-align: center;
+	}
+    th{
+        background-color: red;
+    }
+	</style>
+{% endblock %}
+{% block content_header %}Student Payment Notice{%  endblock %}
+{% block content %}
+    <div>
+        {% if transactions %}
+	        <table style="width:100%">
+		        <!-- <caption>Caption</caption> -->
+		        <tr>
+		            <th>Student Record ID</th>
+		            <th>Student</th>
+		            <th>Counselor</th>
+		            <th>Course</th>
+		            <th>Balance</th>
+		            <th>Next Payment Date</th>
+		            <!-- <th colspan="2">Telephone</th> -->
+		        </tr>
+
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.verifiedId }}</td>
+                    <td>{{ transaction.firstName }} {{ transaction.lastName }}</td>
+                    <td>{{ transaction.counselor }}</td>
+                    <td>{{ transaction.course }}</td>
+                    <td>${{ transaction.balance }}</td>
+                    <td>{{ transaction.date }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <strong>No payments available.</strong>
+        {% endif %}
+    </div>
+{% endblock %}

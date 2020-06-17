@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Avtech Billing</title>
+    {% block style_block %}
+    {% endblock %}
+</head>
+<body>
+    <!-- <link rel="stylesheet" href="{static "css/base.css"%} /> -->
+    <!-- <script src="{ static "js/jquery.js" %}" /> -->
+    <img src="{%  static 'images/avtech_logo_top.png' %}" alt="Avtech Logo" width="300px" length="250px" />
+    <h1>Avtech Billing</h1>
+    <!-- <h2>Student ID:</h2> -->
+
+    <div>
+        <h3 style="color:blue"><a href = "{% url 'billing:home' %}"> Menu </a></h3>
+	    <ul style="list-style-type:disc;">
+		    <li><a href = "{% url 'billing:payment' %}"> Pay Tuition </a></li>
+		    <li><a href = "{% url 'billing:notice' %}"> Payment Notice </a></li>
+		    <li><a href = "{% url 'billing:report' %}"> Sales Logs </a></li>
+		    <li>Sign Out</li>
+	    </ul>
+    </div>
+    {% block body_block %}
+    {% endblock %}
+</body>
+</html>
