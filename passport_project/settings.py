@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     # Added by this project
     'django_tables2',
     'home.apps.HomeConfig',
-    'pclients.apps.PclientsConfig',
     'courses.apps.CoursesConfig',
     'students.apps.StudentsConfig',
     'schedules.apps.SchedulesConfig',
