@@ -11,7 +11,7 @@
 {% block title %} {{ listType }} list {% endblock %}
     <div class="content-wrapper">
         {% block content %}
-        <h1> {{ listType }} List </h1>
+  <h1> {{ listType }} List </h1>
         <table class="table">
             <tr>
                 <th>Schedule ID</th>
@@ -35,7 +35,6 @@
                 <td>
                     {% for action in actions %}
                         {% if action == 'approve' %}
-                    <!--Dynamic buttons to be implemented in a later build-->
                             <button type="button" onclick="alert('NOT IMPLEMENTED')">Approve</button>
                         {% elif action == 'update' %}
                             <button type="button" onclick="alert('NOT IMPLEMENTED')">Update</button>
@@ -47,6 +46,8 @@
             </tr>
             {% endfor %}
         </table>
-        <a href=/schedule/startone>To create a schedule click here</a>
+            {% load render_table from django_tables2 %}
+            {% render_table list %}
+        <a href=/schedules/startone>To create a schedule click here</a>
     </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Schedule(models.Model):
-    id = models.IntegerField(primary_key= True)
+    #id = models.IntegerField(primary_key= True,)
     course_name = models.CharField(max_length=64)
     location = models.CharField(max_length= 16)
     start_date = models.DateField()
