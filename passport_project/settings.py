@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'schedules.apps.SchedulesConfig',
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

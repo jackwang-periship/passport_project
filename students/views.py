@@ -1,5 +1,7 @@
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from students.forms import StudentForm, SearchStudentForm, ChangePasswordForm, ViewCurrentStudentForm, TopAllStudentForm, TopPublicStudentForm, TopStudentForm, AllMyStudentForm, AllPublicStudentForm
+from datetime import datetime
 
 from .models import Student
 
@@ -17,3 +19,45 @@ class StudentListView(PermissionRequiredMixin, generic.ListView):
         context = super(StudentListView, self).get_context_data(**kwargs)
         context["sidebar_data"] = 'This holds the sidebar data for students'
         return context
+
+class AddStudentView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/add_new_student.html'
+    permission_required = 'students.addStudents'
+
+class CurrentStudentView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/current_student.html'
+    permission_required = 'students.view_current_Students'
+
+class HelpSettingView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/help_setting.html'
+    permission_required = 'students.helpSetting'
+
+class StudentHomeView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/StudentHomeView.html'
+    permission_required = 'students.home'
+
+class StudentPasswordView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/change_password.html'
+    permission_required = 'students.changePassword'
+
+class PublicStudentView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/public_student.html'
+    permission_required = 'students.viewPublic'
+
+class SearchStudentView(PermissionRequiredMixin, generic.ListView):
+    model = Student
+    context_object_name = 'student_list'
+    template_name = 'students/search_student.html'
+    permission_required = 'students.search'

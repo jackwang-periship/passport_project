@@ -38,3 +38,55 @@ class StudentForm(forms.ModelForm):
             'first_name', 'last_name', 'ssn', 'zipcode', 'country', 'city', 'cellPhone', 'homePhone', 'email',
             'location',
             'refer', 'sources', 'notes', 'gender', 'newsLetter')
+
+class SearchStudentForm(forms.Form):
+    phone = forms.PhoneNumberField()
+    name = forms.CharField()
+    ID = forms.IntegerField()
+
+class ChangePasswordForm(forms.Form):
+    OldPassword = forms.IntegerField()
+    NewPassword = forms.IntegerField()
+    ConfirmPassword = forms.IntegerField()
+
+class ViewCurrentStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class TopStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class TopAllStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class TopPublicStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class AllPublicStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class AllMyStudentForm(forms.Form):
+    RecID = forms.IntegerField()
+    Name = forms.CharField()
+    HomePhone = forms.PhoneNumberField()
+    Email = forms.CharField()
+    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Student(models.Model):
@@ -22,12 +23,12 @@ class Student(models.Model):
     zipcode = models.CharField(max_length=5)
     country = models.CharField(max_length=50, default="United States of America")
     city = models.CharField(max_length=30)
-    cellPhone = models.CharField(max_length=15)
-    homePhone = models.CharField(max_length=15)
+    cellPhone = PhoneNumberField(required=False)
+    homePhone = PhoneNumberField(required=False)
     email = models.CharField(max_length=30)
     location = models.CharField(max_length=30)
-    refer = models.CharField(max_length=30, default="No Refer")
-    sources = models.CharField(max_length=30, default="Individual")
+    refer = models.CharField(max_length=30, default="No Refer", required=False)
+    sources = models.CharField(max_length=30, default="Individual", required=False)
     notes = models.CharField(max_length=200)
     gender = models.CharField(max_length=10, choices=GENDER, default=MALE)
     newsLetter = models.TextField()
