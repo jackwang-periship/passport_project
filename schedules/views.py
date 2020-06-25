@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .models import Schedule
-import django_tables2 as tables
+from django_tables2.views import SingleTableView
 from django.views.generic import UpdateView
 from django.views.generic import ListView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from .tables import ScheduleTable
 
 #NOTE:  pendingList and scheduleList are the only views I have worked on,
 #       the rest of these only lead to blank templates that extend the base.
@@ -10,34 +12,41 @@ def index(request):
     return render(request, 'schedule/index.html')
 
 
-class ScheduleList(ListView):
+class ScheduleList(PermissionRequiredMixin, SingleTableView):
     def get_context_data(self, **kwargs):
+        list = Schedule.objects.filter(approved=True)
         context = {
             'listType' : 'schedule',
-            'list' : Schedule.objects.filter(approved=True),
-            'actions':  {'update', 'delete'}
+            'list' : list,
+            'actions':  {'update', 'delete'},
+            'length' : len(list)
         }
         return context
 
-    queryset = Schedule.objects.filter(approved=True),
+    table_class = ScheduleTable
     template_name =  'schedules/lists.html'
+    permission_required = "schedule.can_view_schedule"
+    queryset = Schedule.objects.filter(approved=True)
 
 
-class PendingList(ListView):
+class PendingList(PermissionRequiredMixin, SingleTableView):
     def get_context_data(self, **kwargs):
-        context = {
+        context = super().get_context_data()
+        list = Schedule.objects.filter(approved=False)
+        context.update({
             'listType' : 'Pending',
-            'actions' : {'approve', 'update', 'delete'}
-
-        }
+            'list' : list,
+            'length' : len(list)
+        })
         return context
-
-    queryset = Schedule.objects.filter(approved=False),
+    table_class = ScheduleTable
+    table_data = queryset = Schedule.objects.filter(approved=False)
     template_name =  'schedules/lists.html'
+    permission_required = "schedule.can_view_pending_schedule"
 
 
-class UpdateSchedules(UpdateView):
-    model = Schedule
+
+class UpdateSchedules(PermissionRequiredMixin, UpdateView):
     fields = [
         "course_name",
         "location",
@@ -47,7 +56,10 @@ class UpdateSchedules(UpdateView):
         "hours",
         "instructor"
     ]
-    sucsess_url ='/'
+    model = Schedule
+    template_name = "schedules/schedule_update.html"
+    success_url = '/schedules/schedulelist'
+    permission_required = "schedule.can_update_schedule"
 
 def daily(request):
     return render(request, 'schedules/daily.html')

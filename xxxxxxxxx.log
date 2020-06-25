@@ -17,3 +17,29 @@
 2020-06-22 16:06:41,455 [Thread-13   ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
 2020-06-23 15:59:38,736 [Thread-28   ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
 2020-06-23 16:01:23,160 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 16:51:15,075 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 16:52:35,704 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 17:41:27,333 [Thread-16   ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-23 18:09:11,741 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-23 18:16:45,123 [Thread-9    ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
+2020-06-24 17:31:29,147 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:32:14,416 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:35:06,522 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:35:17,318 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:44:15,981 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:49:04,777 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/models.py changed, reloading.
+2020-06-24 17:50:00,525 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:50:28,079 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:51:02,777 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 18:02:23,714 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:01:03,035 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:06,749 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:14,314 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:46,968 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:04:54,786 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:05:04,470 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:05:26,594 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:06:40,687 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:30:15,375 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:34:24,436 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-25 17:09:54,943 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
