@@ -11,4 +11,4 @@ class Schedule(models.Model):
     instructor = models.CharField(max_length=64)
     approved = models.BooleanField(default=False)
     class Meta:
-        permissions = (("can_view_pending_schedule", "Can View Pending Schedule"),)
+        permissions = (('can_view_pending_schedule', 'Can View Pending Schedule'), ('can_approve_schedule', 'Can Approve Schedule'))

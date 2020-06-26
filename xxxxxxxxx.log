@@ -43,3 +43,5 @@
 2020-06-24 19:30:15,375 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
 2020-06-24 19:34:24,436 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
 2020-06-25 17:09:54,943 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-25 17:59:08,420 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-25 17:59:36,369 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
