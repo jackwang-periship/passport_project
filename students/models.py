@@ -26,12 +26,12 @@ class Student(models.Model):
     cellPhone = PhoneNumberField(required=False)
     homePhone = PhoneNumberField(required=False)
     email = models.CharField(max_length=30)
-    location = models.CharField(max_length=30)
+    location = models.CharField(max_length=30, required=False)
     refer = models.CharField(max_length=30, default="No Refer", required=False)
     sources = models.CharField(max_length=30, default="Individual", required=False)
-    notes = models.CharField(max_length=200)
+    notes = models.CharField(max_length=200, required= False)
     gender = models.CharField(max_length=10, choices=GENDER, default=MALE)
-    newsLetter = models.TextField()
+    newsLetter = models.TextField(required= False)
     created_on = models.DateField(auto_now_add=True)
 
     class Meta:

@@ -23,12 +23,12 @@ class StudentForm(forms.ModelForm):
     country = forms.CharField(max_length=50, default="United States of America", label="country")
     city = forms.CharField(max_length=30, label="city")
     cellPhone = forms.IntegerField(max_length=15, label="cellPhone")
-    homePhone = forms.IntegerField(max_length=15, label="homePhone")
+    homePhone = forms.IntegerField(max_length=15, label="homePhone", required=False)
     email = forms.CharField(max_length=30, label="email")
-    location = forms.CharField(max_length=30, label="location")
-    refer = forms.CharField(max_length=30, default="No Refer", label="refer")
-    sources = forms.CharField(max_length=30, default="Individual", label="sources")
-    notes = forms.TextInput()
+    location = forms.CharField(max_length=30, label="location", required=False)
+    refer = forms.CharField(max_length=30, default="No Refer", label="refer", required=False)
+    sources = forms.CharField(max_length=30, default="Individual", label="sources", required=False)
+    notes = forms.TextInput(required=False)
     gender = forms.CharField(max_length=10, choices=GENDER, default=MALE)
     newsLetter = forms.CharField(max_length=3, choices=Chooses, default=YES)
 
@@ -49,44 +49,7 @@ class ChangePasswordForm(forms.Form):
     NewPassword = forms.IntegerField()
     ConfirmPassword = forms.IntegerField()
 
-class ViewCurrentStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-class TopStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-class TopAllStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-class TopPublicStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-class AllPublicStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-class AllMyStudentForm(forms.Form):
-    RecID = forms.IntegerField()
-    Name = forms.CharField()
-    HomePhone = forms.PhoneNumberField()
-    Email = forms.CharField()
-    EntryDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    class Meta:
+        fields = (
+            'old_password', 'new_password', 'confirm password'
+        )
