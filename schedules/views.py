@@ -6,6 +6,7 @@ from django.views.generic import DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .tables import ScheduleTable
+from django.contrib.auth.models import Permission
 
 #NOTE:  pendingList and scheduleList are the only views I have worked on,
 #       the rest of these only lead to blank templates that extend the base.
@@ -15,19 +16,21 @@ def index(request):
 
 class ScheduleList(PermissionRequiredMixin, SingleTableView):
     def get_context_data(self, **kwargs):
+        context = super().get_context_data()
         list = Schedule.objects.filter(approved=True)
-        context = {
-            'listType' : 'schedule',
+        context.update({
+
+            'listType' : 'Schedule',
             'list' : list,
             'actions':  {'update', 'delete'},
             'length' : len(list)
-        }
+        })
         return context
 
     table_class = ScheduleTable
     template_name =  'schedules/lists.html'
     permission_required = 'schedule.can_view_schedule'
-    queryset = Schedule.objects.filter(approved=True)
+    table_data = queryset = Schedule.objects.filter(approved=True)
 
 
 class PendingList(PermissionRequiredMixin, SingleTableView):
@@ -55,7 +58,8 @@ class UpdateSchedules(PermissionRequiredMixin, UpdateView):
         'end_date',
         'time',
         'hours',
-        'instructor'
+        'instructor',
+        'approved'
     ]
     model = Schedule
     template_name = 'schedules/schedule_update.html'
