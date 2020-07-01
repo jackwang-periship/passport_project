@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xPortal Login</title>
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'AdminLTE-3.0.5/dist/css/adminlte.min.css' %}">
+    <style>
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .login-form {
+            padding: 0 1.5em;
+            flex-basis: 200px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-pic {
+            min-width: 400px;
+            background-image: url({% static 'images/passport_login.png' %});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            flex-grow: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <div class="login-form">
+        {% if browser not in support_browsers %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                PeriPharma customer portal is tested on <strong>Chrome</strong>, <strong>Firefox</strong>, <strong>Safari</strong>
+                and <strong>Edge</strong>. Currently you are using "{{ browser }}". Portal functionalities will be
+                limited. Please use Chrome, Firefox, Safari or Edge.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <div class="row justify-content-center" style="margin-bottom: 1em;">
+            <img id="xportal-logo" src="{% static 'images/avtech_logo_top.png' %}" height="48">
+        </div>
+        {% if hint %}
+            <div class="row justify-content-center" style="margin-bottom: 1em;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ hint }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+        {% if error_message %}
+            <div class="row justify-content-center" style="margin-bottom: 1em;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ error_message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+        {% if message %}
+            <div class="row justify-content-center" style="margin-bottom: 1em;">
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    {% block content %}
+    {% endblock content %}
+    </div>
+    <div class="login-pic d-none d-md-block"></div>
+    </div>
+
+    <script src="{% static 'AdminLTE-3.0.5/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
