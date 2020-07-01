@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Result{% endblock %}
+{% block title %}Result of Searching{% endblock %}
 {% block content %}
 <a href="{% url 'students:search_student' %}">Search Student</a><br>
 {% if active_contract_list %}
