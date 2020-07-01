@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import ListView
 from .models import Transaction, VerifiedId, Report
 from .forms import TransactionForm, VerifiedIdForm, ReportForm
 
@@ -13,7 +13,7 @@ def verify(request):
     if form.is_valid():
         # VerifiedId.objects.create(**form.cleaned_data)
         form.save()
-        return home(request)
+        return index(request)
     else:
         print(form.errors)
     return render(request, "billing/verify.html", {'form': form})

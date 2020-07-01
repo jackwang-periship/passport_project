@@ -1,0 +1,12 @@
+{% if perms.wiawdp.change_contract %}
+    <form class="btn" method="get" action="{% url 'wiawdp:modify_contract' %}">
+        <input type="hidden" name="contract_id" value="{{ record.id }}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </form>
+{% endif %}
+{% if perms.wiawdp.delete_contract %}
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#contract-confirm-delete-modal"
+            data-pk="{{ record.pk }}">
+        Delete
+    </button>
+{% endif %}

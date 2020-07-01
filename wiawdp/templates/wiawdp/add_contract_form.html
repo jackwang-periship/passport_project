@@ -18,3 +18,18 @@
     </form>
 </div>
 {% endblock content %}
+{% block javascript %}
+<script>
+$(function() {
+    $('input[name="end_date"]').daterangepicker({
+        singleDatePicker: true,
+        timePicker: true,
+        showDropdowns: true,
+        locale: {
+            format: 'Y-MM-DD hh:mm:ss'
+        }
+    });
+});
+</script>
+{% endblock javascript %}
+
