@@ -13,4 +13,5 @@ urlpatterns = [
     path('change_password/', views.StudentPasswordView.as_view(), name='change_password'),
     path('public_student/', views.PublicStudentView.as_view(), name='public_student'),
     path('search_student/', views.SearchStudentView.as_view(), name='search_student'),
+    path('delete_student/', views.DeleteStudentView.as_view(), name='delete_student'),
 ]

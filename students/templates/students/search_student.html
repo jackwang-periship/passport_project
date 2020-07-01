@@ -1,8 +1,29 @@
 {% extends "base.html" %}
-{% block title%}Daily Schedule{% endblock %}
+{% load static %}
 
+{% block title %}Search Student{% endblock %}
 {% block content %}
-    <div class="content-wrapper">
-        <h1> Search Student </h1>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Search Student</h3>
     </div>
-{% endblock %}
+    <form id="contract_form" method="post" action="{% url 'students:search_student' %}">
+        <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+{#            {% for field in form %}#}
+{#                <div class="form-group row">#}
+{#                    {{ field.errors }}#}
+{#                    {{ field.label_tag }} {{ field }}#}
+{#                {% if field.help_text %}#}
+{#                    <p class="help">{{ field.help_text|safe }}</p>#}
+{#                {% endif %}#}
+{#                </div>#}
+{#            {% endfor %}#}
+        </div>
+        <div class="card-footer">
+            <input class="btn btn-primary" type="submit" name="submit" value="Search">
+        </div>
+    </form>
+</div>
+{% endblock content %}

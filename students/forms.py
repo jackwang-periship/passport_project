@@ -41,7 +41,8 @@ class StudentForm(forms.ModelForm):
 
 class SearchStudentForm(forms.Form):
     phone = forms.PhoneNumberField()
-    name = forms.CharField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
     ID = forms.IntegerField()
 
 class ChangePasswordForm(forms.Form):
