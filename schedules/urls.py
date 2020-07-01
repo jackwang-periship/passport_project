@@ -6,8 +6,11 @@ app_name = 'schedules'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('schedulelist', views.scheduleList, name='schedulelist'),
-    path('pendinglist', views.pendingList, name='pendinglist'),
+    path('schedulelist', views.ScheduleList.as_view(), name='schedulelist'),
+    path('pendinglist', views.PendingList.as_view(), name='pendinglist'),
+    path('<pk>/update', views.UpdateSchedules.as_view(), name='update'),
+    path('<pk>/approve', views.ApproveSchedules.as_view(), name='approve'),
+    path('<pk>/delete', views.DeleteSchedule.as_view(), name='delete'),
     path('dailyto-do', views.daily, name='dailyto-do'),
     path('weeklyto-do', views.weekly, name='weeklyto-do'),
     path('officeschedule', views.officeSchedule, name='officeschedule'),
