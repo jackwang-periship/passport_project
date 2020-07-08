@@ -277,7 +277,25 @@
                             <li class="nav-item">
                                 <a href="{% url 'students:student_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>List Students</p>
+                                    <p>All Students</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'students:add_new_student' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Students</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'students:search_student' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Search Students</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'students:student_Home' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Recent Student</p>
                                 </a>
                             </li>
                         </ul>
