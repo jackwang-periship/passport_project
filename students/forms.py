@@ -43,6 +43,9 @@ class SearchStudentForm(forms.Form):
     last_name = forms.CharField(max_length=20, required=False)
     ID = forms.IntegerField(required=False)
 
+class ModifyStudentForm(forms.Form):
+    ID = forms.IntegerField()
+
 class ChangePasswordForm(forms.Form):
     OldPassword = forms.IntegerField()
     NewPassword = forms.IntegerField()
