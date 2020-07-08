@@ -28,16 +28,6 @@ class AddStudentView(PermissionRequiredMixin, generic.CreateView):
     form_class = StudentForm
     success_url = reverse_lazy("student:student_list")
 
-
-class CurrentStudentView(PermissionRequiredMixin, generic.ListView):
-    model = Student
-    context_object_name = 'recent_add_student'
-    template_name = 'students/current_student.html'
-    permission_required = 'students.view_current_Students'
-
-    def get_queryset(self):
-        return Student.objects.all()
-
 class StudentHomeView(PermissionRequiredMixin, generic.ListView):
     model = Student
     context_object_name = 'student_home'
