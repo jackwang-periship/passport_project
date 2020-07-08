@@ -9,12 +9,12 @@
     </div>
     <form method="post">
         <div class="card-body">
-            <div class="row">
+            <p>
                 <strong>Contract Number: </strong>{{ object.pk }}
-            </div>
-            <div class="row">
-                <strong>Client: </strong>{{ object.client.full_name }}
-            </div>
+            </p>
+            <p>
+                <strong>Client: </strong>{{ object.client.first_name}} {{ object.client.last_name}} ({{ object.client.pk}})
+            </p>
 
             {% csrf_token %}
             {{ form.as_p }}
@@ -25,3 +25,17 @@
     </form>
 </div>
 {% endblock content %}
+{% block javascript %}
+<script>
+$(function() {
+    $('input[name="end_date"]').daterangepicker({
+        singleDatePicker: true,
+        timePicker: true,
+        showDropdowns: true,
+        locale: {
+            format: 'Y-MM-DD hh:mm:ss'
+        }
+    });
+});
+</script>
+{% endblock javascript %}

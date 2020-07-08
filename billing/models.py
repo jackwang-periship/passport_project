@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from students.models import Student
 # from django.template.defaultfilters import slugify
 
 # Any Changes

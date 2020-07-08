@@ -1,0 +1,38 @@
+{% load static %}
+<div id="contract-confirm-delete-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Contract?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form method="post" action="{% url 'wiawdp:delete_contract' %}">
+                    {% csrf_token %}
+                    <input type="hidden" id="contract-confirm-delete-modal-pk" value="" name="pk">
+                    <input type="submit" value="Confirm" class="btn btn-danger">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'AdminLTE-3.0.5/plugins/jquery/jquery.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('#contract-confirm-delete-modal').on('show.bs.modal', function (e) {
+            const pk = e.relatedTarget.dataset.pk;
+            const modal = e.currentTarget;
+            modal.querySelector('#contract-confirm-delete-modal-pk').value = pk;
+            const message = document.createElement("p")
+            message.textContent = `Are you sure you want to delete contract ${pk}? This action cannot be undone.`;
+            const modalBody = modal.querySelector('.modal-body')
+            if (modalBody.firstChild) {
+                modalBody.firstChild.remove()
+            }
+            modalBody.appendChild(message);
+
+        })
+    });
+</script>

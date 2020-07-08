@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django_tables2',
     'phonenumber_field',
     'home.apps.HomeConfig',
-    'pclients.apps.PclientsConfig',
     'courses.apps.CoursesConfig',
     'students.apps.StudentsConfig',
     'schedules.apps.SchedulesConfig',
@@ -77,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request'
             ],
         },
     },
