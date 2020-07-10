@@ -63,13 +63,13 @@
         });
 
         const checkboxAllToggleBtn = document.querySelector('#checkbox-all-toggle');
-        checkboxAllToggleBtn.addEventListener('input', toggleAllCheckboxes);
-        checkboxAllToggleBtn.addEventListener('input', updateDeleteSelectedState);
+        checkboxAllToggleBtn.addEventListener('change', toggleAllCheckboxes);
+        checkboxAllToggleBtn.addEventListener('change', updateDeleteSelectedState);
 
         const boxes = document.querySelectorAll('input[name="row_pks"]');
         boxes.forEach(box => {
-            box.addEventListener('input', uncheckCheckboxAllToggle);
-            box.addEventListener('input', updateDeleteSelectedState);
+            box.addEventListener('change', uncheckCheckboxAllToggle);
+            box.addEventListener('change', updateDeleteSelectedState);
         });
 
 
