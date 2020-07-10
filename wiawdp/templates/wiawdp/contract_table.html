@@ -8,8 +8,8 @@
     <div class="dropdown">
         <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Actions</div>
         <div class="dropdown-menu">
-            <button type="button" class="btn btn-default dropdown-item" data-toggle="modal"
-                    data-target="#contracts-confirm-delete-modal" form="delete-form">
+            <button id="delete-selected-button" type="button" class="btn btn-default dropdown-item" data-toggle="modal"
+                    data-target="#contracts-confirm-delete-modal" form="delete-form" disabled>
                 Delete Selected
             </button>
         </div>
@@ -46,17 +46,30 @@
         checkboxAllToggle.checked = false;
     }
 
+    function updateDeleteSelectedState(e) {
+        const numChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const deleteSelectedButton = document.querySelector('#delete-selected-button');
+        if (numChecked) {
+            deleteSelectedButton.removeAttribute('disabled');
+        } else {
+            deleteSelectedButton.setAttribute('disabled', '');
+        }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
         const contract_filter_selector = document.querySelector('#id_end_date');
         contract_filter_selector.addEventListener('change', (e) => {
             e.currentTarget.form.submit();
         });
 
-        document.querySelector('#checkbox-all-toggle').addEventListener('click', checkboxAllToggle);
+        const checkboxAllToggleBtn = document.querySelector('#checkbox-all-toggle');
+        checkboxAllToggleBtn.addEventListener('input', checkboxAllToggle);
+        checkboxAllToggleBtn.addEventListener('input', updateDeleteSelectedState);
 
         const boxes = document.querySelectorAll('input[name="row_pks"]');
         boxes.forEach(box => {
-            box.addEventListener('click', onCheckboxChange);
+            box.addEventListener('input', onCheckboxChange);
+            box.addEventListener('input', updateDeleteSelectedState);
         });
 
 
