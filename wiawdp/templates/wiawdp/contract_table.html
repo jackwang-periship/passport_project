@@ -33,7 +33,7 @@
 </div>
 
 <script>
-    function checkboxAllToggle(e) {
+    function toggleAllCheckboxes(e) {
         const checked = e.currentTarget.checked;
         const boxes = document.querySelectorAll('input[name="row_pks"]');
         boxes.forEach(box => {
@@ -41,7 +41,7 @@
         });
     }
 
-    function onCheckboxChange(e) {
+    function uncheckCheckboxAllToggle(e) {
         const checkboxAllToggle = document.querySelector('#checkbox-all-toggle');
         checkboxAllToggle.checked = false;
     }
@@ -63,12 +63,12 @@
         });
 
         const checkboxAllToggleBtn = document.querySelector('#checkbox-all-toggle');
-        checkboxAllToggleBtn.addEventListener('input', checkboxAllToggle);
+        checkboxAllToggleBtn.addEventListener('input', toggleAllCheckboxes);
         checkboxAllToggleBtn.addEventListener('input', updateDeleteSelectedState);
 
         const boxes = document.querySelectorAll('input[name="row_pks"]');
         boxes.forEach(box => {
-            box.addEventListener('input', onCheckboxChange);
+            box.addEventListener('input', uncheckCheckboxAllToggle);
             box.addEventListener('input', updateDeleteSelectedState);
         });
 
