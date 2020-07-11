@@ -20,7 +20,9 @@ class ContractFilter(django_filters.FilterSet):
         ('active', 'Active'),
         ('inactive', 'Inactive')
     )
-    status = django_filters.ChoiceFilter(field_name='end_date', label='Contract Status', choices=CONTRACT_CHOICES, method='filter_active')
+
+    status = django_filters.ChoiceFilter(field_name='end_date', label='Contract Status', choices=CONTRACT_CHOICES,
+                                         method='filter_active')
 
     class Meta:
         model = Contract
@@ -41,14 +43,15 @@ class ContractView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     filterset_class = ContractFilter
 
     def get(self, request, *args, **kwargs):
+        # Set a default contract status filter if none is given
         if 'status' not in request.GET:
-            return redirect(f'{reverse_lazy("wiawdp:active_contracts")}?status=active')
+            return redirect(f'{reverse_lazy("wiawdp:contracts")}?status=active')
         return super().get(request)
 
     def get_table_kwargs(self):
         user = self.request.user
         if user.has_perms('wiawdp.change_contract') or user.has_perms('wiawdp.delete_contract'):
-            return {'empty_text': 'No active contracts.'}
+            return {'empty_text': 'No results matching query.'}
         return {'exclude': ('select', 'actions'), 'empty_text': 'No active contracts.'}
 
 
@@ -56,9 +59,8 @@ class AddContractView(PermissionRequiredMixin, CreateView):
     permission_required = 'wiawdp.add_contract'
     model = Contract
     template_name = 'wiawdp/add_contract_form.html'
-    success_url = reverse_lazy('wiawdp:active_contracts')
+    success_url = reverse_lazy('wiawdp:contracts')
     fields = ['client', 'workforce', 'end_date', 'performance']
-
 
 
 class FormTableView(SingleTableMixin, FormView):
@@ -68,7 +70,7 @@ class FormTableView(SingleTableMixin, FormView):
         return None
 
     def get_context_data(self, **kwargs):
-        context = (FormView, self).get_context_data(**kwargs)
+        context = super(FormView, self).get_context_data(**kwargs)
         if 'form' not in context or not context['form'].is_valid():
             return context
         table = self.get_table(**self.get_table_kwargs())
@@ -129,7 +131,7 @@ class ModifyContractView(PermissionRequiredMixin, UpdateView):
     model = Contract
     template_name = 'wiawdp/modify_contract_form.html'
     fields = ['workforce', 'end_date', 'performance']
-    success_url = reverse_lazy('wiawdp:active_contracts')
+    success_url = reverse_lazy('wiawdp:contracts')
 
     def get_object(self):
         return Contract.objects.get(pk=self.request.GET.get('contract_id'))
@@ -149,6 +151,7 @@ class ModifyContractLookupView(PermissionRequiredMixin, FormTableView):
 
     def filter_table_data(self, form):
         return Contract.objects.filter(client__pk__exact=form.cleaned_data['student_id'])
+
 
 class ReportView(PermissionRequiredMixin, FormTableView):
     permission_required = 'wiawdp.view_wiawdp'
@@ -191,10 +194,11 @@ class WIAWDPView(SingleTableView):
 
 class DeleteContractView(DeleteView):
     model = Contract
-    success_url = reverse_lazy('wiawdp:active_contracts')
+    success_url = reverse_lazy('wiawdp:contracts')
 
     def get_object(self, queryset=None):
         return Contract.objects.get(pk=self.request.POST.get('pk'))
+
 
 class MultipleDeleteView(View):
     http_method_names = ['post']
@@ -212,6 +216,7 @@ class MultipleDeleteView(View):
         rows = self.model.objects.filter(pk__in=row_pks)
         rows.delete()
         return redirect(self.get_next_page(request))
+
 
 class DeleteContractsView(MultipleDeleteView):
     http_method_names = ['post']
