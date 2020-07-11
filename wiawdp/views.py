@@ -20,11 +20,11 @@ class ContractFilter(django_filters.FilterSet):
         ('active', 'Active'),
         ('inactive', 'Inactive')
     )
-    end_date = django_filters.ChoiceFilter(label='Contract Status', choices=CONTRACT_CHOICES, method='filter_active')
+    status = django_filters.ChoiceFilter(field_name='end_date', label='Contract Status', choices=CONTRACT_CHOICES, method='filter_active')
 
     class Meta:
         model = Contract
-        fields = ['end_date']
+        fields = ['status']
 
     def filter_active(self, queryset, name, value):
         if value == 'active':
@@ -37,10 +37,13 @@ class ContractFilter(django_filters.FilterSet):
 class ContractView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     permission_required = 'wiawdp.view_contract'
     template_name = 'wiawdp/contracts.html'
-    model = Contract
-    # table_data = Contract.objects.filter(end_date__gte=datetime.today())
     table_class = ContractTable
     filterset_class = ContractFilter
+
+    def get(self, request, *args, **kwargs):
+        if 'status' not in request.GET:
+            return redirect(f'{reverse_lazy("wiawdp:active_contracts")}?status=active')
+        return super().get(request)
 
     def get_table_kwargs(self):
         user = self.request.user
@@ -65,7 +68,7 @@ class FormTableView(SingleTableMixin, FormView):
         return None
 
     def get_context_data(self, **kwargs):
-        context = super(FormView, self).get_context_data(**kwargs)
+        context = (FormView, self).get_context_data(**kwargs)
         if 'form' not in context or not context['form'].is_valid():
             return context
         table = self.get_table(**self.get_table_kwargs())
