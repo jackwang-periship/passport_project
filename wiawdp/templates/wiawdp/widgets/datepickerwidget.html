@@ -1,0 +1,12 @@
+{% include 'django/forms/widgets/input.html' %}
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        $('input[name="{{ widget.name }}"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'Y-MM-DD'
+            }
+        });
+    });
+</script>

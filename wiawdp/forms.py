@@ -1,9 +1,10 @@
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
+import wiawdp.widgets as widgets
 
 class ViewReportForm(forms.Form):
-    start_date = forms.DateField(label="From")
-    end_date = forms.DateField(label="To")
+    start_date = forms.DateField(label="From", widget=widgets.DatePickerWidget())
+    end_date = forms.DateField(label="To", widget=widgets.DatePickerWidget())
     eatontown = forms.BooleanField(required=False)
     fairfield = forms.BooleanField(required=False)
     south_plainfield = forms.BooleanField(required=False, label='South Plainfield')
