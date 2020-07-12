@@ -51,8 +51,8 @@ class ContractView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     def get_table_kwargs(self):
         user = self.request.user
         if user.has_perms('wiawdp.change_contract') or user.has_perms('wiawdp.delete_contract'):
-            return {'empty_text': 'No results matching query.'}
-        return {'exclude': ('select', 'actions'), 'empty_text': 'No active contracts.'}
+            return super().get_table_kwargs()
+        return {'exclude': ('select', 'actions')}
 
 
 class AddContractView(PermissionRequiredMixin, CreateView):
@@ -65,17 +65,10 @@ class AddContractView(PermissionRequiredMixin, CreateView):
 
 class FormTableView(SingleTableMixin, FormView):
     result_template_name = None
+    table_data = {}
 
     def filter_table_data(self, form):
         return None
-
-    def get_context_data(self, **kwargs):
-        context = super(FormView, self).get_context_data(**kwargs)
-        if 'form' not in context or not context['form'].is_valid():
-            return context
-        table = self.get_table(**self.get_table_kwargs())
-        context[self.get_context_table_name(table)] = table
-        return context
 
     def form_valid(self, form):
         self.table_data = self.filter_table_data(form)
@@ -88,11 +81,6 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
     result_template_name = 'wiawdp/search_contracts_results.html'
     form_class = FindStudentForm
     table_class = ContractTable
-
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
 
     def filter_table_data(self, form):
         print(Contract.objects.none())
@@ -144,11 +132,6 @@ class ModifyContractLookupView(PermissionRequiredMixin, FormTableView):
     form_class = ModifyContractLookupForm
     table_class = ContractTable
 
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
-
     def filter_table_data(self, form):
         return Contract.objects.filter(client__pk__exact=form.cleaned_data['student_id'])
 
@@ -161,11 +144,6 @@ class ReportView(PermissionRequiredMixin, FormTableView):
     success_url = reverse_lazy('wiawdp:index')
     model = WIAWDP
     table_class = WIAWDPTable
-
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
 
     def filter_table_data(self, form):
         start_date = form.cleaned_data['start_date']
