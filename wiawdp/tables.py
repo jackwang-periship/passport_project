@@ -9,6 +9,7 @@ class ContractTable(tables.Table):
     client = tables.Column()
     actions = tables.TemplateColumn(template_name="wiawdp/contract_table_actions.html", orderable=False)
 
+
     def render_client(self, value):
         return f'{value.first_name} {value.last_name} ({value.pk})'
 
@@ -16,6 +17,7 @@ class ContractTable(tables.Table):
         model = Contract
         template_name = 'django_tables2/bootstrap.html'
         fields = ('row_pks', 'pk', 'client', 'workforce', 'end_date', 'performance')
+        empty_text = 'No results matching query.'
 
 
 class WIAWDPTable(tables.Table):
@@ -23,3 +25,4 @@ class WIAWDPTable(tables.Table):
         model = WIAWDP
         template_name = 'django_tables2/bootstrap.html'
         exclude = ('id',)
+        empty_text = 'No results matching query.'

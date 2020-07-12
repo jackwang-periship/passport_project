@@ -6,7 +6,7 @@ app_name = 'wiawdp'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('contracts/', ContractView.as_view(), name='active_contracts'),
+    path('contracts/', ContractView.as_view(), name='contracts'),
     path('add_contract/', AddContractView.as_view(), name='add_contract'),
     path('view_report/', ReportView.as_view(), name='view_report'),
     path('search_contracts/', SearchContractsView.as_view(), name='search_contracts'),

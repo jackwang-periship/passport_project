@@ -57,10 +57,12 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const contract_filter_selector = document.querySelector('#id_end_date');
-        contract_filter_selector.addEventListener('change', (e) => {
-            e.currentTarget.form.submit();
-        });
+        const contract_filter_selector = document.querySelector('#id_status');
+        if (contract_filter_selector) {
+            contract_filter_selector.addEventListener('change', (e) => {
+                e.currentTarget.form.submit();
+            });
+        }
 
         const checkboxAllToggleBtn = document.querySelector('#checkbox-all-toggle');
         checkboxAllToggleBtn.addEventListener('change', toggleAllCheckboxes);
