@@ -4,7 +4,7 @@ from django import forms
 class DatePickerWidget(forms.DateInput):
     def get_context(self, name, value, attrs):
         attrs['data-custom-widget'] = self.__class__.__name__
-        attrs['data-inputmask'] = "'alias': 'datetime', 'inputFormat': 'yyyy-mm-dd'"
+        attrs['data-inputmask'] = "'alias': 'datetime', 'inputFormat': 'isoDate'"
         context = super().get_context(name, value, attrs)
         return context
 
@@ -17,7 +17,7 @@ class DatePickerWidget(forms.DateInput):
 class DateTimePickerWidget(forms.DateTimeInput):
     def get_context(self, name, value, attrs):
         attrs['data-custom-widget'] = self.__class__.__name__
-        attrs['data-inputmask'] = "'alias': 'datetime', 'inputFormat': 'yyyy-mm-dd HH:mm:ss'"
+        attrs['data-inputmask'] = "'alias': 'datetime', 'inputFormat': 'yyyy-mm-dd HH:MM:ss'"
         context = super().get_context(name, value, attrs)
         return context
 
@@ -28,16 +28,7 @@ class DateTimePickerWidget(forms.DateTimeInput):
 
 
 class InputMaskWidget(forms.TextInput):
-    def __init__(self, attrs=None, input_mask={}):
-        self.input_mask = input_mask
-        super().__init__(attrs)
-
-    def mask_dict_to_string(self):
-        pairs = (f"'{key}': '{value}'" for key, value in self.input_mask.items())
-        return ','.join(pairs)
-
     def get_context(self, name, value, attrs):
-        attrs['data-inputmask'] = self.mask_dict_to_string()
         attrs['data-custom-widget'] = self.__class__.__name__
         return super().get_context(name, value, attrs)
 
