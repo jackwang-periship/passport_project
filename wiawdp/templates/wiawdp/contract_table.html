@@ -5,28 +5,48 @@
         <input type="hidden" name="next-view-name" value="{{ request.resolver_match.view_name }}">
     </form>
 
-    <div class="dropdown">
-        <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Actions</div>
-        <div class="dropdown-menu">
-            <button id="delete-selected-button" type="button" class="btn btn-default dropdown-item" data-toggle="modal"
-                    data-target="#contracts-confirm-delete-modal" form="delete-form" disabled>
-                Delete Selected
-            </button>
-        </div>
-    </div>
     {% include 'wiawdp/contract_confirm_delete_modal.html' %}
     {% include 'wiawdp/contracts_confirm_delete_modal.html' %}
 {% endif %}
-<div class="card">
-    <div class="card-header d-flex align-items-center">
-        <h3 class="card-title mr-auto">Contracts</h3>
-        {% if filter %}
-            <form method="get">
-                {{ filter.form }}
-            </form>
-        {% endif %}
 
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+
+            {# Table Header #}
+            <h3 class="card-title mr-auto">Contracts</h3>
+            <div class="px-1"></div>
+
+            {# Action Menu #}
+            {% if perms.wiawdp.delete_contract %}
+                <div class="dropdown">
+                    <div class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown">Actions</div>
+                    <div class="dropdown-menu">
+                        <button id="delete-selected-button" type="button" class="btn btn-default dropdown-item"
+                                data-toggle="modal"
+                                data-target="#contracts-confirm-delete-modal" form="delete-form" disabled>
+                            Delete Selected
+                        </button>
+                    </div>
+                </div>
+                {% include 'wiawdp/contract_confirm_delete_modal.html' %}
+                {% include 'wiawdp/contracts_confirm_delete_modal.html' %}
+            {% endif %}
+        </div>
+
+        {# Spacer #}
+        <div class="flex-grow-1"></div>
+        <div>
+
+            {# Status Filter #}
+            {% if filter %}
+                <form method="get">
+                    {{ filter.form }}
+                </form>
+            {% endif %}
+        </div>
     </div>
+
     <div class="card-body p-0">
         {% render_table table %}
     </div>
@@ -73,7 +93,5 @@
             box.addEventListener('change', uncheckCheckboxAllToggle);
             box.addEventListener('change', updateDeleteSelectedState);
         });
-
-
     });
 </script>
