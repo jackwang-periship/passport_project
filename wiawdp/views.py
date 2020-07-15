@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from wiawdp.forms import FindStudentForm, ViewReportForm, ModifyContractLookupForm
+from wiawdp.forms import FindStudentForm, ViewReportForm, ModifyContractLookupForm, ModifyContractForm, AddContractForm
 from django.urls import reverse_lazy, reverse
 from wiawdp.models import Contract, WIAWDP
 from django.views.generic import TemplateView, FormView, CreateView, UpdateView, DeleteView, View
@@ -57,10 +57,9 @@ class ContractView(PermissionRequiredMixin, SingleTableMixin, FilterView):
 
 class AddContractView(PermissionRequiredMixin, CreateView):
     permission_required = 'wiawdp.add_contract'
-    model = Contract
     template_name = 'wiawdp/add_contract_form.html'
     success_url = reverse_lazy('wiawdp:contracts')
-    fields = ['client', 'workforce', 'end_date', 'performance']
+    form_class = AddContractForm
 
 
 class FormTableView(SingleTableMixin, FormView):
@@ -83,7 +82,6 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
     table_class = ContractTable
 
     def filter_table_data(self, form):
-        print(Contract.objects.none())
         contract_list = Contract.objects
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
@@ -118,8 +116,8 @@ class ModifyContractView(PermissionRequiredMixin, UpdateView):
     permission_required = 'wiawdp.change_contract'
     model = Contract
     template_name = 'wiawdp/modify_contract_form.html'
-    fields = ['workforce', 'end_date', 'performance']
     success_url = reverse_lazy('wiawdp:contracts')
+    form_class = ModifyContractForm
 
     def get_object(self):
         return Contract.objects.get(pk=self.request.GET.get('contract_id'))
@@ -184,7 +182,6 @@ class MultipleDeleteView(View):
     success_url = None
 
     def get_next_page(self, request):
-        print(request.POST.get('next-view-name'))
         if request.POST.get('next-view-name'):
             return reverse(request.POST.get('next-view-name'))
         return self.success_url
