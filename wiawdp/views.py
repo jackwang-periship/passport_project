@@ -82,7 +82,6 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
     table_class = ContractTable
 
     def filter_table_data(self, form):
-        print(Contract.objects.none())
         contract_list = Contract.objects
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
@@ -183,7 +182,6 @@ class MultipleDeleteView(View):
     success_url = None
 
     def get_next_page(self, request):
-        print(request.POST.get('next-view-name'))
         if request.POST.get('next-view-name'):
             return reverse(request.POST.get('next-view-name'))
         return self.success_url
