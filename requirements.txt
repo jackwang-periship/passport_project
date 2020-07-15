@@ -1,9 +1,15 @@
 asgiref==3.2.7
+Babel==2.8.0
 Django==3.0.6
 django-crum==0.7.6
 django-filter==2.2.0
+django-phonenumber-field==4.0.0
+django-tables2==2.3.1
+graphviz==0.14
+phonenumbers==8.12.6
 Pillow==7.1.2
 pkg-resources==0.0.0
+psycopg2==2.8.5
 pytz==2020.1
 shortuuid==1.0.1
 sqlparse==0.3.1

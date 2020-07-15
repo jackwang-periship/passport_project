@@ -1,6 +1,0 @@
-<li class="nav-item">
-    <a href="{% url location %}{% if url_params %}{{ url_params }}{% endif %}" class="nav-link {% if request.resolver_match.view_name == location %}active{% endif %}">
-        <i class="far fa-circle nav-icon"></i>
-        <p>{{ title }}</p>
-    </a>
-</li>

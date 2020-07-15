@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Avtech Billing{% endblock %}
+
+{% block Billing_Application_Menu %}
+    <a href="{% url 'billing:index' %}" class="nav-link">
+        <i class="nav-icon fas fa-tree"></i>
+        <p>
+            Billing
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{% url 'billing:verify' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Verification</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:payment' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pay Tuition</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:notice' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Payment Notice</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:report' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sales Logs</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:logs' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Logs Notice</p>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content_header %}Student Payment{% endblock %}
 {% block content %}
     <div>
-        <form id="transaction_form" method="post" action="{% url 'billing:notice' %}">
+        <form id="transaction_form" method="post" action="{% url 'billing:payment' %}">
             {% csrf_token %}
             {% for field in form.hidden_fields %}
                 {{ hidden }}

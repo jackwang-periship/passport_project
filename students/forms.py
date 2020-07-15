@@ -1,7 +1,6 @@
-
+from django.contrib.auth.models import User
 from django import forms
 from .models import Student
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class StudentForm(forms.ModelForm):
@@ -17,41 +16,25 @@ class StudentForm(forms.ModelForm):
         (YES, 'Yes'),
         (NO, 'No'),
     )
-    first_name = forms.CharField(label="first_name")
-    last_name = forms.CharField(label="last_name")
-    ssn = forms.IntegerField(label="ssn")
-    zipcode = forms.CharField(label="zipcode")
-    country = forms.CharField(label="country")
-    city = forms.CharField(label="city")
-    cellPhone = PhoneNumberField()
-    email = forms.EmailField(label="email")
-    location = forms.CharField(label="location", required=False)
-    refer = forms.CharField(label="refer", required=False)
-    sources = forms.CharField(label="sources", required=False)
-    gender = forms.CharField()
+    first_name = forms.CharField(max_length=30, label="first_name")
+    last_name = forms.CharField(max_length=30, label="last_name")
+    ssn = forms.IntegerField(max_length=9, label="ssn")
+    zipcode = forms.CharField(max_length=5, label="zipcode")
+    country = forms.CharField(max_length=50, default="United States of America", label="country")
+    city = forms.CharField(max_length=30, label="city")
+    cellPhone = forms.IntegerField(max_length=15, label="cellPhone")
+    homePhone = forms.IntegerField(max_length=15, label="homePhone")
+    email = forms.CharField(max_length=30, label="email")
+    location = forms.CharField(max_length=30, label="location")
+    refer = forms.CharField(max_length=30, default="No Refer", label="refer")
+    sources = forms.CharField(max_length=30, default="Individual", label="sources")
+    notes = forms.TextInput()
+    gender = forms.CharField(max_length=10, choices=GENDER, default=MALE)
+    newsLetter = forms.CharField(max_length=3, choices=Chooses, default=YES)
 
     class Meta:
         model = Student
         fields = (
-            'first_name', 'last_name', 'ssn', 'zipcode', 'country', 'city', 'cellPhone', 'email',
+            'first_name', 'last_name', 'ssn', 'zipcode', 'country', 'city', 'cellPhone', 'homePhone', 'email',
             'location',
-            'refer', 'sources', 'gender')
-
-
-class SearchStudentForm(forms.Form):
-    first_name = forms.CharField(max_length=20, required=False)
-    last_name = forms.CharField(max_length=20, required=False)
-    ID = forms.IntegerField(required=False)
-
-class ModifyStudentForm(forms.Form):
-    ID = forms.IntegerField()
-
-class ChangePasswordForm(forms.Form):
-    OldPassword = forms.IntegerField()
-    NewPassword = forms.IntegerField()
-    ConfirmPassword = forms.IntegerField()
-
-    class Meta:
-        fields = (
-            'old_password', 'new_password', 'confirm password'
-        )
+            'refer', 'sources', 'notes', 'gender', 'newsLetter')
