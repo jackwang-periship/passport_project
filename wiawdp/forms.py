@@ -5,7 +5,7 @@ from wiawdp.models import Contract
 
 
 class AddContractForm(forms.ModelForm):
-    end_date = forms.DateField(widget=widgets.DateTimePickerWidget())
+    end_date = forms.DateTimeField(widget=widgets.DateTimePickerWidget())
 
     class Meta:
         model = Contract
