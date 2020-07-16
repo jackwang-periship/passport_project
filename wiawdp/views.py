@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from wiawdp.forms import FindStudentForm, ViewReportForm, ModifyContractLookupForm
+from wiawdp.forms import FindStudentForm, ViewReportForm, ModifyContractLookupForm, ModifyContractForm, AddContractForm
 from django.urls import reverse_lazy, reverse
 from wiawdp.models import Contract, WIAWDP
 from django.views.generic import TemplateView, FormView, CreateView, UpdateView, DeleteView, View
@@ -20,11 +20,13 @@ class ContractFilter(django_filters.FilterSet):
         ('active', 'Active'),
         ('inactive', 'Inactive')
     )
-    end_date = django_filters.ChoiceFilter(label='Contract Status', choices=CONTRACT_CHOICES, method='filter_active')
+
+    status = django_filters.ChoiceFilter(field_name='end_date', label='Contract Status', choices=CONTRACT_CHOICES,
+                                         method='filter_active')
 
     class Meta:
         model = Contract
-        fields = ['end_date']
+        fields = ['status']
 
     def filter_active(self, queryset, name, value):
         if value == 'active':
@@ -37,40 +39,35 @@ class ContractFilter(django_filters.FilterSet):
 class ContractView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     permission_required = 'wiawdp.view_contract'
     template_name = 'wiawdp/contracts.html'
-    model = Contract
-    # table_data = Contract.objects.filter(end_date__gte=datetime.today())
     table_class = ContractTable
     filterset_class = ContractFilter
+
+    def get(self, request, *args, **kwargs):
+        # Set a default contract status filter if none is given
+        if 'status' not in request.GET:
+            return redirect(f'{reverse_lazy("wiawdp:contracts")}?status=active')
+        return super().get(request)
 
     def get_table_kwargs(self):
         user = self.request.user
         if user.has_perms('wiawdp.change_contract') or user.has_perms('wiawdp.delete_contract'):
-            return {'empty_text': 'No active contracts.'}
-        return {'exclude': ('select', 'actions'), 'empty_text': 'No active contracts.'}
+            return super().get_table_kwargs()
+        return {'exclude': ('select', 'actions')}
 
 
 class AddContractView(PermissionRequiredMixin, CreateView):
     permission_required = 'wiawdp.add_contract'
-    model = Contract
     template_name = 'wiawdp/add_contract_form.html'
-    success_url = reverse_lazy('wiawdp:active_contracts')
-    fields = ['client', 'workforce', 'end_date', 'performance']
-
+    success_url = reverse_lazy('wiawdp:contracts')
+    form_class = AddContractForm
 
 
 class FormTableView(SingleTableMixin, FormView):
     result_template_name = None
+    table_data = {}
 
     def filter_table_data(self, form):
         return None
-
-    def get_context_data(self, **kwargs):
-        context = super(FormView, self).get_context_data(**kwargs)
-        if 'form' not in context or not context['form'].is_valid():
-            return context
-        table = self.get_table(**self.get_table_kwargs())
-        context[self.get_context_table_name(table)] = table
-        return context
 
     def form_valid(self, form):
         self.table_data = self.filter_table_data(form)
@@ -84,13 +81,7 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
     form_class = FindStudentForm
     table_class = ContractTable
 
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
-
     def filter_table_data(self, form):
-        print(Contract.objects.none())
         contract_list = Contract.objects
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
@@ -125,8 +116,8 @@ class ModifyContractView(PermissionRequiredMixin, UpdateView):
     permission_required = 'wiawdp.change_contract'
     model = Contract
     template_name = 'wiawdp/modify_contract_form.html'
-    fields = ['workforce', 'end_date', 'performance']
-    success_url = reverse_lazy('wiawdp:active_contracts')
+    success_url = reverse_lazy('wiawdp:contracts')
+    form_class = ModifyContractForm
 
     def get_object(self):
         return Contract.objects.get(pk=self.request.GET.get('contract_id'))
@@ -139,13 +130,9 @@ class ModifyContractLookupView(PermissionRequiredMixin, FormTableView):
     form_class = ModifyContractLookupForm
     table_class = ContractTable
 
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
-
     def filter_table_data(self, form):
         return Contract.objects.filter(client__pk__exact=form.cleaned_data['student_id'])
+
 
 class ReportView(PermissionRequiredMixin, FormTableView):
     permission_required = 'wiawdp.view_wiawdp'
@@ -155,11 +142,6 @@ class ReportView(PermissionRequiredMixin, FormTableView):
     success_url = reverse_lazy('wiawdp:index')
     model = WIAWDP
     table_class = WIAWDPTable
-
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
 
     def filter_table_data(self, form):
         start_date = form.cleaned_data['start_date']
@@ -188,10 +170,11 @@ class WIAWDPView(SingleTableView):
 
 class DeleteContractView(DeleteView):
     model = Contract
-    success_url = reverse_lazy('wiawdp:active_contracts')
+    success_url = reverse_lazy('wiawdp:contracts')
 
     def get_object(self, queryset=None):
         return Contract.objects.get(pk=self.request.POST.get('pk'))
+
 
 class MultipleDeleteView(View):
     http_method_names = ['post']
@@ -199,7 +182,6 @@ class MultipleDeleteView(View):
     success_url = None
 
     def get_next_page(self, request):
-        print(request.POST.get('next-view-name'))
         if request.POST.get('next-view-name'):
             return reverse(request.POST.get('next-view-name'))
         return self.success_url
@@ -209,6 +191,7 @@ class MultipleDeleteView(View):
         rows = self.model.objects.filter(pk__in=row_pks)
         rows.delete()
         return redirect(self.get_next_page(request))
+
 
 class DeleteContractsView(MultipleDeleteView):
     http_method_names = ['post']

@@ -3,10 +3,12 @@ import django_tables2 as tables
 
 
 class ContractTable(tables.Table):
-    select = tables.TemplateColumn(template_name='wiawdp/contract_table_checkbox_select.html', verbose_name='')
+    row_pks = tables.CheckBoxColumn({'th__input': {'id': 'checkbox-all-toggle'}, 'td__input': {'form': 'delete-form'}},
+                                    accessor='pk')
     pk = tables.Column(verbose_name='RecId')
     client = tables.Column()
     actions = tables.TemplateColumn(template_name="wiawdp/contract_table_actions.html", orderable=False)
+
 
     def render_client(self, value):
         return f'{value.first_name} {value.last_name} ({value.pk})'
@@ -14,7 +16,8 @@ class ContractTable(tables.Table):
     class Meta:
         model = Contract
         template_name = 'django_tables2/bootstrap.html'
-        fields = ('select', 'pk', 'client', 'workforce', 'end_date', 'performance')
+        fields = ('row_pks', 'pk', 'client', 'workforce', 'end_date', 'performance')
+        empty_text = 'No results matching query.'
 
 
 class WIAWDPTable(tables.Table):
@@ -22,3 +25,4 @@ class WIAWDPTable(tables.Table):
         model = WIAWDP
         template_name = 'django_tables2/bootstrap.html'
         exclude = ('id',)
+        empty_text = 'No results matching query.'
