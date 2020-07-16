@@ -1,16 +1,29 @@
 {% extends "base.html" %}
-
+   {% load static %}
+{% block title %} {{ listType }}list {% endblock %}
+<div class="content-wrapper">
 {% block content %}
-    <h1>Student List</h1>
     {% if student_list %}
-        <ul>
+        <h1> {{ listType }}Student list </h1>
+        <table class="table">
+            <tr>
+                <th>RecId</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Cellphone Number</th>
+                <th>Entry Date</th>
+            </tr>
             {% for student in student_list %}
-                <li>
-                    {{ student.last_name }}, {{ student.first_name }}
-                </li>
+                <tr>
+                <td>{{ student.id}}</td>
+                <td>{{ student.first_name }} {{ student.last_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.cellPhone }}</td>
+                <td>{{ student.created_on }}</td>
+                </tr>
             {% endfor %}
-        </ul>
     {% else %}
         <p>There are no student in the system.</p>
     {% endif %}
+    </div>
 {% endblock %}
