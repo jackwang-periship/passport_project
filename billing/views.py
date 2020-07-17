@@ -1,50 +1,65 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from students.models import Student
 from .models import Transaction, VerifiedId, Report
 from .forms import TransactionForm, VerifiedIdForm, ReportForm
+from django_tables2 import SingleTableView
+from django.views.generic.base import TemplateView
+from .tables import Notice, Logs
+import home
+
 
 # Create your views here.
 
+
 def index(request):
     return render(request, "billing/index.html", {})
+
 
 def verify(request):
     form = VerifiedIdForm(request.POST or None)
     if form.is_valid():
         # VerifiedId.objects.create(**form.cleaned_data)
         form.save()
-        return index(request)
+        return payment(request)
     else:
         print(form.errors)
     return render(request, "billing/verify.html", {'form': form})
 
+
 def payment(request):
-    form = TransactionForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return notice(request)
+    formPay = TransactionForm(request.POST or None)
+    if formPay.is_valid():
+        formPay.save()
+        return redirect('billing:notice')
     else:
-        print(form.errors)
-    return render(request, "billing/payment.html", {'form': form})
+        print(formPay.errors)
+    return render(request, "billing/payment.html", {'form': formPay})
+
 
 def notice(request):
     # Add [:x] index value to change number of transactions in list
-    # verifiedId = VerifiedId.objects.get(studentId=studentId)
+    # verifiedId = VerifiedId.objects.get(studentId)
     # transactions = Transaction.objects.filter(verifiedId=verifiedId).order_by('-date')
     transactions = Transaction.objects.order_by('-date')
-    return render(request, "billing/notice.html", {'transactions': transactions})
+    context = {'transactions': transactions}
+    return render(request, "billing/notice.html", context)
 
 
 def report(request):
-    form = ReportForm()
+    formReport = ReportForm()
     if request.method == 'POST':
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
+        formReport = ReportForm(request.POST)
+        if formReport.is_valid():
+            formReport.save(commit=True)
             return logs(request)
         else:
-            print(form.errors)
-    return render(request, "billing/report.html", {'form': form})
+            print(formReport.errors)
+    return render(request, "billing/report.html", {'form': formReport})
+
 
 def logs(request):
-    return render(request, "billing/index.html", {'page': 'Sales Logs'})
+    reports = Report.objects.order_by('-type')
+    context = {'report': reports}
+    return render(request, "billing/logs.html", context)
+

@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{%load render_table from django_tables2 %}
 {% load static %}
-{% block title %}Avtech Billing{% endblock %}
+{% block title %}Avtech Billing{%  endblock %}
+{% block style_block %}
+	<style>
+	table,th,td{
+	    border: 2px solid #151515;
+	    border-collapse: collapse;
+	}
+	th, td{
+	    padding: 5px;
+	    text-align: center;
+	}
+    th{
+        background-color: darkred;
+    }
+	</style>
+{% endblock %}
 
 {% block Billing_Application_Menu %}
     <a href="{% url 'billing:index' %}" class="nav-link">
@@ -36,7 +52,7 @@
                 <p>Sales Logs</p>
             </a>
         </li>
-        <li class="nav-item">
+         <li class="nav-item">
             <a href="{% url 'billing:logs' %}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Logs Notice</p>
@@ -45,10 +61,34 @@
     </ul>
 {% endblock %}
 
-{% block content_header %}Avtech Billing{% endblock %}
+{% block content_header %}Logs Notice{%  endblock %}
 {% block content %}
     <div>
-        <strong>Welcome Back!</strong> <br/>
+
+            {% if report %}
+                <table style="width:100%">
+                    <!-- <caption>Caption</caption> -->
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Report Type</th>
+                        <!-- <th colspan="2">Telephone</th> -->
+                    </tr>
+
+
+                {% for report in reports %}
+                    <tr>
+                        <td>{{ report.startD }}</td>
+                        <td>{{ report.endD }}</td>
+                        <td>{{ report.type }}</td>
+
+                    </tr>
+
+                {% endfor %}
+                </table>
+            {% else %}
+                    <strong>No logs available.</strong>
+                {% endif %}
+
     </div>
-    <h2><a href = '/billing/verify'> Continue </a></h2>
 {% endblock %}
