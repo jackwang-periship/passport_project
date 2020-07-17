@@ -71,7 +71,7 @@ class SearchStudentView(SingleTableMixin, FilterView):
     result_template_name = 'students/search_student_result.html'
     table_class = StudentSearchTable
     form_class = SearchStudentForm
-    # filterset_class = StudentFilter
+    filterset_class = StudentFilter
     def get_table_kwargs(self):
         return {
             'empty_text': 'No results matching query.'
