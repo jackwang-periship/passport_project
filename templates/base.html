@@ -263,42 +263,10 @@
                             </ul>
                         {% endblock %}
                     </li>
-                    <li class="nav-item has-treeview">
-                        {% block Stude_Application_Menus %}
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Students
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                    <li class="nav-item has-treeview {% if request.resolver_match.app_name == 'students' %}menu-open{% endif %}">
+                        {% block Students_Application_Menu %}
+                            {% include 'students/application_menu.html' %}
                         {% endblock %}
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{% url 'students:student_list' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>All Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:add_new_student' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:search_student' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Search Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:student_Home' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Recent Student</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         {% block Billing_Application_Menu %}

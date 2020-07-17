@@ -21,6 +21,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length=30)
     ssn = models.CharField(max_length=9)
     zipcode = models.CharField(max_length=5)
+    address = models.CharField(max_length=30)
     country = models.CharField(max_length=50, default="United States of America")
     city = models.CharField(max_length=30)
     cellPhone = PhoneNumberField()
@@ -29,7 +30,6 @@ class Student(models.Model):
     refer = models.CharField(max_length=30, blank=True, help_text='Not Required')
     sources = models.CharField(max_length=30, blank=True, help_text='Not Required')
     gender = models.CharField(max_length=10, choices=GENDER, default=MALE)
-    id = models.IntegerField(primary_key=True)
     created_on = models.DateField(auto_now_add=True)
 
     class Meta:

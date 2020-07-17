@@ -1,0 +1,26 @@
+{% if perms.students %}
+    <a href="#" class="nav-link  {% if request.resolver_match.app_name == 'students' %}active{% endif %}">
+        <i class="nav-icon fas fa-table"></i>
+        <p>
+            Students
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        {% if perms.students.viewStudents %}
+            {% include 'students/nav_item.html' with location='students:student_list' title='View Student' %}
+        {% endif %}
+        {% if perms.students.addStudent %}
+            {% include 'students/nav_item.html' with location='students:add_new_student' title='Add Student' %}
+        {% endif %}
+        {% if perms.students.search %}
+            {% include 'students/nav_item.html' with location='students:search_student' title='Search Student' %}
+        {% endif %}
+        {% if perms.students.home %}
+            {% include 'students/nav_item.html' with location='students:student_Home' title='Recent Added Student' %}
+        {% endif %}
+        {% if perms.students.modifyStudent %}
+            {% include 'students/nav_item.html' with location='students:modify_student_lookup' title='Modify Student' %}
+        {% endif %}
+    </ul>
+{% endif %}
