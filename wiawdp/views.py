@@ -9,6 +9,7 @@ from wiawdp.tables import ContractTable, WIAWDPTable
 from django_tables2 import SingleTableView, SingleTableMixin
 from django_filters.views import FilterView
 import django_filters
+from django.core.exceptions import ImproperlyConfigured
 
 
 class IndexView(TemplateView):
@@ -63,11 +64,17 @@ class AddContractView(PermissionRequiredMixin, CreateView):
 
 
 class FormTableView(SingleTableMixin, FormView):
+    """
+    View for showing a form on a get request and a table after a valid form has been posted.
+
+    Override filter_table_data to filter the data shown on a post request.
+    """
+
     result_template_name = None
     table_data = {}
 
     def filter_table_data(self, form):
-        return None
+        return self.table_data
 
     def form_valid(self, form):
         self.table_data = self.filter_table_data(form)
@@ -99,7 +106,7 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
         if last_name:
             contract_list = contract_list.filter(client__last_name__iexact=last_name)
         if ssn:
-            contract_list = contract_list.filter(client__ssn__iexact=ssn)
+            contract_list = contract_list.filter(client__ssn=ssn)
         if email:
             contract_list = contract_list.filter(client__email__iexact=email)
         if home_phone:
@@ -107,7 +114,7 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
         if cell_phone:
             contract_list = contract_list.filter(client__cellPhone__iexact=cell_phone)
         if zipcode:
-            contract_list = contract_list.filter(client__zipcode__iexact=zipcode)
+            contract_list = contract_list.filter(client__zipcode=zipcode)
 
         return contract_list
 
@@ -169,6 +176,12 @@ class WIAWDPView(SingleTableView):
 
 
 class MultipleDeleteView(View):
+    """
+    View for deleting multiple objects submitted in a post request as row_pks.
+
+    After deleting the objects, a redirect is provided based on get_next_page().
+    """
+
     http_method_names = ['post']
     model = None
     success_url = None
@@ -176,7 +189,10 @@ class MultipleDeleteView(View):
     def get_next_page(self, request):
         if request.POST.get('next-view-name'):
             return reverse(request.POST.get('next-view-name'))
-        return self.success_url
+        if self.success_url:
+            return self.success_url
+        raise ImproperlyConfigured(
+            'No redirect url given. Either include a next-view-name in the request or set success_url.')
 
     def post(self, request, *args, **kwargs):
         row_pks = request.POST.getlist('row_pks')
