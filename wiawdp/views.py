@@ -168,14 +168,6 @@ class WIAWDPView(SingleTableView):
     template_name = 'wiawdp/programs.html'
 
 
-class DeleteContractView(DeleteView):
-    model = Contract
-    success_url = reverse_lazy('wiawdp:contracts')
-
-    def get_object(self, queryset=None):
-        return Contract.objects.get(pk=self.request.POST.get('pk'))
-
-
 class MultipleDeleteView(View):
     http_method_names = ['post']
     model = None
@@ -193,7 +185,8 @@ class MultipleDeleteView(View):
         return redirect(self.get_next_page(request))
 
 
-class DeleteContractsView(MultipleDeleteView):
+class DeleteContractsView(PermissionRequiredMixin, MultipleDeleteView):
+    permission_required = 'wiawdp.delete_contract'
     http_method_names = ['post']
     success_url = reverse_lazy('wiawdp:index')
     model = Contract
