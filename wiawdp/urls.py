@@ -1,6 +1,6 @@
 from django.urls import path
 from wiawdp.views import IndexView, AddContractView, ReportView, ModifyContractView, ModifyContractLookupView, \
-    ContractView, SearchContractsView, WIAWDPView, DeleteContractView, DeleteContractsView
+    ContractView, SearchContractsView, WIAWDPView, DeleteContractsView
 
 app_name = 'wiawdp'
 
@@ -13,7 +13,6 @@ urlpatterns = [
     path('modify_contract_lookup/', ModifyContractLookupView.as_view(), name='modify_contract_lookup'),
     path('modify_contract/', ModifyContractView.as_view(), name='modify_contract'),
     path('programs/', WIAWDPView.as_view(), name='available_programs'),
-    path('delete_contract/', DeleteContractView.as_view(), name='delete_contract'),
     path('delete_contracts/', DeleteContractsView.as_view(), name='delete_contracts'),
     path('wiawdp/', WIAWDPView.as_view(), name="wiawdp")
 ]
