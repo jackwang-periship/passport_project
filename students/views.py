@@ -129,10 +129,10 @@ class ModifyStudentView(PermissionRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("students:student_list")
 
     def get_object(self):
-        return Student.objects.get(pk=self.request.GET.get('id'))
+        return Student.objects.get(pk=self.request.GET.get('RecId'))
 
 
-class ModifyStudentLookUpView(PermissionRequiredMixin, generic.FormView):
+class ModifyStudentLookUpView(PermissionRequiredMixin, FormTableView):
     permission_required = 'students.modifyStudent'
     form_class = ModifyStudentForm
     template_name = 'students/modify_student_lookup_form.html'
@@ -145,4 +145,4 @@ class ModifyStudentLookUpView(PermissionRequiredMixin, generic.FormView):
         }
 
     def filter_table_data(self, form):
-        return Student.objects.filter(client__pk__exact=form.cleaned_data['id'])
+        return Student.objects.filter(pk__exact=form.cleaned_data['RecId'])
