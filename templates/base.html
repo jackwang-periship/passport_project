@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}{% endblock %}</title>
+    <style>{% block style_block %}{% endblock %}</style>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -26,8 +27,8 @@
     <link rel="stylesheet" href="{% static 'AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.css' %}">
     <!-- summernote -->
     <link rel="stylesheet" href="{% static 'AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css' %}">
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+     <!-- Google Font: Source Sans Pro -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -268,46 +269,14 @@
                             </ul>
                         {% endblock %}
                     </li>
-                    <li class="nav-item has-treeview">
-                        {% block Stude_Application_Menus %}
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Students
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                    <li class="nav-item has-treeview {% if request.resolver_match.app_name == 'students' %}menu-open{% endif %}">
+                        {% block Students_Application_Menu %}
+                            {% include 'students/application_menu.html' %}
                         {% endblock %}
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{% url 'students:student_list' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>All Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:add_new_student' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:search_student' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Search Students</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'students:student_Home' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Recent Student</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         {% block Billing_Application_Menu %}
-                            <a href="#" class="nav-link">
+                            <a href="{% url 'billing:index' %}" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
                                     Billing
@@ -316,9 +285,33 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{% url 'billing:index' %}" class="nav-link">
+                                    <a href="{% url 'billing:verify' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List Billing</p>
+                                        <p>Verification</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:payment' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Pay Tuition</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:notice' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payment Notice</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:report' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sales Logs</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'billing:logs' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Logs Notice</p>
                                     </a>
                                 </li>
                             </ul>
@@ -557,6 +550,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'AdminLTE-3.0.5/dist/js/demo.js' %}"></script>
 {% block javascript %}
-{% endblock %}
+{% endblock javascript %}
 </body>
 </html>

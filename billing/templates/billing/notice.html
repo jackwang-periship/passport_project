@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{%load render_table from django_tables2 %}
 {% load static %}
-
 {% block title %}Avtech Billing{%  endblock %}
 {% block style_block %}
 	<style> 
 	table,th,td{
-	    border: 2px solid black;
+	    border: 2px solid #151515;
 	    border-collapse: collapse;
 	} 
 	th, td{
@@ -14,39 +14,87 @@
 	    text-align: center;
 	}
     th{
-        background-color: red;
+        background-color: darkred;
     }
 	</style>
 {% endblock %}
+
+{% block Billing_Application_Menu %}
+    <a href="{% url 'billing:index' %}" class="nav-link">
+        <i class="nav-icon fas fa-tree"></i>
+        <p>
+            Billing
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{% url 'billing:verify' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Verification</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:payment' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pay Tuition</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:notice' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Payment Notice</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:report' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sales Logs</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'billing:logs' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Logs Notice</p>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content_header %}Student Payment Notice{%  endblock %}
 {% block content %}
     <div>
-        {% if transactions %}
-	        <table style="width:100%">
-		        <!-- <caption>Caption</caption> -->
-		        <tr>
-		            <th>Student Record ID</th>
-		            <th>Student</th>
-		            <th>Counselor</th>
-		            <th>Course</th>
-		            <th>Balance</th>
-		            <th>Next Payment Date</th>
-		            <!-- <th colspan="2">Telephone</th> -->
-		        </tr>
 
-            {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.verifiedId }}</td>
-                    <td>{{ transaction.firstName }} {{ transaction.lastName }}</td>
-                    <td>{{ transaction.counselor }}</td>
-                    <td>{{ transaction.course }}</td>
-                    <td>${{ transaction.balance }}</td>
-                    <td>{{ transaction.date }}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        {% else %}
-            <strong>No payments available.</strong>
-        {% endif %}
+            {% if transactions %}
+                <table style="width:100%">
+                    <!-- <caption>Caption</caption> -->
+                    <tr>
+                        <th>Student Record ID</th>
+                        <th>Student</th>
+                        <th>Counselor</th>
+                        <th>Course</th>
+                        <th>Balance</th>
+                        <th>Next Payment Date</th>
+                        <!-- <th colspan="2">Telephone</th> -->
+                    </tr>
+
+
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.verifiedId }}</td>
+                        <td>{{ transaction.firstName }} {{ transaction.lastName }}</td>
+                        <td>{{ transaction.counselor }}</td>
+                        <td>{{ transaction.course }}</td>
+                        <td>${{ transaction.balance }}</td>
+                        <td>{{ transaction.date }}</td>
+                    </tr>
+
+                {% endfor %}
+                </table>
+            {% else %}
+                    <strong>No payments available.</strong>
+                {% endif %}
+
     </div>
 {% endblock %}
+

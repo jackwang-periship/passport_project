@@ -3,34 +3,95 @@
     <form id="delete-form" method="post" action="{% url 'wiawdp:delete_contracts' %}">
         {% csrf_token %}
         <input type="hidden" name="next-view-name" value="{{ request.resolver_match.view_name }}">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#contracts-confirm-delete-modal">
-            Delete Selected
-        </button>
     </form>
+
     {% include 'wiawdp/contract_confirm_delete_modal.html' %}
     {% include 'wiawdp/contracts_confirm_delete_modal.html' %}
 {% endif %}
-<div class="card">
-    <div class="card-header d-flex align-items-center">
-        <h3 class="card-title mr-auto">Contracts</h3>
-        {% if filter %}
-            <form method="get">
-                {{ filter.form }}
-            </form>
-        {% endif %}
 
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+
+            {# Table Header #}
+            <h3 class="card-title mr-auto">Contracts</h3>
+            <div class="px-1"></div>
+
+            {# Action Menu #}
+            {% if perms.wiawdp.delete_contract %}
+                <div class="dropdown">
+                    <div class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown">Actions</div>
+                    <div class="dropdown-menu">
+                        <button id="delete-selected-button" type="button" class="btn btn-default dropdown-item"
+                                data-toggle="modal"
+                                data-target="#contracts-confirm-delete-modal" form="delete-form" disabled>
+                            Delete Selected
+                        </button>
+                    </div>
+                </div>
+                {% include 'wiawdp/contract_confirm_delete_modal.html' %}
+                {% include 'wiawdp/contracts_confirm_delete_modal.html' %}
+            {% endif %}
+        </div>
+
+        {# Spacer #}
+        <div class="flex-grow-1"></div>
+
+        {# Status Filter #}
+        <div>
+            {% if filter %}
+                <form method="get">
+                    {{ filter.form }}
+                </form>
+            {% endif %}
+        </div>
     </div>
+
     <div class="card-body p-0">
         {% render_table table %}
     </div>
 </div>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const contract_filter_selector = document.querySelector('#id_end_date');
-        contract_filter_selector.addEventListener('change', (e) => {
-            e.currentTarget.form.submit();
-        })
+    function toggleAllCheckboxes(e) {
+        const checked = e.currentTarget.checked;
+        const boxes = document.querySelectorAll('input[name="row_pks"]');
+        boxes.forEach(box => {
+            box.checked = checked;
+        });
+    }
 
+    function uncheckCheckboxAllToggle(e) {
+        const checkboxAllToggle = document.querySelector('#checkbox-all-toggle');
+        checkboxAllToggle.checked = false;
+    }
+
+    function updateDeleteSelectedState(e) {
+        const numChecked = document.querySelectorAll('input[form="delete-form"][type="checkbox"]:checked').length;
+        const deleteSelectedButton = document.querySelector('#delete-selected-button');
+        if (numChecked) {
+            deleteSelectedButton.removeAttribute('disabled');
+        } else {
+            deleteSelectedButton.setAttribute('disabled', '');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const contract_filter_selector = document.querySelector('#id_status');
+        if (contract_filter_selector) {
+            contract_filter_selector.addEventListener('change', (e) => {
+                e.currentTarget.form.submit();
+            });
+        }
+
+        const checkboxAllToggleBtn = document.querySelector('#checkbox-all-toggle');
+        checkboxAllToggleBtn.addEventListener('change', toggleAllCheckboxes);
+        checkboxAllToggleBtn.addEventListener('change', updateDeleteSelectedState);
+
+        const boxes = document.querySelectorAll('input[name="row_pks"]');
+        boxes.forEach(box => {
+            box.addEventListener('change', uncheckCheckboxAllToggle);
+            box.addEventListener('change', updateDeleteSelectedState);
+        });
     });
 </script>

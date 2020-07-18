@@ -11,7 +11,7 @@
             {% include 'wiawdp/nav_item.html' with location='wiawdp:wiawdp' title='WIA/WDP' %}
         {% endif %}
         {% if perms.wiawdp.view_contract %}
-            {% include 'wiawdp/nav_item.html' with location='wiawdp:active_contracts' url_params='?end_date=active' title='View Contracts' %}
+            {% include 'wiawdp/nav_item.html' with location='wiawdp:contracts' title='View Contracts' %}
         {% endif %}
         {% if perms.wiawdp.view_contract and perms.wiawdp.view_person %}
             {% include 'wiawdp/nav_item.html' with location='wiawdp:search_contracts' title='Search Contracts' %}
