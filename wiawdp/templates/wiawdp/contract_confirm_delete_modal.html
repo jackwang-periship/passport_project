@@ -9,9 +9,10 @@
             <div class="modal-body"></div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form method="post" action="{% url 'wiawdp:delete_contract' %}">
+                <form method="post" action="{% url 'wiawdp:delete_contracts' %}">
                     {% csrf_token %}
-                    <input type="hidden" id="contract-confirm-delete-modal-pk" value="" name="pk">
+                    <input type="hidden" id="contract-confirm-delete-modal-pk" value="" name="row_pks">
+                    <input type="hidden" name="next-view-name" value="{{ request.resolver_match.view_name }}">
                     <input type="submit" value="Confirm" class="btn btn-danger">
                 </form>
             </div>
@@ -24,7 +25,7 @@
         $('#contract-confirm-delete-modal').on('show.bs.modal', function (e) {
             const pk = e.relatedTarget.dataset.pk;
             const modal = e.currentTarget;
-            modal.querySelector('#contract-confirm-delete-modal-pk').value = pk;
+            modal.querySelector('#contract-confirm-delete-modal-pk').value = [pk];
             const message = document.createElement("p")
             message.textContent = `Are you sure you want to delete contract ${pk}? This action cannot be undone.`;
             const modalBody = modal.querySelector('.modal-body')
