@@ -9,12 +9,3 @@ class StudentTable(tables.Table):
         model = Student
         template_name = 'django_tables2/bootstrap.html'
         fields = ('pk', 'first_name', 'last_name', 'address', 'cellPhone', 'email', 'actions')
-
-class StudentSearchTable(tables.Table):
-    pk = tables.Column(verbose_name='RecId')
-    actions = tables.TemplateColumn(template_name="students/buttons.html", orderable=False)
-
-    class Meta:
-        model = Student
-        template_name = 'django_tables2/bootstrap.html'
-        fields = ('pk', 'first_name', 'last_name', 'address', 'cellPhone', 'email', 'actions')

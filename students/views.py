@@ -5,11 +5,11 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from students.forms import StudentForm, SearchStudentForm, ModifyStudentForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
-from students.tables import StudentTable, StudentSearchTable
+from students.tables import StudentTable
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Student
-from students.filter import StudentFilter
+
 
 
 class index(generic.TemplateView):
@@ -26,8 +26,8 @@ class StudentListView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     def get_table_kwargs(self):
         user = self.request.user
         if user.has_perms('student.modifyStudent') or user.has_perms('student.delete_student'):
-            return {'empty_text': 'No Student in the list.'}
-        return {'exclude': ('select', 'actions'), 'empty_text': 'No Student in the list.'}
+            return {'empty_text': 'No Student in the database.'}
+        return {'exclude': ('select', 'actions'), 'empty_text': 'No Student in the database.'}
 
 
 class AddStudentView(PermissionRequiredMixin, generic.CreateView):
@@ -48,30 +48,23 @@ class StudentHomeView(PermissionRequiredMixin, generic.ListView):
 
 class FormTableView(SingleTableMixin, generic.FormView):
     result_template_name = None
+    table_data = {}
 
     def filter_table_data(self, form):
         return None
 
-    def get_context_data(self, **kwargs):
-        context = super(generic.FormView, self).get_context_data(**kwargs)
-        if 'form' not in context or not context['form'].is_valid():
-            return context
-        table = self.get_table(**self.get_table_kwargs())
-        context[self.get_context_table_name(table)] = table
-        return context
-
     def form_valid(self, form):
-        self.filter_table_data(form)
+        self.table_data = self.filter_table_data(form)
         return render(self.request, self.result_template_name, context=self.get_context_data(form=form))
 
 
-class SearchStudentView(SingleTableMixin, FilterView):
-    model = Student
+class SearchStudentView(PermissionRequiredMixin, FormTableView):
+    permission_required = 'students.searchStudents'
     template_name = 'students/search_student.html'
     result_template_name = 'students/search_student_result.html'
-    table_class = StudentSearchTable
     form_class = SearchStudentForm
-    filterset_class = StudentFilter
+    table_class = StudentTable
+
     def get_table_kwargs(self):
         return {
             'empty_text': 'No results matching query.'
