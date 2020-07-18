@@ -67,7 +67,7 @@
     }
 
     function updateDeleteSelectedState(e) {
-        const numChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const numChecked = document.querySelectorAll('input[form="delete-form"][type="checkbox"]:checked').length;
         const deleteSelectedButton = document.querySelector('#delete-selected-button');
         if (numChecked) {
             deleteSelectedButton.removeAttribute('disabled');
