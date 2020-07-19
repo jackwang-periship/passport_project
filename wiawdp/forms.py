@@ -2,6 +2,7 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 import wiawdp.widgets as widgets
 from wiawdp.models import Contract
+from wiawdp.validators import ssn_validator, zip_code_validator
 
 
 class AddContractForm(forms.ModelForm):
@@ -27,33 +28,21 @@ class ViewReportForm(forms.Form):
         if end_date < start_date:
             raise forms.ValidationError('Please enter a valid date range.')
 
-        if not any([cleaned_data.get('eatontown'), cleaned_data.get('fairfield'), cleaned_data.get('south_plainfield')]):
+        if not any(
+                [cleaned_data.get('eatontown'), cleaned_data.get('fairfield'), cleaned_data.get('south_plainfield')]):
             raise forms.ValidationError('Please select at least one location.')
-
-
-def validate_ssn(value):
-    cleaned = value.replace('-', '')
-    if len(cleaned) != 9 or not cleaned.isdigit():
-        raise forms.ValidationError('Please enter a valid SSN.')
-
-
-def validate_zip_code(value):
-    if len(value) != 5 or not value.isdigit():
-        raise forms.ValidationError('Please enter a valid ZIP code.')
 
 
 class FindStudentForm(forms.Form):
     first_name = forms.CharField(max_length=200, required=False)
     last_name = forms.CharField(max_length=200, required=False)
-    ssn = forms.CharField(label='SSN', max_length=11, required=False, validators=[validate_ssn],
+    ssn = forms.CharField(label='SSN', max_length=11, required=False, validators=[ssn_validator],
                           widget=widgets.InputMaskWidget(attrs={'autocomplete': 'off', 'data-inputmask-alias': 'ssn'}))
     email = forms.EmailField(required=False, widget=widgets.InputMaskWidget(
         attrs={'autocomplete': 'off', 'data-inputmask-alias': 'email'}))
     home_phone = PhoneNumberField(required=False)
     cell_phone = PhoneNumberField(required=False)
-    zipcode = forms.CharField(label='ZIP code', max_length=20, required=False, validators=[validate_zip_code],
-                              widget=widgets.InputMaskWidget(
-                                  attrs={'autocomplete': 'off', 'data-inputmask-mask': '99999'}))
+    zipcode = forms.CharField(label='ZIP code', required=False, validators=[zip_code_validator])
 
     def clean(self):
         if not self.has_changed():
