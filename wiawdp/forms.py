@@ -2,7 +2,7 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 import wiawdp.widgets as widgets
 from wiawdp.models import Contract
-from wiawdp.validators import ssn_validator, zip_code_validator
+from wiawdp.validators import SSNValidator, ZIPCodeValidator
 
 
 class AddContractForm(forms.ModelForm):
@@ -36,13 +36,18 @@ class ViewReportForm(forms.Form):
 class FindStudentForm(forms.Form):
     first_name = forms.CharField(max_length=200, required=False)
     last_name = forms.CharField(max_length=200, required=False)
-    ssn = forms.CharField(label='SSN', max_length=11, required=False, validators=[ssn_validator],
-                          widget=widgets.InputMaskWidget(attrs={'autocomplete': 'off', 'data-inputmask-alias': 'ssn'}))
+    ssn = forms.CharField(label='SSN', max_length=11, required=False, validators=[SSNValidator()],
+                          widget=widgets.InputMaskWidget(attrs={'autocomplete': 'off', 'data-inputmask-alias': 'ssn',
+                                                                'pattern': SSNValidator.regex}))
     email = forms.EmailField(required=False, widget=widgets.InputMaskWidget(
-        attrs={'autocomplete': 'off', 'data-inputmask-alias': 'email'}))
+        attrs={'autocomplete': 'off', 'data-inputmask-alias': 'email',
+               'pattern': r'.+@.+\.[A-Za-z]([A-Za-z0-9\-]*[A-Za-z0-9])?'}))
     home_phone = PhoneNumberField(required=False)
     cell_phone = PhoneNumberField(required=False)
-    zipcode = forms.CharField(label='ZIP code', required=False, validators=[zip_code_validator])
+    zipcode = forms.CharField(label='ZIP code', required=False, validators=[ZIPCodeValidator()],
+                              widget=widgets.InputMaskWidget(
+                                  attrs={'autocomplete': 'off', 'data-inputmask-mask': '99999',
+                                         'pattern': ZIPCodeValidator.regex}))
 
     def clean(self):
         if not self.has_changed():
