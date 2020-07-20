@@ -1,7 +1,8 @@
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 import wiawdp.widgets as widgets
-from wiawdp.models import Contract
+from wiawdp.formfields import ZIPCodeField, SSNField, EmailField
+from wiawdp.models import Contract, WIAWDP
 
 
 class AddContractForm(forms.ModelForm):
@@ -15,9 +16,7 @@ class AddContractForm(forms.ModelForm):
 class ViewReportForm(forms.Form):
     start_date = forms.DateField(label="From", widget=widgets.DatePickerWidget())
     end_date = forms.DateField(label="To", widget=widgets.DatePickerWidget())
-    eatontown = forms.BooleanField(required=False)
-    fairfield = forms.BooleanField(required=False)
-    south_plainfield = forms.BooleanField(required=False, label='South Plainfield')
+    locations = forms.MultipleChoiceField(choices=WIAWDP.LOCATION_CHOICES, widget=forms.CheckboxSelectMultiple)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -27,41 +26,19 @@ class ViewReportForm(forms.Form):
         if end_date < start_date:
             raise forms.ValidationError('Please enter a valid date range.')
 
-        if not any([cleaned_data.get('eatontown'), cleaned_data.get('fairfield'), cleaned_data.get('south_plainfield')]):
-            raise forms.ValidationError('Please select at least one location.')
-
-
-def validate_ssn(value):
-    cleaned = value.replace('-', '')
-    if len(cleaned) != 9 or not cleaned.isdigit():
-        raise forms.ValidationError('Please enter a valid SSN.')
-
-
-def validate_zip_code(value):
-    if len(value) != 5 or not value.isdigit():
-        raise forms.ValidationError('Please enter a valid ZIP code.')
-
 
 class FindStudentForm(forms.Form):
     first_name = forms.CharField(max_length=200, required=False)
     last_name = forms.CharField(max_length=200, required=False)
-    ssn = forms.CharField(label='SSN', max_length=11, required=False, validators=[validate_ssn],
-                          widget=widgets.InputMaskWidget(attrs={'autocomplete': 'off', 'data-inputmask-alias': 'ssn'}))
-    email = forms.EmailField(required=False, widget=widgets.InputMaskWidget(
-        attrs={'autocomplete': 'off', 'data-inputmask-alias': 'email'}))
+    ssn = SSNField(label='SSN', max_length=11, required=False)
+    email = EmailField(required=False)
     home_phone = PhoneNumberField(required=False)
     cell_phone = PhoneNumberField(required=False)
-    zipcode = forms.CharField(label='ZIP code', max_length=20, required=False, validators=[validate_zip_code],
-                              widget=widgets.InputMaskWidget(
-                                  attrs={'autocomplete': 'off', 'data-inputmask-mask': '99999'}))
+    zipcode = ZIPCodeField(label='ZIP code', required=False)
 
     def clean(self):
         if not self.has_changed():
             raise forms.ValidationError('At least one field must be filled out.')
-
-    def clean_ssn(self):
-        ssn = self.cleaned_data.get('ssn')
-        return ssn.replace('-', '')
 
 
 class ModifyContractLookupForm(forms.Form):

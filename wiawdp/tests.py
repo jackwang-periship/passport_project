@@ -29,7 +29,6 @@ def create_contract(client, workforce, end_date, performance):
 class DeleteContractViewTests(TestCase):
     def setUp(self):
         self.admin = create_user('admin', 'admin@avtech.com', 'avtech123', True, True, True)
-
         self.student = create_student(0, 'John', 'Doe', '888888888', '88888', 'City', '8888888888', 'email@email.com',
                                       'ABC Town',
                                       'ref', 'source')
@@ -43,8 +42,7 @@ class DeleteContractViewTests(TestCase):
         work_force = Workforce.objects.get(workforce='Red')
         create_contract(self.student, work_force, timezone.now(), 1)
 
-        response = self.client.post(reverse('wiawdp:delete_contracts'), {'row_pks': []})
-        print(response.status_code)
+        self.client.post(reverse('wiawdp:delete_contracts'), {'row_pks': []})
         self.assertEqual(Contract.objects.count(), 1)
 
     def test_delete_single(self):
