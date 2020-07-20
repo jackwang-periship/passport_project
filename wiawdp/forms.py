@@ -2,7 +2,7 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 import wiawdp.widgets as widgets
 from wiawdp.formfields import ZIPCodeField, SSNField, EmailField
-from wiawdp.models import Contract
+from wiawdp.models import Contract, WIAWDP
 
 
 class AddContractForm(forms.ModelForm):
@@ -16,9 +16,7 @@ class AddContractForm(forms.ModelForm):
 class ViewReportForm(forms.Form):
     start_date = forms.DateField(label="From", widget=widgets.DatePickerWidget())
     end_date = forms.DateField(label="To", widget=widgets.DatePickerWidget())
-    eatontown = forms.BooleanField(required=False)
-    fairfield = forms.BooleanField(required=False)
-    south_plainfield = forms.BooleanField(required=False, label='South Plainfield')
+    locations = forms.MultipleChoiceField(choices=WIAWDP.LOCATION_CHOICES, widget=forms.CheckboxSelectMultiple)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -27,10 +25,6 @@ class ViewReportForm(forms.Form):
 
         if end_date < start_date:
             raise forms.ValidationError('Please enter a valid date range.')
-
-        if not any(
-                [cleaned_data.get('eatontown'), cleaned_data.get('fairfield'), cleaned_data.get('south_plainfield')]):
-            raise forms.ValidationError('Please select at least one location.')
 
 
 class FindStudentForm(forms.Form):
