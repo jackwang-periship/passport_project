@@ -28,7 +28,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,7 +50,14 @@ INSTALLED_APPS = [
     'schedules.apps.SchedulesConfig',
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
+    'django.contrib.sites',
+    #allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,9 +96,17 @@ WSGI_APPLICATION = 'passport_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+     #'default': {
+     #   'ENGINE': 'django.db.backends.sqlite3',
+     #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     #}
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'thomas-passport',
+        'USER': 'postgres',
+        'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
+        'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -134,5 +152,9 @@ STATIC_ROOT = '/var/www/' + PROJECT_NAME + '/assets/'  # python manage.py collec
 GOOGLE_API_KEY = 'AIzaSyD--your-google-maps-key-SjQBE'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/accounts/login'
+
+ACCOUNT_EMAIL_VERIFICATION = True
+ACCOUNT_EMAIL_REQUIRED = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

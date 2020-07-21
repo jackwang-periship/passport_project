@@ -20,7 +20,7 @@ from home import views as home_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_views.user_login, name='user_login'),
+    #path('', home_views.user_login, name='user_login'),
     path('home/', include('home.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('courses/', include('courses.urls')),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('schedules/', include('schedules.urls')),
     path('wiawdp/', include('wiawdp.urls')),
     path('billing/', include('billing.urls')),
-    # Add URL maps to redirect the base URL to the given application
+    #allauth URL
+    path('accounts/', include('allauth.urls')),
 ]

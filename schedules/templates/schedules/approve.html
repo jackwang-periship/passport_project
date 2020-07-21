@@ -1,8 +1,24 @@
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
     <div class="content-wrapper">
-        <p>
-            Future content  <a href="/schedules/pendinglist">click here to return to the last page</a>
-        </p>
+    <form method="post" class="card d-flex">
+        {% csrf_token %}
+        <h1 class="headline text-lg-center">Are you sure you want to approve this schedule?</h1>
+                <p class="card-body text-justify">
+                    <b>Title: </b>{{ object.course_name }}
+                    <br>
+                    <b>Location: </b>{{ object.location }}
+                    <br>
+                    <b>Dates: </b> {{ object.start_date }} - {{ object.end_date }}
+                    <br>
+                    <b>Hours: </b>{{ object.hours }}
+                    <br>
+                    <b>Instructor: </b>{{ object.instructor }}
+                </p>
+        <input id="id_approved" type="hidden" name="approved" value= true>
+        <input type="submit" value="Confirm" class="btn btn-light"/>
+        <a href="/schedules/pendinglist" class="btn btn-light">Cancel</a>
+    </form>
     </div>
 {% endblock %}
