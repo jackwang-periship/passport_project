@@ -13,5 +13,5 @@ class Logs(tables.Table):
     class Meta:
         model = Report
         template_name = "django_tables2/bootstrap.html"
-        fields = ("verifiedId", "firstName", "lastName", "counselor", "course", "balance", "date" )
+        fields = ("startD", "endD", "type")
 

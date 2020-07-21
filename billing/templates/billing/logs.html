@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-{%load render_table from django_tables2 %}
+{% load render_table from django_tables2 %}
 {% load static %}
 {% block title %}Avtech Billing{%  endblock %}
 {% block style_block %}
@@ -65,30 +65,34 @@
 {% block content %}
     <div>
 
-            {% if report %}
-                <table style="width:100%">
-                    <!-- <caption>Caption</caption> -->
-                    <tr>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Report Type</th>
-                        <!-- <th colspan="2">Telephone</th> -->
-                    </tr>
+      {% if table %}
+        {% render_table table %}
+      {% endif %}
 
-
-                {% for report in reports %}
-                    <tr>
-                        <td>{{ report.startD }}</td>
-                        <td>{{ report.endD }}</td>
-                        <td>{{ report.type }}</td>
-
-                    </tr>
-
-                {% endfor %}
-                </table>
-            {% else %}
-                    <strong>No logs available.</strong>
-                {% endif %}
+{#            {% if report %}#}
+{#                <table style="width:100%">#}
+{#                    <!-- <caption>Caption</caption> -->#}
+{#                    <tr>#}
+{#                        <th>Start Date</th>#}
+{#                        <th>End Date</th>#}
+{#                        <th>Report Type</th>#}
+{#                        <!-- <th colspan="2">Telephone</th> -->#}
+{#                    </tr>#}
+{##}
+{##}
+{#                {% for report in reports %}#}
+{#                    <tr>#}
+{#                        <td>{{ report.startD }}</td>#}
+{#                        <td>{{ report.endD }}</td>#}
+{#                        <td>{{ report.type }}</td>#}
+{##}
+{#                    </tr>#}
+{##}
+{#                {% endfor %}#}
+{#                </table>#}
+{#            {% else %}#}
+{#                    <strong>No logs available.</strong>#}
+{#                {% endif %}#}
 
     </div>
 {% endblock %}
