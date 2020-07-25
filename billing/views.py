@@ -42,7 +42,8 @@ def notice(request):
     # verifiedId = VerifiedId.objects.get(studentId)
     # transactions = Transaction.objects.filter(verifiedId=verifiedId).order_by('-date')
     transactions = Transaction.objects.order_by('-date')
-    context = {'transactions': transactions}
+    table = Notice(transactions)
+    context = {'table': table, 'transactions': transactions}
     return render(request, "billing/notice.html", context)
 
 
@@ -60,6 +61,7 @@ def report(request):
 
 def logs(request):
     reports = Report.objects.order_by('-type')
-    context = {'report': reports}
+    table = Logs(reports)
+    context = {'table': table, 'report': reports}
     return render(request, "billing/logs.html", context)
 
