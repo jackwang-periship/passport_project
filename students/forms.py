@@ -1,7 +1,7 @@
 
 from django import forms
 from .models import Student
-from phonenumber_field.modelfields import PhoneNumberField
+
 
 
 class StudentForm(forms.ModelForm):
