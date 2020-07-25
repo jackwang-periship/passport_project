@@ -1,0 +1,102 @@
+[
+  {
+    "model": "students.student",
+    "pk": 1,
+    "fields": {
+      "first_name": "Student",
+      "last_name": "One",
+      "ssn": "111111111",
+      "zipcode": "11111",
+      "address": "",
+      "country": "The Big Country",
+      "city": "The Big Apple",
+      "cellPhone": "11111111111",
+      "email": "studentone@example.com",
+      "location": "The Big Street",
+      "refer": "No Refer",
+      "sources": "Individual",
+      "gender": "Male",
+      "created_on": "2020-11-11"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 2,
+    "fields": {
+      "first_name": "Student",
+      "last_name": "Two",
+      "ssn": "222222222",
+      "zipcode": "22222",
+      "address": "",
+      "country": "Real Country",
+      "city": "Real City",
+      "cellPhone": "12222222222",
+      "email": "studenttwo@example.com",
+      "location": "Reality",
+      "refer": "No Refer",
+      "sources": "Individual",
+      "gender": "Female",
+      "created_on": "2020-02-22"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 3,
+    "fields": {
+      "first_name": "Student",
+      "last_name": "Three",
+      "ssn": "333333333",
+      "zipcode": "33333",
+      "address": "",
+      "country": "Little Country",
+      "city": "Little City",
+      "cellPhone": "13333333333",
+      "email": "studentthree@example.com",
+      "location": "Little",
+      "refer": "No Refer",
+      "sources": "Individual",
+      "gender": "Female",
+      "created_on": "2020-03-30"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 4,
+    "fields": {
+      "first_name": "Student",
+      "last_name": "Four",
+      "ssn": "444444444",
+      "zipcode": "44444",
+      "address": "",
+      "country": "Medium Country",
+      "city": "Medium City",
+      "cellPhone": "14444444444",
+      "email": "studentfour@example.com",
+      "location": "Medium",
+      "refer": "No Refer",
+      "sources": "Individual",
+      "gender": "Male",
+      "created_on": "2020-04-04"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 5,
+    "fields": {
+      "first_name": "Student",
+      "last_name": "Five",
+      "ssn": "555555555",
+      "zipcode": "55555",
+      "address": "",
+      "country": "Wumbo Country",
+      "city": "Wumbo City",
+      "cellPhone": "15555555555",
+      "email": "studentfive@example.com",
+      "location": "Wumbo",
+      "refer": "No Refer",
+      "sources": "Individual",
+      "gender": "Female",
+      "created_on": "2020-05-05"
+    }
+  }
+]
