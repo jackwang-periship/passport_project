@@ -30,7 +30,6 @@ class DateTimePickerWidget(forms.DateTimeInput):
 class InputMaskWidget(forms.TextInput):
     def get_context(self, name, value, attrs):
         attrs['data-custom-widget'] = self.__class__.__name__
-        attrs['data-inputmask-oncomplete'] = "this.setCustomValidity('')"
         return super().get_context(name, value, attrs)
 
     class Media:
