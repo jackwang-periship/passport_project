@@ -2,13 +2,14 @@ from typing import Any, Union
 
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from students.forms import StudentForm, SearchStudentForm, ModifyStudentForm
+from students.forms import StudentForm, SearchStudentForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 from students.tables import StudentTable
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Student
+from django.core.exceptions import ImproperlyConfigured
 
 
 
@@ -92,60 +93,25 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
         return student_list
 
 
-class DeleteStudentView(generic.DeleteView):
+class DeleteStudentView(PermissionRequiredMixin, generic.DeleteView):
+    permission_required = 'students.deleteStudent'
     model = Student
+    template_name = 'students/student_confirm_delete.html'
     success_url = reverse_lazy('students:student_list')
 
     def get_object(self, queryset=None):
-        return Student.objects.get(pk=self.request.GET.get('pk'))
-
-
-class MultipleDeleteView(generic.View):
-    http_method_names = ['post']
-    model = None
-    success_url = None
-
-    def get_next_page(self, request):
-        print(request.POST.get('next-view-name'))
-        if request.POST.get('next-view-name'):
-            return reverse(request.POST.get('next-view-name'))
-        return self.success_url
-
-    def post(self, request, *args, **kwargs):
-        row_pks = request.POST.getlist('row_pks')
-        rows = self.model.objects.filter(pk__in=row_pks)
-        rows.delete()
-        return redirect(self.get_next_page(request))
-
-
-class DeleteStudentView(MultipleDeleteView):
-    http_method_names = ['post']
-    success_url = reverse_lazy('students:index')
-    model = Student
-
+        return Student.objects.get(pk=self.request.GET.get('student_id'))
 
 class ModifyStudentView(PermissionRequiredMixin, generic.UpdateView):
     permission_required = 'students.modifyStudent'
     model = Student
     template_name = 'students/modify_student_form.html'
-    fields = ['cellphone', 'email', 'address', 'city', 'country']
+    fields = ['cellPhone', 'email', 'address', 'city', 'country']
     success_url = reverse_lazy("students:student_list")
 
     def get_object(self):
-        return Student.objects.get(pk=self.request.GET.get('RecId'))
+        return Student.objects.get(pk=self.request.GET.get('student_id'))
+# self.request.GET.get('student_id')
 
 
-class ModifyStudentLookUpView(PermissionRequiredMixin, FormTableView):
-    permission_required = 'students.modifyStudent'
-    form_class = ModifyStudentForm
-    template_name = 'students/modify_student_lookup_form.html'
-    result_template_name = 'students/modify_student_lookup_form_result.html'
-    table_class = StudentTable
 
-    def get_table_kwargs(self):
-        return {
-            'empty_text': 'No results matching query.'
-        }
-
-    def filter_table_data(self, form):
-        return Student.objects.filter(pk__exact=form.cleaned_data['RecId'])

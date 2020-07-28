@@ -5,8 +5,8 @@
     </form>
 {% endif %}
 {% if perms.students.deleteStudent %}
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#student-confirm-delete-modal"
-            data-pk="{{ record.pk }}">
-        Delete
-    </button>
+    <form class="btn" method="get" action="{% url 'students:delete_student' %}">
+        <input type="hidden" name="student_id" value="{{ record.id }}">
+        <input type="submit" value="delete" class="btn btn-info">
+    </form>
 {% endif %}

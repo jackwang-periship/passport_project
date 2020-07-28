@@ -12,5 +12,4 @@ urlpatterns = [
     path('search_student/', views.SearchStudentView.as_view(), name='search_student'),
     path('delete_student/', views.DeleteStudentView.as_view(), name='delete_student'),
     path('modify_student/', views.ModifyStudentView.as_view(), name='modify_student'),
-    path('modify_student_lookup/', views.ModifyStudentLookUpView.as_view(), name='modify_student_lookup'),
 ]

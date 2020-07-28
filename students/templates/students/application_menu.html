@@ -19,8 +19,5 @@
         {% if perms.students.home %}
             {% include 'students/nav_item.html' with location='students:student_Home' title='Recent Added Student' %}
         {% endif %}
-        {% if perms.students.modifyStudent %}
-            {% include 'students/nav_item.html' with location='students:modify_student_lookup' title='Modify Student' %}
-        {% endif %}
     </ul>
 {% endif %}
