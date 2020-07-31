@@ -3,6 +3,15 @@
 
 {% block title%}Start One Schedule{% endblock %}
 
+<!--    Nav Bar from home   -->
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}
+
 {% block content %}
     <div class="content-wrapper">
         <h1 class="card-header"> Start One Schedule </h1>

@@ -1,4 +1,5 @@
  <!-- Sidebar Menu -->
+    {% load schedule_extra %}
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
@@ -106,25 +107,14 @@
                             </ul>
                         {% endblock %}
                     </li>
+                    <!-- Schedule Start -->
                     <li class="nav-item has-treeview">
                         {% block Schedules_Application_Menu %}
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Schedules
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{% url 'schedules:schedulelist' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>List Schedule</p>
-                                    </a>
-                                </li>
-                            </ul>
+                            {% get_schedule_sidebar request perms %}
                         {% endblock %}
                     </li>
+                    <!-- Schedule End -->
+                    <!-- Timesheet Start -->
                     <li class="nav-item has-treeview">
                         {% block Timesheet_Application_Menu %}
                             <a href="#" class="nav-link">
@@ -156,6 +146,7 @@
                             </ul>
                         {% endblock %}
                     </li>
+                    <!-- Timesheet End -->
                     <li class="nav-item has-treeview">
                         {% block Calender_Application_Menu %}
                             <a href="#" class="nav-link">
