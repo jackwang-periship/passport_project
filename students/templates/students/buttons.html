@@ -1,0 +1,12 @@
+{% if perms.students.modifyStudent %}
+    <form class="btn" method="get" action="{% url 'students:modify_student' %}">
+        <input type="hidden" name="student_id" value="{{ record.id }}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </form>
+{% endif %}
+{% if perms.students.deleteStudent %}
+    <form class="btn" method="get" action="{% url 'students:delete_student' %}">
+        <input type="hidden" name="student_id" value="{{ record.id }}">
+        <input type="submit" value="delete" class="btn btn-info">
+    </form>
+{% endif %}

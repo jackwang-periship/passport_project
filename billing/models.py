@@ -1,5 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from students.models import Student
+
+
+
 # from django.template.defaultfilters import slugify
 
 # Any Changes
@@ -18,15 +22,19 @@ class VerifiedId(models.Model):
     def __str__(self):
         return str(self.studentId)
 
+
 class Transaction(models.Model):
     # verifiedId = models.ForeignKey(VerifiedId, on_delete=models.PROTECT)
+    # student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     verifiedId = models.PositiveIntegerField()
     firstName = models.CharField(max_length=14)
     lastName = models.CharField(max_length=18)
     counselor = models.CharField(max_length=24)
     course = models.CharField(max_length=32)
-    balance = models.DecimalField(max_digits=8,decimal_places=2)
-    date = models.DateField(default=timezone.now)
+    balance = models.DecimalField(max_digits=8, decimal_places=2)
+    date = models.DateTimeField(auto_now_add=True)
+    permissions = (("can_make_payments", "Make Transactions"),)
+
     # slug = models.SlugField(unique=true)
 
     # def save(self, *args, **kwargs):
@@ -36,12 +44,11 @@ class Transaction(models.Model):
     class Meta:
         verbose_name_plural = 'Transactions'
 
-    def __str__(self):
-        return str(self.verifiedId) + "-" + str(self.date)
+        def __str__(self):
+            return str(self.verifiedId) + "-" + str(self.date)
 
 
 class Report(models.Model):
-
     TYPE_CHOICES = (
         ("payment", "By Payment"),
         ("location", "By Location"),
@@ -52,3 +59,10 @@ class Report(models.Model):
     startD = models.DateField(default=timezone.now)
     endD = models.DateField(default=timezone.now)
     type = models.CharField(max_length=12, choices=TYPE_CHOICES, default='Choose Type')
+
+    class Meta:
+        verbose_name_plural = 'Reports'
+
+        def __str__(self):
+            return str(self.startD) + "-" + str(self.endD) + "-" + str(self.type)
+

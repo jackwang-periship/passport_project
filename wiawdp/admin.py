@@ -1,7 +1,8 @@
 from django.contrib import admin
-from wiawdp.models import Workforce, Contract
+from wiawdp.models import Workforce, Contract, WIAWDP
 
 admin.site.register(Workforce)
+admin.site.register(WIAWDP)
 
 
 class ContractAdmin(admin.ModelAdmin):

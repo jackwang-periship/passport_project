@@ -1,49 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load render_table from django_tables2 %}
 
-{% block title %}Result{% endblock %}
-{% block Administration_Menu %}
-    <li class="nav-item">
-        <a href={% url 'home:register' %} class="nav-link">
-            <i class="fas fa-circle nav-icon"></i>
-            <p>New User</p>
-        </a>
-    </li>
-{% endblock %}
+{% block title %}Results{% endblock %}
 {% block content %}
-<a href="{% url 'wiawdp:modify_contract_lookup' %}">New Search</a><br>
-{% if contract_list %}
-    <div class="card">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>RecId</th>
-                <th>Full Name</th>
-                <th>Workforce</th>
-                <th>End Date</th>
-                <th>Performance</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            {% for contract in contract_list %}
-            <tr>
-                <td>{{ contract.id }}</td>
-                <td>{{ contract.client.first_name }} {{ contract.client.last_name }}</td>
-                <td>{{ contract.workforce }}</td>
-                <td>{{ contract.end_date }}</td>
-                <td>{{ contract.performance }}</td>
-                <td>
-                    <form method="GET" action="{% url 'wiawdp:modify_contract' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="contract_id" value="{{ contract.id }}">
-                        <input type="submit" value="Edit" class="btn btn-info">
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-{% else %}
-    <strong>No results matching query.</strong>
-{% endif %}
+    {% include 'wiawdp/contract_table.html' %}
 {% endblock content %}

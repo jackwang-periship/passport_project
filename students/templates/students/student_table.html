@@ -1,0 +1,15 @@
+{% load render_table from django_tables2 %}
+<div class="card">
+{#    <div class="card-header d-flex align-items-center">#}
+{#        <h3 class="card-title mr-auto">Student</h3>#}
+{#        {% if filter %}#}
+{#            <form method="get">#}
+{#                {{ filter.form }}#}
+{#            </form>#}
+{#        {% endif %}#}
+
+    </div>
+    <div class="card-body p-0">
+        {% render_table table %}
+    </div>
+</div>

@@ -15,4 +15,3 @@ from .models import Transaction, VerifiedId, Report
 admin.site.register(Transaction, TransAdmin)
 admin.site.register(VerifiedId, VerifAdmin)
 admin.site.register(Report, ReportAdmin)
-

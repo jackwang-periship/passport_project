@@ -4,7 +4,6 @@ from django_tables2.views import SingleTableView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
-from django.views.generic import DetailView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .tables import ScheduleTable
 from django.contrib.auth.models import Permission
@@ -68,6 +67,9 @@ class UpdateSchedules(PermissionRequiredMixin, UpdateView):
             return '/schedules/schedulelist'
         else:
             return '/schedules/pendinglist'
+    model = Schedule
+    template_name = 'schedules/schedule_update.html'
+    success_url = '/schedules/schedulelist'
     permission_required = 'schedule.can_update_schedule'
 
 
