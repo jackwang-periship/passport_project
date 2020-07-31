@@ -1,3 +1,4 @@
+# Note: Make sure to create your template tags in a python module called templatetags
 from django import template
 
 register = template.Library()

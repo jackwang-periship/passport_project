@@ -1,3 +1,12 @@
+<!-- Schedule Menu Item Example
+<li class="nav-item">
+   <a href="Your URL" class="nav-link">
+       <i class="far fa-circle nav-icon"></i>
+       <p>Title</p>
+   </a>
+</li>
+
+ -->
 <a href="#" class="nav-link">
     <i class="nav-icon fas fa-edit"></i>
     <p>
@@ -21,11 +30,11 @@
         </li>
     {% endif %}
     {% if perms.cancreateschedule  %}
-    <li class="nav-item">
-        <a href="{% url 'schedules:startone' %}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Create Schedule</p>
-        </a>
-    </li>
+        <li class="nav-item">
+            <a href="{% url 'schedules:startone' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create Schedule</p>
+            </a>
+        </li>
     {% endif %}
 </ul>
