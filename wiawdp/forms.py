@@ -32,7 +32,6 @@ class FindStudentForm(forms.Form):
     last_name = forms.CharField(max_length=200, required=False)
     ssn = SSNField(label='SSN', max_length=11, required=False)
     email = EmailField(required=False)
-    home_phone = PhoneNumberField(required=False)
     cell_phone = PhoneNumberField(required=False)
     zipcode = ZIPCodeField(label='ZIP code', required=False)
 

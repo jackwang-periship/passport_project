@@ -94,11 +94,10 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
         last_name = form.cleaned_data['last_name']
         ssn = form.cleaned_data['ssn']
         email = form.cleaned_data['email']
-        home_phone = form.cleaned_data['home_phone']
         cell_phone = form.cleaned_data['cell_phone']
         zipcode = form.cleaned_data['zipcode']
 
-        if not any((first_name, last_name, ssn, email, home_phone, cell_phone, zipcode)):
+        if not any(form.cleaned_data.values()):
             return Contract.objects.none()
 
         if first_name:
@@ -109,8 +108,6 @@ class SearchContractsView(PermissionRequiredMixin, FormTableView):
             contract_list = contract_list.filter(client__ssn=ssn)
         if email:
             contract_list = contract_list.filter(client__email__iexact=email)
-        if home_phone:
-            contract_list = contract_list.filter(client__homePhone=home_phone)
         if cell_phone:
             contract_list = contract_list.filter(client__cellPhone__iexact=cell_phone)
         if zipcode:
