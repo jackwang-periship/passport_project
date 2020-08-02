@@ -28,10 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,7 +53,6 @@ INSTALLED_APPS = [
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
 ]
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

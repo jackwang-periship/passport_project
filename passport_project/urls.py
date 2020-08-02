@@ -25,7 +25,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url=reverse_lazy('home:index')), name='index'),
     path('accounts/', include('allauth.urls')),
     path('home/', include('home.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('courses/', include('courses.urls')),
     path('students/', include('students.urls')),
     path('schedules/', include('schedules.urls')),
