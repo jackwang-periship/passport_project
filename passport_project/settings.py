@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'django_filters',
     # 'django_extensions',
     # Added by this project
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django_tables2',
     'phonenumber_field',
     'home.apps.HomeConfig',
@@ -51,12 +56,6 @@ INSTALLED_APPS = [
     'schedules.apps.SchedulesConfig',
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
-    'django.contrib.sites',
-    #allauth apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 SITE_ID = 1
 
@@ -154,9 +153,30 @@ STATIC_ROOT = '/var/www/' + PROJECT_NAME + '/assets/'  # python manage.py collec
 GOOGLE_API_KEY = 'AIzaSyD--your-google-maps-key-SjQBE'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_URL = '/'
 
-ACCOUNT_EMAIL_VERIFICATION = True
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
