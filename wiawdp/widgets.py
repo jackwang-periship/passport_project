@@ -33,4 +33,5 @@ class InputMaskWidget(forms.TextInput):
         return super().get_context(name, value, attrs)
 
     class Media:
-        js = ('AdminLTE-3.0.5/plugins/inputmask/inputmask.min.js', 'js/widgets/inputmaskwidget.js')
+        js = ('AdminLTE-3.0.5/plugins/inputmask/inputmask.min.js',
+              'AdminLTE-3.0.5/plugins/inputmask/bindings/inputmask.binding.js')

@@ -1,134 +1,74 @@
-2020-07-08 14:56:12,833 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-08 18:37:44,060 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-08 20:18:01,964 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-08 20:28:37,411 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-11 19:49:58,158 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-11 19:51:10,552 [Thread-3    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-11 20:25:17,412 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-11 20:32:48,648 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-12 17:12:13,920 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-12 17:13:18,501 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-12 17:19:44,816 [Thread-5    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-12 17:21:08,428 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-13 17:52:40,507 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-13 18:42:16,137 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-13 20:47:43,774 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-14 15:49:00,016 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-14 15:58:23,052 [Thread-7    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-14 16:25:34,909 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-14 19:35:26,928 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-14 19:58:20,317 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 10:49:30,461 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 11:52:51,956 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 15:22:24,383 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 15:24:39,427 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 15:44:12,052 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 16:11:35,878 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 16:13:42,754 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 17:38:53,546 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 18:50:43,804 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 18:51:10,482 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:06:01,034 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:10:27,176 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:13:28,858 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:21:00,188 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:30:18,485 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:32:01,033 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:33:26,830 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:35:26,074 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:42:18,458 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-15 20:49:59,298 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-16 20:03:14,666 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 12:21:03,654 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 12:39:51,941 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 13:08:34,185 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 13:25:33,482 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 14:55:49,112 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:04:51,543 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:07:04,064 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:10:51,600 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:17:34,491 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:53:46,023 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 15:57:40,615 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 16:01:41,760 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 16:05:15,191 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 16:09:32,409 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 16:11:59,032 [Thread-1    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-17 16:13:10,837 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-17 16:55:05,544 [MainThread  ] [INFO ] [django.utils.autorel]  F:\passport_project\students\views.py changed, reloading.
-2020-07-18 18:03:08,394 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:09:09,982 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:10:03,609 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:10:49,281 [Thread-4    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-18 18:40:34,732 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:41:58,695 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:44:55,144 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:45:28,376 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:48:59,822 [Thread-2    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:51:29,444 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 18:53:28,028 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 19:00:43,935 [Thread-2    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 19:03:44,497 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 19:05:34,886 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 20:33:48,069 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 20:35:08,448 [Thread-6    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-18 20:37:43,622 [Thread-3    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-18 20:45:21,548 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 20:53:01,090 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-18 21:05:56,857 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-23 15:57:30,714 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-25 17:08:44,747 [Thread-3    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-25 17:13:49,825 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-27 14:28:55,072 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-27 15:56:23,139 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-27 16:13:54,802 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-27 16:30:41,760 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 14:36:04,741 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:09:36,312 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:10:31,077 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:22:23,209 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:22:38,304 [Thread-2    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-07-28 16:25:52,633 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:29:52,977 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-28 16:37:36,927 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-29 20:44:48,100 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-31 11:13:04,705 [Thread-3    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-31 11:16:17,141 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-31 11:18:48,683 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-07-31 11:21:18,709 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 00:22:23,155 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 09:07:50,045 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 09:13:57,337 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 09:18:29,316 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 09:19:01,402 [Thread-2    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:03:47,197 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:12:24,783 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:16:15,350 [Thread-2    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:33:35,308 [Thread-9    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:41:45,446 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 10:54:56,518 [Thread-9    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 15:30:45,679 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 15:54:27,249 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-01 15:56:33,940 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 00:02:23,753 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 00:07:03,047 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 11:36:50,268 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 11:39:03,959 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 11:41:48,447 [MainThread  ] [INFO ] [django.utils.autorel]  F:\passport_project\students\models.py changed, reloading.
-2020-08-02 11:43:01,407 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 11:46:36,925 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 11:47:13,589 [Thread-3    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-08-02 12:13:52,959 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 13:35:07,011 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 13:37:32,917 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 14:47:20,013 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 16:07:45,992 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-02 19:58:17,887 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 12:50:33,372 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 13:06:03,410 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 14:19:32,442 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 17:48:27,926 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 17:51:56,885 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 20:52:35,459 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
-2020-08-03 20:53:07,475 [Thread-1    ] [INFO ] [views.py|user_login|]  User: admin has logged in!
-2020-08-03 21:05:09,573 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-16 18:41:14,851 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-16 18:44:50,138 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-17 11:48:21,000 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-22 14:26:15,475 [Thread-2    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-22 14:56:36,484 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-22 15:00:12,856 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:00:38,234 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:01:16,975 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:09:05,759 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:09:44,216 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:09:50,714 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-22 15:15:12,696 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/urls.py changed, reloading.
+2020-06-22 15:15:30,757 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:51:44,885 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:52:13,801 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-22 15:52:51,107 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-22 16:06:41,455 [Thread-13   ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
+2020-06-23 15:59:38,736 [Thread-28   ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
+2020-06-23 16:01:23,160 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 16:51:15,075 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 16:52:35,704 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-23 17:41:27,333 [Thread-16   ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-23 18:09:11,741 [Thread-1    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-06-23 18:16:45,123 [Thread-9    ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
+2020-06-24 17:31:29,147 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:32:14,416 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:35:06,522 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:35:17,318 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:44:15,981 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:49:04,777 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/models.py changed, reloading.
+2020-06-24 17:50:00,525 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:50:28,079 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-24 17:51:02,777 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 18:02:23,714 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:01:03,035 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:06,749 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:14,314 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:02:46,968 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:04:54,786 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:05:04,470 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:05:26,594 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:06:40,687 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:30:15,375 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-24 19:34:24,436 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/tables.py changed, reloading.
+2020-06-25 17:09:54,943 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-25 17:59:08,420 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-25 17:59:36,369 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-26 17:12:35,686 [Thread-4    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-26 19:35:30,561 [Thread-13   ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-06-26 20:35:28,367 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-26 20:35:59,756 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-26 20:36:27,231 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-26 20:52:48,733 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-26 21:07:48,969 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-26 21:13:35,349 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-27 02:31:09,056 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-06-27 02:31:17,078 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-07 21:17:58,725 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-08 14:22:35,314 [Thread-7    ] [INFO ] [views.py|user_login ]  User: naseus has logged in!
+2020-07-08 14:28:03,449 [Thread-4    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-08 14:31:44,065 [Thread-10   ] [INFO ] [views.py|user_login|]  User: admin has logged in!
+2020-07-08 14:34:08,154 [Thread-2    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-08 15:37:56,560 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-08 15:38:16,771 [Thread-1    ] [INFO ] [views.py|user_login|]  User: thomas has logged in!
+2020-07-08 16:02:45,900 [Thread-1    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-08 16:10:41,522 [Thread-2    ] [INFO ] [views.py|user_login ]  User: thomas has logged in!
+2020-07-09 22:02:49,347 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-09 22:03:41,795 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-09 22:06:13,644 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-09 22:08:40,936 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-11 03:14:06,545 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-31 14:34:29,004 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-31 14:35:02,632 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/schedules/views.py changed, reloading.
+2020-07-31 14:37:41,628 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/billing/migrations/0001_initial.py changed, reloading.

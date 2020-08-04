@@ -58,9 +58,15 @@ class UpdateSchedules(PermissionRequiredMixin, UpdateView):
         'end_date',
         'time',
         'hours',
-        'instructor',
-        'approved'
+        'instructor'
     ]
+    model = Schedule
+    template_name = 'schedules/schedule_update.html'
+    def get_success_url(self):
+        if self.object.approved:
+            return '/schedules/schedulelist'
+        else:
+            return '/schedules/pendinglist'
     model = Schedule
     template_name = 'schedules/schedule_update.html'
     success_url = '/schedules/schedulelist'
