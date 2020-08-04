@@ -12,9 +12,9 @@
             <p>
                 <strong>Student RecId: </strong>{{ object.pk }}
             </p>
-            <p>
-                <strong>Student Name: </strong>{{ object.first_name}} {{ object.last_name}} ({{ object.pk}})
-            </p>
+{#            <p>#}
+{#                <strong>Student Name: </strong>{{ object.first_name}} {{ object.last_name}} ({{ object.pk}})#}
+{#            </p>#}
 
             {% csrf_token %}
             {{ form.as_p }}

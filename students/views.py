@@ -2,7 +2,7 @@ from typing import Any, Union
 
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from students.forms import StudentForm, SearchStudentForm
+from students.forms import StudentForm, SearchStudentForm, ModifyStudentInfoForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 from students.tables import StudentTable
@@ -78,8 +78,11 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
         last_name = form.cleaned_data['last_name']
         cellPhone = form.cleaned_data['cellPhone']
         email = form.cleaned_data['email']
+        ssn = form.cleaned_data['ssn']
+        address = form.cleaned_data['address']
+        zipcode = form.cleaned_data['zipcode']
 
-        if not any((first_name, last_name, cellPhone)):
+        if not any((first_name, last_name, cellPhone, ssn, address, zipcode)):
             return Student.objects.none()
 
         if first_name:
@@ -90,28 +93,37 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
             student_list = student_list.filter(cellPhone__exact=cellPhone)
         if email:
             student_list = student_list.filter(email__iexact=email)
+        if ssn:
+            student_list = student_list.filter(email__exact=ssn)
+        if address:
+            student_list = student_list.filter(email__iexact=address)
+        if zipcode:
+            student_list = student_list.filter(email__exact=zipcode)
         return student_list
 
 
 class DeleteStudentView(PermissionRequiredMixin, generic.DeleteView):
     permission_required = 'students.deleteStudent'
     model = Student
+    context_object_name = 'delete_student'
     template_name = 'students/student_confirm_delete.html'
     success_url = reverse_lazy('students:student_list')
 
     def get_object(self, queryset=None):
         return Student.objects.get(pk=self.request.GET.get('student_id'))
 
+
 class ModifyStudentView(PermissionRequiredMixin, generic.UpdateView):
-    permission_required = 'students.modifyStudent'
     model = Student
+    permission_required = 'students.modifyStudent'
+    context_object_name = 'modify_student'
     template_name = 'students/modify_student_form.html'
-    fields = ['cellPhone', 'email', 'address', 'city', 'country']
+    form_class = ModifyStudentInfoForm
     success_url = reverse_lazy("students:student_list")
 
     def get_object(self):
         return Student.objects.get(pk=self.request.GET.get('student_id'))
-# self.request.GET.get('student_id')
+
 
 
 
