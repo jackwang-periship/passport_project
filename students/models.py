@@ -21,7 +21,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     ssn = models.CharField(max_length=11)
-    zipcode = models.CharField(max_length=10, help_text='99999')
+    zipcode = models.CharField(max_length=10, help_text='example: 99999')
     address = models.CharField(max_length=30)
     country = models.CharField(max_length=50, default="United States of America")
     city = models.CharField(max_length=30)
