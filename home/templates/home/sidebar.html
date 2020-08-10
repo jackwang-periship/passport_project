@@ -1,251 +1,249 @@
 <!-- Add your template tags here-->
 {% load schedule_extra %}
 <!-- Top of Menu -->
-<nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-        data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-        <li class="nav-item">
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+    data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
+            </p>
+        </a>
+    </li>
+    <li class="nav-item has-treeview">
+        {% block Jobs_Application_Menu %}
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-copy"></i>
                 <p>
-                    Dashboard
+                    Jobs
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right">6</span>
                 </p>
             </a>
-        </li>
-        <li class="nav-item has-treeview">
-            {% block Jobs_Application_Menu %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-copy"></i>
-                    <p>
-                        Jobs
-                        <i class="fas fa-angle-left right"></i>
-                        <span class="badge badge-info right">6</span>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="pages/layout/top-nav.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Top Navigation</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Top Navigation + Sidebar</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/boxed.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Boxed</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Sidebar</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Navbar</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/fixed-footer.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Footer</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Collapsed Sidebar</p>
-                        </a>
-                    </li>
-                </ul>
-            {% endblock %}
-        </li>
-        <li class="nav-item has-treeview">
-            {% block Stude_Application_Menus %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-chart-pie"></i>
-                    <p>
-                        Students
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-            {% endblock %}
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{% url 'students:student_list' %}" class="nav-link">
+                    <a href="pages/layout/top-nav.html" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>List Students</p>
+                        <p>Top Navigation</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Top Navigation + Sidebar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/boxed.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Boxed</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Sidebar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Navbar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-footer.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Footer</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Collapsed Sidebar</p>
                     </a>
                 </li>
             </ul>
-        </li>
-        <li class="nav-item has-treeview">
-            {% block Billing_Application_Menu %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-tree"></i>
-                    <p>
-                        Billing
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{% url 'billing:index' %}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>List Billing</p>
-                        </a>
-                    </li>
-                </ul>
-            {% endblock %}
-        </li>
-        <!-- Schedule -->
-        <li class="nav-item has-treeview">
-            {% block Schedules_Application_Menu %}
-                {% get_schedule_sidebar request perms %}
-            {% endblock %}
-        </li>
-        <!-- Schedule End -->
-        <li class="nav-item has-treeview">
-            {% block Timesheet_Application_Menu %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-table"></i>
-                    <p>
-                        Time Sheets
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="pages/tables/simple.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Simple Tables</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/tables/data.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>DataTables</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/tables/jsgrid.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>jsGrid</p>
-                        </a>
-                    </li>
-                </ul>
-            {% endblock %}
-        </li>
-        <li class="nav-item has-treeview">
-            {% block Calender_Application_Menu %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-table"></i>
-                    <p>
-                        Calender
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="pages/tables/simple.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Simple Tables</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/tables/data.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>DataTables</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/tables/jsgrid.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>jsGrid</p>
-                        </a>
-                    </li>
-                </ul>
-            {% endblock %}
-        </li>
-        <li class="nav-item has-treeview {% if request.resolver_match.app_name == 'wiawdp' %}menu-open{% endif %}">
-            {% block WIAWDP_Application_Menu %}
-                {% include 'wiawdp/application_menu.html' %}
-            {% endblock %}
-        </li>
-        <li class="nav-header">Help</li>
-        <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Documentation</p>
-            </a>
-        </li>
-        <li class="nav-header">TOOLS</li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-circle nav-icon"></i>
-                <p>Emails</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-circle nav-icon"></i>
-                <p>Settings</p>
-            </a>
-        </li>
-        <li class="nav-header">Administration</li>
-        {% if perms.home.can_list_userprofiles or perms.home.add_userprofile %}
-            {% block UserProfile %}
-            {% endblock %}
-        {% endif %}
-        {% if perms.courses.can_list_courses or perms.courses.add_course %}
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-table"></i>
-                    <p>
-                        Courses
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                {% if perms.courses.add_course %}
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href={% url 'courses:course-new' %} class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add New Course</p>
-                            </a>
-                        </li>
-                    </ul>
-                {% endif %}
-                {% if perms.courses.can_list_courses %}
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href={% url 'courses:list_courses' %} class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>List/Search Course</p>
-                            </a>
-                        </li>
-                    </ul>
-                {% endif %}
-            </li>
-        {% endif %}
-        {% block Administration_Menu %}
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-circle nav-icon"></i>
-                    <p>Place Holder</p>
-                </a>
-            </li>
         {% endblock %}
-    </ul>
-</nav>
+    </li>
+    <li class="nav-item has-treeview">
+        {% block Stude_Application_Menus %}
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                    Students
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+        {% endblock %}
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{% url 'students:student_list' %}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Students</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item has-treeview">
+        {% block Billing_Application_Menu %}
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tree"></i>
+                <p>
+                    Billing
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{% url 'billing:index' %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List Billing</p>
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    </li>
+    <!-- Schedule -->
+    <li class="nav-item has-treeview">
+        {% block Schedules_Application_Menu %}
+            {% get_schedule_sidebar request perms %}
+        {% endblock %}
+    </li>
+    <!-- Schedule End -->
+    <li class="nav-item has-treeview">
+        {% block Timesheet_Application_Menu %}
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Time Sheets
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/tables/simple.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Simple Tables</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/tables/data.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>DataTables</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/tables/jsgrid.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>jsGrid</p>
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    </li>
+    <li class="nav-item has-treeview">
+        {% block Calender_Application_Menu %}
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Calender
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/tables/simple.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Simple Tables</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/tables/data.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>DataTables</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/tables/jsgrid.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>jsGrid</p>
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    </li>
+    <li class="nav-item has-treeview {% if request.resolver_match.app_name == 'wiawdp' %}menu-open{% endif %}">
+        {% block WIAWDP_Application_Menu %}
+            {% include 'wiawdp/application_menu.html' %}
+        {% endblock %}
+    </li>
+    <li class="nav-header">Help</li>
+    <li class="nav-item">
+        <a href="https://adminlte.io/docs/3.0" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Documentation</p>
+        </a>
+    </li>
+    <li class="nav-header">TOOLS</li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="fas fa-circle nav-icon"></i>
+            <p>Emails</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="fas fa-circle nav-icon"></i>
+            <p>Settings</p>
+        </a>
+    </li>
+    <li class="nav-header">Administration</li>
+    {% if perms.home.can_list_userprofiles or perms.home.add_userprofile %}
+        {% block UserProfile %}
+        {% endblock %}
+    {% endif %}
+    {% if perms.courses.can_list_courses or perms.courses.add_course %}
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Courses
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            {% if perms.courses.add_course %}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href={% url 'courses:course-new' %} class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add New Course</p>
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+            {% if perms.courses.can_list_courses %}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href={% url 'courses:list_courses' %} class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>List/Search Course</p>
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+        </li>
+    {% endif %}
+    {% block Administration_Menu %}
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-circle nav-icon"></i>
+                <p>Place Holder</p>
+            </a>
+        </li>
+    {% endblock %}
+</ul>
 
