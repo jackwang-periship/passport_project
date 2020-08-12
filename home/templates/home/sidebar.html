@@ -194,16 +194,16 @@
     {% endif %}
     {% if perms.courses.can_list_courses or perms.courses.add_course %}
         <li class="nav-item has-treeview">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-table"></i>
-            <p>
-                Courses
-                <i class="fas fa-angle-left right"></i>
-            </p>
-        </a>
-        {# include the courses menu items from the application.#}
-        {% include 'courses/course_menu_items.html' %}
-    </li>
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Courses
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            {# include the courses menu items from the application.#}
+            {% include 'courses/course_menu_items.html' %}
+        </li>
     {% endif %}
     {% block Administration_Menu %}
         <li class="nav-item">

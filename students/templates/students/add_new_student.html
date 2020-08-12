@@ -4,18 +4,18 @@
     Add New Student
 {% endblock %}
 {% block content %}
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Add Student</h3>
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Add Student</h3>
+        </div>
+        <form id="contract_form" method="post" action="{% url 'students:add_new_student' %}">
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <div class="card-footer">
+                <input class="btn btn-primary" type="submit" name="submit" value="Add Student">
+            </div>
+        </form>
     </div>
-       <form id="contract_form" method="post" action="{% url 'students:add_new_student' %}">
-        <div class="card-body">
-            {% csrf_token %}
-            {{ form.as_p }}
-        </div>
-        <div class="card-footer">
-            <input class="btn btn-primary" type="submit" name="submit" value="Add Student">
-        </div>
-    </form>
-</div>
 {% endblock content %}

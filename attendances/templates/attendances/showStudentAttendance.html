@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Attendance List</h1>
+    <!-- If there a variable define in views.py run the following code. For example, there is a var called
+    attednace_list_for_today in views.py-->
+    {% if attendance_list_for_today %}
+        <ul>
+            {% for eachStudentAttendance in attendance_list_for_today %}
+                <li>
+                     {{ eachStudentAttendance.last_name }},
+                     {{ eachStudentAttendance.first_name }},
+                     ({{ eachStudentAttendance.timeStamp }})
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no students' attendance for today on the system. </p>
+    {% endif %}
+{% endblock %}

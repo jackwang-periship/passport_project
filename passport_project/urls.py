@@ -30,4 +30,5 @@ urlpatterns = [
     path('schedules/', include('schedules.urls')),
     path('wiawdp/', include('wiawdp.urls')),
     path('billing/', include('billing.urls')),
+    path('attendances/',include('attendances.urls')),
 ]
