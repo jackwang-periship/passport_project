@@ -92,18 +92,18 @@ WSGI_APPLICATION = 'passport_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-     #'default': {
-     #   'ENGINE': 'django.db.backends.sqlite3',
-     #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     #}
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jw-passport',
-        'USER': 'postgres',
-        'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
-        'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
-        'PORT': '5432',
-    }
+     'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'jw-passport',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
+    #     'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation
@@ -175,3 +175,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/email-messages/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_FORMS = {'signup': 'home.forms.StudentSignupForm'}
