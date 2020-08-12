@@ -79,7 +79,7 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
         cellPhone = form.cleaned_data['cellPhone']
         email = form.cleaned_data['email']
         ssn = form.cleaned_data['ssn']
-        address = form.cleaned_data['address']
+        homeAddress = form.cleaned_data['homeAddress']
         zipcode = form.cleaned_data['zipcode']
 
         if not any((first_name, last_name, cellPhone, ssn, address, zipcode)):
@@ -95,8 +95,8 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
             student_list = student_list.filter(email__iexact=email)
         if ssn:
             student_list = student_list.filter(email__exact=ssn)
-        if address:
-            student_list = student_list.filter(email__iexact=address)
+        if homeAddress:
+            student_list = student_list.filter(email__iexact=homeAddress)
         if zipcode:
             student_list = student_list.filter(email__exact=zipcode)
         return student_list

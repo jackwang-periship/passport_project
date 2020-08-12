@@ -1,5 +1,5 @@
 {% if perms.students %}
-    <a href="#" class="nav-link  {% if request.resolver_match.app_name == 'students' %}active{% endif %}">
+    <a href="#" class="nav-link">
         <i class="nav-icon fas fa-table"></i>
         <p>
             Students
@@ -15,9 +15,6 @@
         {% endif %}
         {% if perms.students.search %}
             {% include 'students/nav_item.html' with location='students:search_student' title='Search Student' %}
-        {% endif %}
-        {% if perms.students.home %}
-            {% include 'students/nav_item.html' with location='students:student_Home' title='Recent Added Student' %}
         {% endif %}
     </ul>
 {% endif %}

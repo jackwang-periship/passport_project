@@ -19,7 +19,7 @@ class StudentForm(forms.ModelForm):
     # last_name = forms.CharField(max_length=20)
     ssn = forms.CharField(max_length=11, validators=[validate_ssn],  widget=widgets.forms.TextInput(attrs={'data-mask':"000-00-0000"}))
     zipcode = forms.CharField(max_length=10, validators=[validate_zip_code])
-    address = forms.CharField()
+    # homeAddress = forms.CharField()
     # country = forms.CharField(max_length=50)
     # city = forms.CharField(max_length=30)
     # cellPhone = PhoneNumberField()
@@ -32,7 +32,7 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = (
-            'first_name', 'last_name', 'ssn', 'address', 'zipcode', 'cellPhone', 'email',
+            'first_name', 'last_name', 'ssn', 'homeAddress', 'zipcode', 'cellPhone', 'email',
             'location',
             'refer', 'sources', 'gender')
 
@@ -61,7 +61,7 @@ class ModifyStudentInfoForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = (
-            'first_name', 'last_name', 'ssn', 'address', 'zipcode', 'country', 'city', 'cellPhone', 'email',
+            'first_name', 'last_name', 'ssn', 'homeAddress', 'zipcode', 'country', 'city', 'cellPhone', 'email',
             'location',
             'refer', 'sources', 'gender')
 

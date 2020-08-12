@@ -8,4 +8,4 @@ class StudentTable(tables.Table):
     class Meta:
         model = Student
         template_name = 'django_tables2/bootstrap.html'
-        fields = ('pk', 'first_name', 'last_name', 'address', 'cellPhone', 'email', 'created_on', 'actions')
+        fields = ('pk', 'first_name', 'last_name', 'homeAddress', 'cellPhone', 'email', 'created_on', 'actions')

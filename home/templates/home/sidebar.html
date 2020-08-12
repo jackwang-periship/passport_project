@@ -71,22 +71,8 @@
     </li>
     <li class="nav-item has-treeview">
         {% block Stude_Application_Menus %}
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                    Students
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
+            {% include 'students/application_menu.html' %}
         {% endblock %}
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="{% url 'students:student_list' %}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>List Students</p>
-                </a>
-            </li>
-        </ul>
     </li>
     <li class="nav-item has-treeview">
         {% block Billing_Application_Menu %}
