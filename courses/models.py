@@ -2,6 +2,7 @@ from django.db import models
 from home.models import UserProfile
 from django.template.defaultfilters import slugify
 
+
 LOCATION_CHOICES = [
     ('southplainfield-g', 'South Plainfield G'),
     ('southplainfield-b', 'South Plainfield B'),
@@ -32,38 +33,19 @@ SUBJECT_CHOICES = [
     ('project_management', 'Project Management'),
 ]
 
-
-class Student(models.Model):
-    user_profile = models.ForeignKey(UserProfile, blank=True, on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return self.user_profile.user.username
-
+from wiawdp.models import WIAWDP
 
 class Counselor(models.Model):
     user = models.ForeignKey(UserProfile, blank=True, on_delete=models.DO_NOTHING)
 
-
-class WIAWDP(models.Model):
-    name = models.CharField(max_length=200)
-
-    class Meta:
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
-
-
 class Course(models.Model):
-    name = models.CharField(max_length=70, help_text="Please enter the course name.")
+    name = models.CharField(max_length=128, help_text="Please enter the course name.")
     subject = models.CharField(max_length=32, choices=SUBJECT_CHOICES)
     slug = models.SlugField()
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
-    student = models.ManyToManyField('Student', null=True, blank=True, related_name=('Student'))
-    counselor = models.ManyToManyField('Counselor', null=True, blank=True, related_name=('Counselor'))
-    wiawdp = models.OneToOneField('WIAWDP', null=True, blank=True, related_name=('WIAWDP'), on_delete=models.DO_NOTHING)
+    wiawdp = models.OneToOneField(WIAWDP, null=True, blank=True, related_name=('WIAWDP'), on_delete=models.DO_NOTHING)
     location = models.CharField(max_length=32, choices=LOCATION_CHOICES)
     permissions = (("can_list_courses", "List All The Courses"),)
 

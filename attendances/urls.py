@@ -7,7 +7,7 @@ from . import views
 
 app_name = 'attendances'
 
-urlpatterns = [                                     #For templates reference
+urlpatterns = [
     path('list/', views.AttedancesListView.as_view(), name='list_students_attendances'),
 
 ]

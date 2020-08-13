@@ -22,7 +22,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length=30)
     ssn = models.CharField(max_length=11, help_text='example:123-45-6789 (dash is included automatically')
     zipcode = models.CharField(max_length=10, help_text='example: 99999')
-    homeAddress = models.CharField(max_length=30)
+    homeAddress = models.CharField(max_length=64)
     country = models.CharField(max_length=50, default="United States of America")
     city = models.CharField(max_length=30)
     cellPhone = PhoneNumberField(help_text='example: +12125552368')

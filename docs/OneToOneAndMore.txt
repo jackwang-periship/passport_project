@@ -1,0 +1,39 @@
+A user can have many cars but then a car can have just one owner.
+After establishing this, the foreign key should be used on the item with the many relationship.
+In this case the car. Meaning you'll include user as a foreign key in cars
+
+And a one on one relationship is quite simple. Say a man and a heart.
+A man has only one heart and a heart can belong to just one man
+
+
+The best and the most effective way to learn new things is to see and study real world practical examples.
+Suppose for a moment that you want to build a blog in django where reporters can write and publish news articles.
+The owner of the online newspaper wants to allow each of his reporters to publish as many articles as they want,
+but does not want different reporters to work on the same article.
+This means that when readers go and read an article they will se only one author in the article.
+
+For example: Article by John, Article by Harry, Article by Rick.
+You can not have Article by Harry & Rick because the boss does not want two or more authors to work on the same article.
+
+How can we solve this 'problem' with the help of django? The key to the solution of this problem is the django "ForeignKey".
+
+The following is the full code which can be used to implement the idea of our boss.
+
+
+from django.db import models
+
+# Create your models here.
+
+class Reporter(models.Model):
+    first_name = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.first_name
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    reporter = models.ForeignKey(Reporter)
+
+    def __unicode__(self):
+        return self.title

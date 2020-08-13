@@ -99,7 +99,7 @@ DATABASES = {
      #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jw-passport',
+        'NAME': 'passport',
         'USER': 'postgres',
         'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
         'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
