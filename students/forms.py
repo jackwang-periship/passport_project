@@ -32,7 +32,7 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = (
-            'first_name', 'last_name', 'ssn', 'homeAddress', 'zipcode', 'cellPhone', 'email',
+            'first_name', 'last_name', 'ssn', 'homeAddress', 'country', 'city','zipcode', 'cellPhone', 'email',
             'location',
             'refer', 'sources', 'gender')
 
@@ -56,6 +56,7 @@ class SearchStudentForm(forms.Form):
 
 
 class ModifyStudentInfoForm(forms.ModelForm):
+    ssn = forms.CharField(max_length=11, validators=[validate_ssn],  widget=widgets.forms.TextInput(attrs={'data-mask':"000-00-0000"}))
     zipcode = forms.CharField(max_length=10, validators=[validate_zip_code])
 
     class Meta:

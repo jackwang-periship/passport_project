@@ -82,7 +82,7 @@ class SearchStudentView(PermissionRequiredMixin, FormTableView):
         homeAddress = form.cleaned_data['homeAddress']
         zipcode = form.cleaned_data['zipcode']
 
-        if not any((first_name, last_name, cellPhone, ssn, address, zipcode)):
+        if not any((first_name, last_name, cellPhone, ssn, homeAddress, zipcode)):
             return Student.objects.none()
 
         if first_name:
