@@ -2,15 +2,14 @@
 {% load static %}
 
 {% block title %}iPassport{% endblock %}
-
+<!-- Sidebar -->
 {% block extra_template_tag %}
     {% load home_extra %}
 {% endblock %}
-
 {% block sidebar-menu %}
     {% get_home_sidebar request perms %}
 {% endblock %}
-
+<!-- Sidebar end -->
 {% if perms.home.can_list_userprofiles or perms.home.add_userprofile %}
     {% block UserProfile %}
         <li class="nav-item has-treeview">

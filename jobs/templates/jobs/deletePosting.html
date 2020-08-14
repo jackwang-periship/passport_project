@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- Sidebar -->
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}
+<!-- Sidebar End -->
+{% block content %}
+    <div class="content-wrapper">
+        <form method="post" class="card d-flex">
+            {% csrf_token %}
+                <h1 class="headline text-lg-center">Are you sure you want to delete this posting?</h1>
+                <p class="card-body text-justify">
+                    <b>Title: </b>{{ object.title }}
+                    <br>
+                    <b>Location: </b>{{ object.location }}
+                    <br>
+                    <b>Deadline: </b> {{ object.deadline }}
+                    <br>
+                    <b>Position: </b>{{ object.position }}
+                    <br>
+                </p>
+            <input type="submit" value="Confirm" class="btn btn-light"/>
+            <a href="/jobs/{{ object.client.pk }}/postings" class="btn btn-light">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

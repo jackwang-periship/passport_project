@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} {{ listType }} list {% endblock %}
+{% block title %} Create Posting {% endblock %}
 <!-- Sidebar -->
 {% block extra_template_tag %}
     {% load home_extra %}
@@ -13,7 +13,7 @@
     {% block content %}
         <div class="card">
             <form method="post" class ="card-body">
-                <h1 class = "card-header">Update Schedule</h1>
+                <h1 class = "card-header">Create Posting</h1>
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" name="submit" class="btn btn-success" value="Save Changes"/>
@@ -21,4 +21,3 @@
         </div>
     {% endblock %}
 </div>
-
