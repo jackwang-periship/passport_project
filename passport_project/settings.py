@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'passport_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-     #'default': {
+     # 'default': {
      #   'ENGINE': 'django.db.backends.sqlite3',
      #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     #}
+     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'passport',
@@ -176,3 +176,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/email-messages/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_FORMS = {'signup': 'home.forms.StudentSignupForm'}
