@@ -24,7 +24,7 @@
                     <br>
                 </p>
             <input type="submit" value="Confirm" class="btn btn-light"/>
-            <a href="/jobs/{{ object.client.pk }}/postings" class="btn btn-light">Cancel</a>
+            <a href="{% url 'jobs:editPostings' %}" class="btn btn-light">Cancel</a>
         </form>
     </div>
 {% endblock %}

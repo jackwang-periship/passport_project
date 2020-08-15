@@ -1,40 +1,43 @@
+{% load jobs_extra %}
 <li class="nav-item has-treeview">
-            {% block Jobs_Application_Menu %}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-copy"></i>
-                    <p>
-                        Jobs
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <!-- IF START -->
-                    <li class="nav-item">
-                        <a href="/jobs/1/postings" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Update Job Postings</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/jobs/1/editprofile" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p> Edit Profile </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url "jobs:createPosting" %}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p> Create Job Posting </p>
-                        </a>
-                    </li>
-                <!-- IF END -->
-                <!-- STUDENT VIEW IN NEW IF -->
-                    <li class="nav-item">
-                        <a href="{% url 'jobs:clientListings' %}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>View All Companies</p>
-                        </a>
-                    </li>
-                </ul>
-            {% endblock %}
-        </li>
+    {% block Jobs_Application_Menu %}
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+                Jobs
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <!-- IF START -->
+            {% if perms.jobs.company_user %}
+                <li class="nav-item">
+                    <a href="{% url "jobs:editPostings" %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Update Job Postings</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/jobs/{% get_user_id request %}/editprofile" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Edit Profile </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "jobs:createPosting" %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Create Job Posting </p>
+                    </a>
+                </li>
+            {% endif %}
+            {% if perms.jobs.can_apply %}
+                <li class="nav-item">
+                    <a href="{% url 'jobs:clientListings' %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View All Companies</p>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endblock %}
+</li>

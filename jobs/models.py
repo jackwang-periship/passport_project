@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Client(models.Model):
@@ -9,7 +11,7 @@ class Client(models.Model):
     class Meta:
         verbose_name = ('jobs_client')
         verbose_name_plural = ('jobs_clients')
-        permissions = (("can_edit_postings", "Edit Postings"),)
+
 
 class Posting(models.Model):
     title = models.CharField(max_length=64, verbose_name="Course")
@@ -22,3 +24,12 @@ class Posting(models.Model):
 class Applicant(models.Model):
     name = models.CharField(max_length=64)
     posting = models.ForeignKey(Posting, on_delete=models.CASCADE, related_name='posting')
+    class Meta:
+        permissions = (('can_apply', 'Can Apply'),)
+
+
+class CompanyUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    client = models.ForeignKey(Client, on_delete=models.PROTECT, related_name='user_company')
+    class Meta:
+        permissions = (('company_user', 'Company User'),)

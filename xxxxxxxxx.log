@@ -141,3 +141,21 @@
 2020-08-13 21:56:28,541 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/urls.py changed, reloading.
 2020-08-13 22:06:39,449 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
 2020-08-13 22:07:10,785 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 13:33:16,206 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/models.py changed, reloading.
+2020-08-14 14:40:31,557 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/templatetags/jobs_extra.py changed, reloading.
+2020-08-14 14:58:53,724 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/templatetags/jobs_extra.py changed, reloading.
+2020-08-14 14:59:53,443 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/models.py changed, reloading.
+2020-08-14 15:55:41,317 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 15:55:53,437 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 15:56:26,488 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 15:56:43,988 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 15:56:57,220 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 16:01:57,427 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 16:02:08,551 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 16:02:23,922 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 16:02:34,968 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-14 19:29:32,760 [Thread-1    ] [INFO ] [views.py|user_login ]  User: companyMan has logged in!
+2020-08-14 19:37:33,516 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-15 14:01:14,567 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-15 14:11:10,175 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/urls.py changed, reloading.
+2020-08-15 14:17:46,988 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.

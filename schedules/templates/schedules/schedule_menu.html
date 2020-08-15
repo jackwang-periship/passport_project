@@ -21,7 +21,7 @@
             <p>Schedule List</p>
         </a>
     </li>
-    {% if perms.canapproveschedule  %}
+    {% if perms.schedule.canapproveschedule  %}
         <li class="nav-item">
             <a href="{% url 'schedules:pendinglist' %}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -29,7 +29,7 @@
             </a>
         </li>
     {% endif %}
-    {% if perms.cancreateschedule  %}
+    {% if perms.schedule.cancreateschedule  %}
         <li class="nav-item">
             <a href="{% url 'schedules:startone' %}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>

@@ -11,5 +11,7 @@ urlpatterns = [
     path('<pk>/editprofile', views.UpdateProfile.as_view(), name='editProfile'),
     path('createposting', views.CreatePosting.as_view(), name='createPosting'),
     path('<int:clientId>/postings', views.ClientPostings.as_view(), name='clientPostings'),
-    path('<pk>/deleteposting', views.DeletePosting.as_view(), name='update')
+    path('editpostings', views.ModeratePostings.as_view(), name='editPostings'),
+    path('<pk>/deleteposting', views.DeletePosting.as_view(), name='update'),
+    path('<int:postingId>/apply',views.Apply.as_view(), name = 'apply'),
 ]
