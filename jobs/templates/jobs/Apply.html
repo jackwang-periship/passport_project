@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- Sidebar -->
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}
+<!-- Sidebar End -->
+{% block content %}
+    <div class="content-wrapper">
+        <form method="post" class="card d-flex">
+            {% csrf_token %}
+            <h1 class="headline text-lg-center">Are you sure you want to apply to this posting?</h1>
+            <input type="submit" value="Confirm" class="btn btn-light"/>
+            <a href="{% url 'jobs:clientListings' %}" class="btn btn-light">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

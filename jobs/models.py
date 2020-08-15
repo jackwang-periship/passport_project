@@ -22,8 +22,8 @@ class Posting(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client')
 
 class Applicant(models.Model):
-    name = models.CharField(max_length=64)
-    posting = models.ForeignKey(Posting, on_delete=models.CASCADE, related_name='posting')
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='applicant_user')
+    posting = models.ForeignKey(Posting, on_delete=models.PROTECT, related_name='posting')
     class Meta:
         permissions = (('can_apply', 'Can Apply'),)
 

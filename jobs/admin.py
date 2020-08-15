@@ -9,7 +9,7 @@ class Posting(admin.ModelAdmin):
     list_display = ('pk', 'title', 'location', 'deadline', 'postedDate', 'position', 'client')
 @admin.register(Applicant)
 class Applicant(admin.ModelAdmin):
-    list_display = ('name', 'posting')
+    list_display = ('user', 'posting')
 @admin.register(CompanyUser)
 class CompanyUser(admin.ModelAdmin):
     list_display = ('user', 'client')

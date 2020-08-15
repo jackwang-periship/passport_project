@@ -6,7 +6,7 @@ from django.views.generic import CreateView
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 import datetime
-from .models import Posting, Client
+from .models import Posting, Client, Applicant
 from .tables import ClientTable, PostingTable, EditTable
 from .forms import PostingForm
 
@@ -55,7 +55,6 @@ class CreatePosting(CreateView, PermissionRequiredMixin):
     def form_valid(self, form):
         model = form.save(commit=False)
         form.instance.client = self.request.user.companyuser.client
-        print(form)
         return super(CreatePosting, self).form_valid(form)
 
 
@@ -85,8 +84,13 @@ class DeletePosting(DeleteView, PermissionRequiredMixin):
     success_url = '/jobs/editpostings'
 
 class Apply(CreateView, PermissionRequiredMixin):
-    model = Posting
+    model = Applicant
+    fields = []
     template_name = 'jobs/Apply.html'
     permission_required = 'jobs.can_apply'
-    form_class = PostingForm
-    success_url = 'jobs/createposting'
+    success_url = '/jobs/clients'
+    def form_valid(self, form):
+        model = form.save(commit=False)
+        form.instance.user = self.request.user
+        form.instance.posting = Posting(self.kwargs['postingId'])
+        return super(Apply, self).form_valid(form)
