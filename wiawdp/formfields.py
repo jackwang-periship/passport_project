@@ -3,6 +3,7 @@ import django.forms.fields
 
 from wiawdp import widgets
 from wiawdp.validators import ZIPCodeValidator, SSNValidator
+import phonenumber_field.formfields as pff
 
 
 class EmailField(django.forms.fields.EmailField):
@@ -21,10 +22,6 @@ class SSNField(CharField):
     def __init__(self, min_length=9, max_length=11, **kwargs):
         super().__init__(min_length=min_length, max_length=max_length, **kwargs)
 
-    def clean(self, value):
-        value = super(SSNField, self).clean(value)
-        return value.replace('-', '')
-
 
 class ZIPCodeField(CharField):
     widget = widgets.InputMaskWidget(
@@ -33,3 +30,17 @@ class ZIPCodeField(CharField):
 
     def __init__(self, min_length=5, max_length=5, **kwargs):
         super().__init__(min_length=min_length, max_length=max_length, **kwargs)
+
+
+class PhoneNumberField(pff.PhoneNumberField):
+    widget = widgets.InputMaskWidget(
+        attrs={'data-inputmask-mask': '(999) 999-9999'}
+    )
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def to_python(self, value):
+        # NOTE: Convert to string, otherwise a ProgrammingError with message
+        # "can't adapt type 'PhoneNumber'" will be thrown when using Postgres
+        return str(super(PhoneNumberField, self).to_python(value))
