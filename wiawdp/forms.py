@@ -1,7 +1,7 @@
 from django import forms
-from phonenumber_field.formfields import PhoneNumberField
+
 import wiawdp.widgets as widgets
-from wiawdp.formfields import ZIPCodeField, SSNField, EmailField
+from wiawdp.formfields import ZIPCodeField, SSNField, EmailField, PhoneNumberField
 from wiawdp.models import Contract, WIAWDP
 
 
