@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 from courses.models import LOCATION_CHOICES
+from datetime import datetime
 
 
 class Student(models.Model):
@@ -20,12 +21,13 @@ class Student(models.Model):
     )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    ssn = models.CharField(max_length=11, help_text='example:123-45-6789 (dash is included automatically')
-    zipcode = models.CharField(max_length=10, help_text='example: 99999')
+    birth_date = models.DateField(default=datetime.now())
+    ssn = models.CharField(max_length=11)
+    zipcode = models.CharField(max_length=10)
     homeAddress = models.CharField(max_length=64)
     country = models.CharField(max_length=50, default="United States of America")
     city = models.CharField(max_length=30)
-    cellPhone = PhoneNumberField(help_text='example: +12125552368')
+    cellPhone = PhoneNumberField()
     email = models.EmailField(max_length=30)
     location = models.CharField(max_length=30, choices=LOCATION_CHOICES, default='southplainfield-g')
     refer = models.CharField(max_length=30, blank=True, help_text='Not Required')
