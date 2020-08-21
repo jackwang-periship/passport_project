@@ -161,3 +161,10 @@
 2020-08-15 14:17:46,988 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
 2020-08-15 14:37:51,557 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/admin.py changed, reloading.
 2020-08-15 14:43:49,275 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-18 15:24:03,128 [Thread-3    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-08-18 15:32:52,667 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/home/views.py changed, reloading.
+2020-08-18 15:50:54,525 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/home/views.py changed, reloading.
+2020-08-18 18:59:57,426 [Thread-5    ] [INFO ] [views.py|user_login ]  User: admin has logged in!
+2020-08-18 20:43:18,221 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-18 20:44:43,276 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.
+2020-08-18 20:44:57,861 [MainThread  ] [INFO ] [django.utils.autorel]  /home/thomas/repos/passport_project/jobs/views.py changed, reloading.

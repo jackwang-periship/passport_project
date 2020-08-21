@@ -15,6 +15,6 @@ def get_jobs_sidebar(request, perms):
 @register.simple_tag
 def get_user_id(request):
     try:
-        return request.user.companyuser.client.pk
+        return '/jobs/' + str(request.user.companyuser.client.pk) + '/editprofile'
     except:
-        return 0
+        return '/jobs/error'

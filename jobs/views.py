@@ -4,7 +4,9 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import CreateView
 from django.views.generic import DetailView
+from django.views.generic import TemplateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import redirect
 import datetime
 from .models import Posting, Client, Applicant
 from .tables import ClientTable, PostingTable, EditTable
@@ -54,7 +56,10 @@ class CreatePosting(CreateView, PermissionRequiredMixin):
     success_url = '/jobs'
     def form_valid(self, form):
         model = form.save(commit=False)
-        form.instance.client = self.request.user.companyuser.client
+        try:
+            form.instance.client = self.request.user.companyuser.client
+        except:
+            return redirect('/jobs/error')
         return super(CreatePosting, self).form_valid(form)
 
 
@@ -70,12 +75,22 @@ class ClientPostings(SingleTableView, PermissionRequiredMixin):
 
 class ModeratePostings(SingleTableView, PermissionRequiredMixin):
     table_class = EditTable
-    template_name = 'jobs/clientListings.html'
+    template_name = 'jobs/moderatePostings.html'
     permission_required = 'jobs.can_update_posting'
     def get_table_data(self):
-        return Posting.objects.filter(client=self.request.user.companyuser.client)
+        try:
+            return Posting.objects.filter(client=self.request.user.companyuser.client)
+        except:
+            print('FAIL')
+            redirect('/jobs/error')
+            return []
     def get_queryset(self):
-        return Posting.objects.filter(client=self.request.user.companyuser.client)
+        try:
+            return Posting.objects.filter(client=self.request.user.companyuser.client)
+        except:
+            print('FAIL')
+            redirect('/jobs/error')
+            return []
 
 class DeletePosting(DeleteView, PermissionRequiredMixin):
     model = Posting
@@ -94,3 +109,6 @@ class Apply(CreateView, PermissionRequiredMixin):
         form.instance.user = self.request.user
         form.instance.posting = Posting(self.kwargs['postingId'])
         return super(Apply, self).form_valid(form)
+
+class Error(TemplateView):
+    template_name = 'jobs/Error.html'

@@ -12,6 +12,9 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
+from bokeh.plotting import figure, output_file, show
+from bokeh.embed import components
+from schedules.models import Schedule
 
 from passport_project.logger import log
 
@@ -147,5 +150,28 @@ class UserProfileListView(PermissionRequiredMixin, generic.ListView):
 class UserProfileDetailView(generic.DetailView):
     model = UserProfile
 
+class Dashboard(generic.TemplateView):
+    template_name = 'home/dashboard.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        classes = Schedule.objects.all()
+        hours =[]
+        classNames = []
+        for i in classes:
+            classNames.append(i.course_name)
+            print(i.course_name)
+            hours.append(i.hours)
+            print(i.hours)
+        plot = figure(title='Class Hours', x_axis_label='Class', y_axis_label='Hours', x_range=classNames, tools = '')
+        plot.vbar(x = classNames, top = hours, width = 0.5)
+        plot.xgrid.grid_line_color = None
+        plot.y_range.start = 0
+        script, div = components(plot)
+        context.update({
+            'script':script,
+            'div':div,
+        })
+        print('working')
+        return context
 

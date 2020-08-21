@@ -14,4 +14,5 @@ urlpatterns = [
     path('editpostings', views.ModeratePostings.as_view(), name='editPostings'),
     path('<pk>/deleteposting', views.DeletePosting.as_view(), name='update'),
     path('<int:postingId>/apply',views.Apply.as_view(), name = 'apply'),
+    path('error', views.Error.as_view(), name='error')
 ]
