@@ -1,0 +1,18 @@
+<div class="dropdown">
+    <button type="button" class="btn" data-toggle="dropdown">
+        <i class="fas fa-th-large"></i>
+    </button>
+    <div class="dropdown-menu p-4">
+        <div class="d-flex flex-column align-items-center">
+            <a href="{% url 'account_change_password' %}" class="text-nowrap">
+                Change Password
+            </a>
+            <div class="dropdown-divider"></div>
+            <form action="{% url 'account_logout' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-outline-dark w-100" value="Sign Out">
+            </form>
+        </div>
+
+    </div>
+</div>
