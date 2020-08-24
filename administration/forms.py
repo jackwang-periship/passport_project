@@ -23,7 +23,6 @@ class ChangePasswordForm(forms.Form):
         password_validation.validate_password(password)
         return password
 
-
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('new_password')
@@ -37,3 +36,17 @@ class AddUserForm(forms.Form):
     email = EmailField(required=True)
     password = forms.CharField(required=True, widget=forms.PasswordInput)
     groups = forms.ModelMultipleChoiceField(required=False, queryset=Group.objects.all())
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('A user with that username already exists.', code='invalid')
+
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('A user with that email already exists.', code='invalid')
+
+        return email
