@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
     'attendances.apps.AttendancesConfig',
+    'administration.apps.AdministrationConfig'
 ]
 
 MIDDLEWARE = [

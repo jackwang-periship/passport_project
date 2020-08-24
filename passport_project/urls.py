@@ -31,4 +31,5 @@ urlpatterns = [
     path('wiawdp/', include('wiawdp.urls')),
     path('billing/', include('billing.urls')),
     path('attendances/',include('attendances.urls')),
+    path('administration/', include('administration.urls')),
 ]
