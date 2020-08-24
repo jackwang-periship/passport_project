@@ -36,4 +36,4 @@ class AddUserForm(forms.Form):
     username = forms.CharField(required=True)
     email = EmailField(required=True)
     password = forms.CharField(required=True, widget=forms.PasswordInput)
-    groups = forms.ModelMultipleChoiceField(required=True, queryset=Group.objects.all())
+    groups = forms.ModelMultipleChoiceField(required=False, queryset=Group.objects.all())

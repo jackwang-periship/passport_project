@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import FormView
 from administration.forms import ChangePasswordForm, AddUserForm
 
@@ -7,6 +8,7 @@ from administration.forms import ChangePasswordForm, AddUserForm
 class ChangePasswordView(FormView):
     form_class = ChangePasswordForm
     template_name = 'administration/change_password_form.html'
+    success_url = reverse_lazy('administration:change_password')
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -16,13 +18,12 @@ class ChangePasswordView(FormView):
         user.set_password(password)
         user.save()
 
-        context = self.get_context_data()
-        context['success'] = True
-        return render(self.request, self.template_name, context=context)
+        return super().form_valid(form)
 
 class AddUserView(FormView):
     form_class = AddUserForm
     template_name = 'administration/add_user_form.html'
+    success_url = reverse_lazy('administration:add_user')
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -30,10 +31,9 @@ class AddUserView(FormView):
         password = form.cleaned_data['password']
         groups = form.cleaned_data['groups']
 
-        # user = User(username=username, email=email, password=p)
         user = User.objects.create_user(username=username, email=email, password=password)
 
         for group in groups:
             user.groups.add(group)
 
-        return render(self.request, self.template_name)
+        return super().form_valid(form)
