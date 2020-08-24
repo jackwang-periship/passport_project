@@ -81,7 +81,6 @@ class ModeratePostings(SingleTableView, PermissionRequiredMixin):
         try:
             return Posting.objects.filter(client=self.request.user.companyuser.client)
         except:
-            print('FAIL')
             redirect('/jobs/error')
             return []
     def get_queryset(self):
@@ -91,6 +90,16 @@ class ModeratePostings(SingleTableView, PermissionRequiredMixin):
             print('FAIL')
             redirect('/jobs/error')
             return []
+
+    def get_context_data(self, **kwargs):
+        context = super(ModeratePostings, self).get_context_data()
+        try:
+            context.update({
+                'length': len(Posting.objects.filter(client=self.request.user.companyuser.client)),
+            })
+        except:
+            pass
+        return context
 
 class DeletePosting(DeleteView, PermissionRequiredMixin):
     model = Posting

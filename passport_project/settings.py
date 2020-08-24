@@ -110,7 +110,7 @@ DATABASES = {
     #     'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
     #     'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
     #     'PORT': '5432',
-    # }
+    #}
 }
 
 # Password validation

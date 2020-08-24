@@ -13,7 +13,7 @@
 {% block content %}
     <div class="content-wrapper">
         <h1> Job Postings </h1>
-        {% if row_counter == 0 %}
+        {% if length > 0 %}
             {% load render_table from django_tables2 %}
             <div class="card">
                 {% render_table table %}
