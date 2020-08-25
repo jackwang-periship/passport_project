@@ -15,6 +15,8 @@ from django.views.generic.edit import FormView
 from bokeh.plotting import figure, output_file, show
 from bokeh.embed import components
 from schedules.models import Schedule
+import numpy as np
+import csv
 
 from passport_project.logger import log
 
@@ -155,23 +157,34 @@ class Dashboard(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        classes = Schedule.objects.all()
-        hours =[]
-        classNames = []
-        for i in classes:
-            classNames.append(i.course_name)
-            print(i.course_name)
-            hours.append(i.hours)
-            print(i.hours)
-        plot = figure(title='Class Hours', x_axis_label='Class', y_axis_label='Hours', x_range=classNames, tools = '')
-        plot.vbar(x = classNames, top = hours, width = 0.5)
+        teamHeights = {}
+        with open('docs/mlb_players_2020.csv') as csvfile:
+            baseBallStats = csv.reader(csvfile, delimiter = ',', quotechar = '"')
+            next(baseBallStats)
+            for stat in baseBallStats:
+                if stat[1][2:-1] in teamHeights:
+                    teamHeights[stat[1][2:-1]].append(float(stat[3]))
+                else:
+                    teamHeights.update({stat[1][2:-1]:[float(stat[3])]})
+        print(teamHeights)
+        teams = []
+        height = []
+        for team in teamHeights:
+            teams.append(team)
+            teamAvg = 0
+            for i in teamHeights[team]:
+                teamAvg += i
+            teamAvg /= len(teamHeights[team])
+            print(teamAvg)
+            height.append(teamAvg)
+        plot = figure(title='Average Height per Team', x_axis_label='Team', y_axis_label='Avg Height(inches)', x_range=teams, tools = '')
+        plot.vbar(x = teams, top = height, width = 0.5)
         plot.xgrid.grid_line_color = None
-        plot.y_range.start = 0
+        plot.y_range.start = 70
         script, div = components(plot)
         context.update({
             'script':script,
             'div':div,
         })
-        print('working')
         return context
 

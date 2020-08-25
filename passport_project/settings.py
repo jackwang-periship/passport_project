@@ -28,10 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +39,11 @@ INSTALLED_APPS = [
     'django_filters',
     # 'django_extensions',
     # Added by this project
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django_tables2',
     'phonenumber_field',
     'home.apps.HomeConfig',
@@ -52,14 +53,8 @@ INSTALLED_APPS = [
     'wiawdp.apps.WiawdpConfig',
     'billing.apps.BillingConfig',
     'jobs.apps.JobsConfig',
-    'django.contrib.sites',
-    #allauth apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    'attendances.apps.AttendancesConfig',
 ]
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,18 +94,18 @@ WSGI_APPLICATION = 'passport_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'thomas-passport',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
-    #     'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
-    #     'PORT': '5432',
-    #}
+     # 'default': {
+     #    'ENGINE': 'django.db.backends.sqlite3',
+     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'thomas-passport',
+        'USER': 'postgres',
+        'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
+        'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 # Password validation
@@ -155,9 +150,35 @@ STATIC_ROOT = '/var/www/' + PROJECT_NAME + '/assets/'  # python manage.py collec
 GOOGLE_API_KEY = 'AIzaSyD--your-google-maps-key-SjQBE'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_URL = '/'
 
-ACCOUNT_EMAIL_VERIFICATION = True
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_FORMS = {'signup': 'home.forms.StudentSignupForm'}
+
+
+PHONENUMBER_DEFAULT_REGION = 'US'

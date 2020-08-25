@@ -4,19 +4,19 @@
 {% load static %}
 {% block title %}Avtech Billing{%  endblock %}
 {% block style_block %}
-	<style>
-	table,th,td{
-	    border: 2px solid #151515;
-	    border-collapse: collapse;
-	}
-	th, td{
-	    padding: 5px;
-	    text-align: center;
-	}
+<style>
+table,th,td{
+   border: 2px solid #151515;
+   border-collapse: collapse;
+}
+th, td{
+   padding: 5px;
+   text-align: center;
+}
     th{
         background-color: darkred;
     }
-	</style>
+</style>
 {% endblock %}
 
 {% block Billing_Application_Menu %}
@@ -64,35 +64,23 @@
 {% block content_header %}Logs Notice{%  endblock %}
 {% block content %}
     <div>
+    <form id="log_filter_form" method="post" action="{% url 'billing:logs' %}">
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+              <p>
+              {{ field.errors }}
+              {{ field.help_text }}
+              {{ field }}
+
+          {% endfor %}
+          <input type="submit" name="submit" value="Search" />
+          <input type="submit" name="submit" value="Save as a report" />
+          </p>
+      </form>
 
       {% if table %}
         {% render_table table %}
       {% endif %}
-
-{#            {% if report %}#}
-{#                <table style="width:100%">#}
-{#                    <!-- <caption>Caption</caption> -->#}
-{#                    <tr>#}
-{#                        <th>Start Date</th>#}
-{#                        <th>End Date</th>#}
-{#                        <th>Report Type</th>#}
-{#                        <!-- <th colspan="2">Telephone</th> -->#}
-{#                    </tr>#}
-{##}
-{##}
-{#                {% for report in reports %}#}
-{#                    <tr>#}
-{#                        <td>{{ report.startD }}</td>#}
-{#                        <td>{{ report.endD }}</td>#}
-{#                        <td>{{ report.type }}</td>#}
-{##}
-{#                    </tr>#}
-{##}
-{#                {% endfor %}#}
-{#                </table>#}
-{#            {% else %}#}
-{#                    <strong>No logs available.</strong>#}
-{#                {% endif %}#}
 
     </div>
 {% endblock %}

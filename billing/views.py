@@ -60,8 +60,29 @@ def report(request):
 
 
 def logs(request):
-    reports = Report.objects.order_by('-type')
-    table = Logs(reports)
-    context = {'table': table, 'report': reports}
+    # form = LogFilterForm()
+    form = ReportForm()
+    if request.method == 'POST' and request.POST != {}:
+        formReport = ReportForm(request.POST)
+        if formReport.is_valid():
+            # If the "save" button is clicked, the save the formReport data
+            if request.POST['submit'] == 'Save as a report':
+                formReport.save(commit=True)
+            startDate = formReport.cleaned_data['startD']
+            endDate = formReport.cleaned_data['endD']
+            type = formReport.cleaned_data['type']
+            if type == "all":   # Cheek the type, if it is "all" then no need to add "order by" clause
+                results = Transaction.objects.filter(date__range=[startDate, endDate])
+            else:   # order by is similar to group.
+                results = Transaction.objects.filter(date__range=[startDate, endDate]).order_by('-' + type)
+            table = Notice(results)
+            RequestConfig(request, paginate={"per_page": 10}).configure(table)
+            context = {'table': table, 'form': formReport}
+            return render(request, "billing/logs.html", context)
+    results = Transaction.objects.all()
+    table = Notice(results)
+    RequestConfig(request, paginate={"per_page": 10}).configure(table)
+    context = {'table': table, 'form': form}
     return render(request, "billing/logs.html", context)
+
 

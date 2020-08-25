@@ -1,0 +1,23 @@
+[
+  {
+    "model": "wiawdp.workforce",
+    "pk": 1,
+    "fields": {
+      "workforce": "Red"
+    }
+  },
+  {
+    "model": "wiawdp.workforce",
+    "pk": 2,
+    "fields": {
+      "workforce": "Green"
+    }
+  },
+  {
+    "model": "wiawdp.workforce",
+    "pk": 3,
+    "fields": {
+      "workforce": "Blue"
+    }
+  }
+]

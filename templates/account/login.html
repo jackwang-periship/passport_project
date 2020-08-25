@@ -1,0 +1,24 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+{% load account socialaccount %}
+
+
+{% block content %}
+    <form class="login" method="POST">
+        {% csrf_token %}
+        <div class="justify-content-center">
+            {{ form.as_p }}
+        </div>
+
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+
+        <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+    <small id="loginHelpBlock" class="form-text text-muted">
+    <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    </small>
+
+    <small class="form-text text-muted"><a href="{% url 'account_signup' %}">Create account</a></small>
+    </form>
+{% endblock content %}

@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+
+{% block content_header %}
     New Course
+{% endblock %}
+
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
 {% endblock %}
 
 {% block Course %}

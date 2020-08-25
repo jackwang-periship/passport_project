@@ -3,15 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <style>{% block style_block %}{% endblock %}</style>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{% static 'AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css' %}">
-    <!-- Ionicons -->
+    <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet"
+          href="{% static 'AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
           href="{% static 'AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
@@ -31,11 +37,19 @@
      <!-- Google Font: Source Sans Pro -->
     {% block header_extention %}{% endblock %}
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<!--
+`body` tag options:
 
+  Apply one or more of the following classes to to the body tag
+  to get the desired effect
+
+  * sidebar-collapse
+  * sidebar-mini
+-->
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-lightblue navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -148,35 +162,24 @@
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
-            <!-- User Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-user-circle"></i>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <div class="dropdown-divider"></div>
-                    <div class="d-flex flex-row">
-                        <a href="{% url 'password_change' %}" class="mt-2 mb-2 dropdown-item">
-                            <i class="fas fa-user-edit text-black-80"></i> Change Password
-                        </a>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <div class="d-flex flex-row justify-content-center">
-                        <a href="{% url 'logout' %}" class="w-50 mt-3 mb-3 btn btn-outline-dark" role="button"
-                           aria-pressed="true">Logout</a>
-                    </div>
-                </div>
+            </li>
+            <li class="nav-item">
+                {% include 'account_actions_dropdown.html' %}
             </li>
         </ul>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {% block  sidebar %}
-    <aside class="main-sidebar navbar sidebar-dark-lightblue elevation-4">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link navbar-dark">
-            <img src="{% static "images/avtech_logo_top.png" %}" alt="AVTech Institute" class="brand-image elevation-3"
+        <a href="index3.html" class="brand-link">
+            <img src="{% static "images/avtech_logo_top.png" %}" alt="AVTech Institute"
+                 class="brand-image elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">&nbsp;</span>
         </a>
@@ -189,20 +192,33 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">
-                        {{ request.user }}
-                    </a>
+                    <a href="#" class="d-block">{{ request.user }}</a>
+                </div>
+            </div>
+
+            <!-- SidebarSearch Form -->
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                           aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- Sidebar Menu -->
+            <nav class="mt-2">
                 {% block sidebar-menu %}
                 {% endblock %}
-3            <!-- /.sidebar-menu -->
+            </nav>
+            <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
     </aside>
-    {% endblock %}
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -210,7 +226,19 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">{% block content_header %}{% endblock %}</h1>
+                        <h1 class="m-0 text-dark">
+                                {% block content_header %}
+                                {% endblock %}
+                        </h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">
+                                {% block breadcrumbs %}
+                                {% endblock %}
+                            </li>
+                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -218,34 +246,33 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <section class="content">
+        <div class="content">
             <div class="container-fluid">
                 {% block content %}
                 {% endblock %}
-            </div><!-- /.container-fluid -->
-        </section>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2020 <a href="http://www.avtechusa.com/avsitev6/index.html">AVTech
-            Institute</a>.</strong>
+        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 0.5
+            <b>Version</b> 3.1.0-pre
         </div>
     </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
+<!-- REQUIRED SCRIPTS -->
+
 <!-- jQuery -->
 <script src="{% static 'AdminLTE-3.0.5/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{% static 'AdminLTE-3.0.5/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
