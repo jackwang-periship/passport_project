@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'billing.apps.BillingConfig',
     'jobs.apps.JobsConfig',
     'attendances.apps.AttendancesConfig',
+    'administration.apps.AdministrationConfig'
 ]
 
 MIDDLEWARE = [
