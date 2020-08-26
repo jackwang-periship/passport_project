@@ -37,7 +37,7 @@ class ModifyStudentInfoForm(forms.ModelForm):
     ssn = SSNField()
     zipcode = ZIPCodeField()
     birth_day = forms.DateField(widget=widgets.DatePickerWidget())
-    cellphone = PhoneNumberField()
+    cellPhone = PhoneNumberField()
     email = EmailField()
 
     class Meta:
