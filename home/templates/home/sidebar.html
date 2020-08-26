@@ -180,12 +180,8 @@
         </li>
     {% endif %}
     {% block Administration_Menu %}
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-circle nav-icon"></i>
-                <p>Place Holder</p>
-            </a>
-        </li>
+        {% include 'wiawdp/nav_item.html' with location='administration:add_user' title='Add User' %}
+        {% include 'wiawdp/nav_item.html' with location='administration:change_password' title='Change Password' %}
     {% endblock %}
 </ul>
 
