@@ -25,7 +25,8 @@ SECRET_KEY = 'dqm=h%#8s(^th9_7qv#*0a=^(6(7ry%x5-w&&z-9_!m$xd9vqg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Please change the IP address 192.168.50.201 to your server's IP address
+ALLOWED_HOSTS = [192.168.50.201,]
 
 # Application definition
 INSTALLED_APPS = [
