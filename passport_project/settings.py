@@ -25,7 +25,8 @@ SECRET_KEY = 'dqm=h%#8s(^th9_7qv#*0a=^(6(7ry%x5-w&&z-9_!m$xd9vqg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Please change the IP address 192.168.50.201 to your server's IP address
+ALLOWED_HOSTS = ['192.168.50.201',]
 
 # Application definition
 INSTALLED_APPS = [
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'billing.apps.BillingConfig',
     'jobs.apps.JobsConfig',
     'attendances.apps.AttendancesConfig',
+    'administration.apps.AdministrationConfig'
 ]
 
 MIDDLEWARE = [
@@ -94,18 +96,19 @@ WSGI_APPLICATION = 'passport_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'thomas-passport',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
-    #     'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
-    #     'PORT': '5432',
-    # }
+
+     # 'default': {
+     #    'ENGINE': 'django.db.backends.sqlite3',
+     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'passport',
+        'USER': 'postgres',
+        'PASSWORD': 'TnhHei6x2MOr3ZWIcxl7',
+        'HOST': 'database-postgresql-aurora.cluster-ceu8vm3x9bmb.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 # Password validation

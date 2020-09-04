@@ -34,7 +34,7 @@ class ZIPCodeField(CharField):
 
 class PhoneNumberField(pff.PhoneNumberField):
     widget = widgets.InputMaskWidget(
-        attrs={'data-inputmask-mask': '(999) 999-9999'}
+        attrs={'data-inputmask-mask': '[+9] (999) 999-9999'}
     )
 
     def __init__(self, **kwargs):

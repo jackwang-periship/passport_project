@@ -128,7 +128,7 @@ def register(request):
 @login_required
 def index(request):
     # Render the response and send it back!
-    return render(request, 'home/index.html')
+    return redirect(reverse("home:dashboard"))
 
 
 class UserProfileListView(PermissionRequiredMixin, generic.ListView):
