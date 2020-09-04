@@ -166,7 +166,6 @@ class Dashboard(generic.TemplateView):
                     teamHeights[stat[1][2:-1]].append(float(stat[3]))
                 else:
                     teamHeights.update({stat[1][2:-1]:[float(stat[3])]})
-        print(teamHeights)
         teams = []
         height = []
         for team in teamHeights:
@@ -175,7 +174,6 @@ class Dashboard(generic.TemplateView):
             for i in teamHeights[team]:
                 teamAvg += i
             teamAvg /= len(teamHeights[team])
-            print(teamAvg)
             height.append(teamAvg)
         plot = figure(title='Average Height per Team', x_axis_label='Team', y_axis_label='Avg Height(inches)', x_range=teams, tools = '')
         plot.vbar(x = teams, top = height, width = 0.5)
