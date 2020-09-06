@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block title %}Students{% endblock %}
+
 {% block content %}
     {% include 'students/student_table.html' %}
 {% endblock content %}
+
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}

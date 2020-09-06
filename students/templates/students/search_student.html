@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block title %}Search Student{% endblock %}
+
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}
+
+
 {% block content %}
 <div class="card card-primary">
     <div class="card-header">

@@ -26,7 +26,7 @@ SECRET_KEY = 'dqm=h%#8s(^th9_7qv#*0a=^(6(7ry%x5-w&&z-9_!m$xd9vqg'
 DEBUG = True
 
 # Please change the IP address 192.168.50.201 to your server's IP address
-ALLOWED_HOSTS = ['192.168.50.201',]
+ALLOWED_HOSTS = ['192.168.50.201', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [

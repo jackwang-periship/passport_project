@@ -3,6 +3,16 @@
 {% load render_table from django_tables2 %}
 
 {% block title %}Search Result{% endblock %}
+
+{% block extra_template_tag %}
+    {% load home_extra %}
+{% endblock %}
+
+{% block sidebar-menu %}
+    {% get_home_sidebar request perms %}
+{% endblock %}
+
+
 {% block content %}
 <a href="{% url 'students:search_student' %}">New Search</a><br>
 {% include 'students/student_table.html' %}
