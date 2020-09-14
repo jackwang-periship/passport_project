@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Attendances
+
 
 # Create your views here.
 from django.views import generic
+
+# For the form view
 
 
 class AttedancesListView( generic.ListView):
@@ -26,8 +29,8 @@ class AttedancesListView( generic.ListView):
         #Anthoer example return Course.objects.order_by('name')[:10]
 
         # Depends on model. Read the book tangoWithDjango
-        # return Attendances.objects.all()
-        return Attendances.objects.order_by('last_name')[:10]
+        #return Attendances.objects.all()
+        return Attendances.objects.order_by('student__last_name')[:10]
         # Get all employees
 
     def get_context_data(self, **kwargs):
@@ -36,4 +39,21 @@ class AttedancesListView( generic.ListView):
         # Create any data and add it to the context
         context["sidebar_data"] = 'This holds the sidebar data for courses'
         return context
+
+
+# Form to add attendance record to the database
+#Created this form following this tutorial https://tutorial.djangogirls.org/en/django_forms/
+from .forms import AttendanceForm
+def post_new(request):
+    if request.method == "POST":
+        form = AttendanceForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('attendances:list_students_attendances')
+    else:
+        form = AttendanceForm()
+
+    return render(request, 'attendances/insertNewStudentAttendance.html', {'form': form})
+
 

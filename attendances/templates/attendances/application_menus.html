@@ -9,7 +9,14 @@
     <li class="nav-item">
         <a href="{% url 'attendances:list_students_attendances' %} " class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>List</p>
+            <p>List Students' Attendances Records</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{% url 'attendances:post_new_attendance_record' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Attendance Record</p>
+        </a>
+    </li>
+
 </ul>
